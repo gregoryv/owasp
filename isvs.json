@@ -159,7 +159,7 @@
     "Description": "Verify GPL based firmware has its source code published and that no sensitive or proprietary information is accidentally included in the process.",
     "ID": "1.3.2",
     "Verified": false,
-    "Applicable": false
+    "Applicable": true
   },
   {
     "L1": false,

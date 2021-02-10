@@ -55,6 +55,11 @@ func ExampleEditor_WriteReport() {
 	// output:
 }
 
+func ExampleMustSetVerified() {
+	MustSetVerifiedNow("1.3.2", "isvs.json", false)
+	// output:
+}
+
 // ----------------------------------------
 
 func Test_convert_original_asvs_to_checklist(t *testing.T) {
