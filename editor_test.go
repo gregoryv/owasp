@@ -5,11 +5,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gregoryv/edisvs"
+	"github.com/gregoryv/owasp"
 )
 
 func TestEditor(t *testing.T) {
-	var ed edisvs.Editor
+	var ed owasp.Editor
 
 	filename := "OWASP_ISVS-1.0RC.json"
 	if err := ed.ImportOWASPFile(filename); err != nil {

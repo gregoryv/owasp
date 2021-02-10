@@ -1,4 +1,4 @@
-module github.com/gregoryv/edisvs
+module github.com/gregoryv/owasp
 
 go 1.15
 
