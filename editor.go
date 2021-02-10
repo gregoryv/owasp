@@ -145,7 +145,7 @@ func (me *Editor) WriteReport(w io.Writer, report Report) error {
 		if !e.Applicable {
 			continue
 		}
-		p.Println(e.String())
+		p.Println("-", e.checkbox(), e.String())
 	}
 
 	p.Println()
@@ -154,7 +154,11 @@ func (me *Editor) WriteReport(w io.Writer, report Report) error {
 		if e.Applicable {
 			continue
 		}
-		p.Println(e.String())
+		if report.ShortDescriptionNA {
+			p.Println("-", e.shortString())
+		} else {
+			p.Println("-", e.String())
+		}
 	}
 
 	return *err
@@ -204,22 +208,20 @@ type Entry struct {
 	Applicable  bool
 }
 
-func (me *Entry) String() string {
-	checkbox := "- [ ]"
+func (me *Entry) checkbox() string {
+	checkbox := "[ ]"
 	if me.Verified {
-		checkbox = "- [x]"
+		checkbox = "[x]"
 	}
-	return fmt.Sprintf("%s %s %s...", checkbox, me.ID, me.Description)
+	return checkbox
 }
 
-func (me *Entry) link() string {
-	switch me.ID[:3] {
-	case "1.1":
-		return base + "/blob/master/en/V1-IoT_Ecosystem_Requirements.md#application-and-ecosystem-design"
-		// todo add the other cases
-	default:
-		return base
-	}
+func (me *Entry) shortString() string {
+	return fmt.Sprintf("%s %s...", me.ID, me.shortDesc())
+}
+
+func (me *Entry) String() string {
+	return fmt.Sprintf("%s %s", me.ID, me.Description)
 }
 
 func (me *Entry) shortDesc() string {
@@ -229,16 +231,16 @@ func (me *Entry) shortDesc() string {
 	return me.Description[:80] + "..."
 }
 
-const base = "https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS"
-
 // ----------------------------------------
 
 func NewReport(title string) *Report {
 	return &Report{
-		Title: title,
+		Title:              title,
+		ShortDescriptionNA: true,
 	}
 }
 
 type Report struct {
-	Title string
+	Title              string
+	ShortDescriptionNA bool // true to shorten description for all non applicable
 }

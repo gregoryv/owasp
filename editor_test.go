@@ -30,7 +30,7 @@ func TestEditor(t *testing.T) {
 	got := rbuf.String()
 	exp := []string{
 		"4.3.4",
-		"[ ] 5",
+		"- 5",
 		"[x] 1.3.1",
 	}
 	for _, exp := range exp {
