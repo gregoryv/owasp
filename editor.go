@@ -68,6 +68,7 @@ func (me *Editor) Export(w io.Writer) error {
 func (me *Editor) WriteReport(w io.Writer) error {
 	p, err := nexus.NewPrinter(w)
 	p.Println("# ISVS Report")
+	p.Println("https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS/")
 
 	p.Println("## Applicable")
 
@@ -105,5 +106,24 @@ func (me *Entry) String() string {
 	if me.Verified {
 		checkbox = "- [x]"
 	}
-	return fmt.Sprintf("%s %s %s", checkbox, me.ID, me.Description)
+	return fmt.Sprintf("%s [%s](%s) %s...", checkbox, me.ID, me.link(), me.shortDesc())
 }
+
+func (me *Entry) link() string {
+	switch me.ID[:3] {
+	case "1.1":
+		return base + "/blob/master/en/V1-IoT_Ecosystem_Requirements.md#application-and-ecosystem-design"
+		// todo add the other cases
+	default:
+		return base
+	}
+}
+
+func (me *Entry) shortDesc() string {
+	if len(me.Description) < 80 {
+		return me.Description
+	}
+	return me.Description[:80] + "..."
+}
+
+const base = "https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS"
