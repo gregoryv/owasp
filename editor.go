@@ -15,7 +15,7 @@ type Editor struct {
 	entries []Entry
 }
 
-func (me *Editor) ImportOWASPFile(filename string) error {
+func (me *Editor) ImportFile(filename string) error {
 	fh, err := os.Open(filename)
 	if err != nil {
 		return err

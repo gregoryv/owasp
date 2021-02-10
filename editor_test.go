@@ -12,7 +12,7 @@ func TestEditor(t *testing.T) {
 	var ed owasp.Editor
 
 	filename := "OWASP_ISVS-1.0RC.json"
-	if err := ed.ImportOWASPFile(filename); err != nil {
+	if err := ed.ImportFile(filename); err != nil {
 		t.Fatal(err)
 	}
 
