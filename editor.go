@@ -12,6 +12,11 @@ import (
 
 // https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS
 
+func NewEditor() *Editor {
+	return &Editor{}
+}
+
+//go:generate gentut -t Editor -p owasp -in editor.go -w
 type Editor struct {
 	entries []Entry
 }

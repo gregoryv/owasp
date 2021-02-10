@@ -1,33 +1,26 @@
-package owasp_test
+package owasp
 
 import (
 	"bytes"
+	"os"
 	"strings"
 	"testing"
-
-	"github.com/gregoryv/owasp"
 )
 
 func TestEditor(t *testing.T) {
-	var ed owasp.Editor
+	ed := NewEditor().UnderTest(t)
 
 	filename := "OWASP_ISVS-1.0RC.json"
-	if err := ed.ImportFile(filename); err != nil {
-		t.Fatal(err)
-	}
+	ed.mustImportFile(filename)
 
-	if err := ed.SetVerified("1.3.1"); err != nil {
-		t.Fatal(err)
-	}
+	ed.shouldSetVerified("1.3.1")
 
 	if err := ed.SetVerified("no such"); err == nil {
 		t.Fatal("SetVerified should fail")
 	}
 
 	var buf bytes.Buffer
-	if err := ed.TidyExport(&buf); err != nil {
-		t.Fatal(err)
-	}
+	ed.mustTidyExport(&buf)
 
 	var report bytes.Buffer
 	ed.WriteReport(&report)
@@ -44,4 +37,19 @@ func TestEditor(t *testing.T) {
 			t.Fatal("missing", exp)
 		}
 	}
+}
+
+func ExampleEditor_WriteReport() {
+	ed := NewEditor()
+	_ = ed.ImportFile("OWASP_ISVS-1.0RC.json")
+	_ = ed.SetVerified("1.1.1")
+	_ = ed.SetVerified("1.3.1")
+
+	fh, err := os.Create("example_report.md")
+	if err != nil {
+		panic(err)
+	}
+	defer fh.Close()
+	ed.WriteReport(fh)
+	// output:
 }
