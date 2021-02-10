@@ -68,9 +68,9 @@ func (me *Editor) WriteReport(w io.Writer) error {
 	p.Println("# ISVS Report")
 
 	for _, e := range me.entries {
-		checkbox := "[ ]"
+		checkbox := "- [ ]"
 		if e.Verified {
-			checkbox = "[x]"
+			checkbox = "- [x]"
 		}
 		p.Println(checkbox, e.ID)
 	}
