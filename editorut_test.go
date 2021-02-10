@@ -31,7 +31,7 @@ func (me *EditorUnderTest) mustSetVerified(id string) {
 }
 
 func (me *EditorUnderTest) shouldImportFile(filename string) {
-	err := me.ImportFile(filename)
+	err := me.Load(filename)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
@@ -39,7 +39,7 @@ func (me *EditorUnderTest) shouldImportFile(filename string) {
 }
 
 func (me *EditorUnderTest) mustImportFile(filename string) {
-	err := me.ImportFile(filename)
+	err := me.Load(filename)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)

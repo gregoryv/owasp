@@ -57,7 +57,7 @@ func (me *Editor) SetApplicable(id string) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
-func (me *Editor) ImportFile(filename string) error {
+func (me *Editor) Load(filename string) error {
 	fh, err := os.Open(filename)
 	if err != nil {
 		return err
