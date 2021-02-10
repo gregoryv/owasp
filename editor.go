@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"regexp"
 
 	"github.com/gregoryv/nexus"
 )
@@ -26,6 +27,29 @@ func (me *Editor) SetVerified(id string) error {
 	for i, e := range me.entries {
 		if e.ID == id {
 			me.entries[i].Verified = true
+			me.entries[i].Applicable = true
+			return nil
+		}
+	}
+	return fmt.Errorf("id %s not found", id)
+}
+
+func (me *Editor) SetApplicableBy(pattern string) error {
+	var found bool
+	for i, e := range me.entries {
+		if found, _ = regexp.MatchString(pattern, e.ID); found {
+			me.entries[i].Applicable = true
+		}
+	}
+	if !found {
+		return fmt.Errorf("%s no match", pattern)
+	}
+	return nil
+}
+
+func (me *Editor) SetApplicable(id string) error {
+	for i, e := range me.entries {
+		if e.ID == id {
 			me.entries[i].Applicable = true
 			return nil
 		}
