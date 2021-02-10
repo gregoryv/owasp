@@ -27,6 +27,8 @@ func MustSetVerifiedNow(id, filename string, v bool) {
 	}
 }
 
+// NewEditor returns an empty editor. Use Load or Import methods to
+// fill with entries.
 func NewEditor() *Editor {
 	return &Editor{}
 }
@@ -71,6 +73,7 @@ func (me *Editor) SetApplicable(id string) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
+// Load entries from given json file.
 func (me *Editor) Load(filename string) error {
 	fh, err := os.Open(filename)
 	if err != nil {
@@ -80,6 +83,7 @@ func (me *Editor) Load(filename string) error {
 	return me.Import(fh)
 }
 
+// Save writes entries as a tidy json to the given filename.
 func (me *Editor) Save(filename string) error {
 	fh, err := os.Create(filename)
 	if err != nil {
@@ -89,10 +93,12 @@ func (me *Editor) Save(filename string) error {
 	return me.TidyExport(fh)
 }
 
+// Import entries from json
 func (me *Editor) Import(r io.Reader) error {
 	return json.NewDecoder(r).Decode(&me.entries)
 }
 
+// TidyExport exports entries as tidy json to the given writer.
 func (me *Editor) TidyExport(w io.Writer) error {
 	var buf bytes.Buffer
 	me.Export(&buf)
@@ -107,10 +113,12 @@ func (me *Editor) TidyExport(w io.Writer) error {
 	return err
 }
 
+// Export entries as json
 func (me *Editor) Export(w io.Writer) error {
 	return json.NewEncoder(w).Encode(me.entries)
 }
 
+// SaveReport saves entries as markdown to the given filename.
 func (me *Editor) SaveReport(filename string, report Report) error {
 	fh, err := os.Create(filename)
 	if err != nil {
