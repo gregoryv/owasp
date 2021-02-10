@@ -2,6 +2,8 @@ package owasp
 
 import (
 	"bytes"
+	"encoding/json"
+	"os"
 	"strings"
 	"testing"
 )
@@ -49,4 +51,63 @@ func ExampleEditor_WriteReport() {
 	ed.Save("isvs.json")
 	ed.SaveReport("example_report.md")
 	// output:
+}
+
+// ----------------------------------------
+
+func Test_convert_original_asvs_to_checklist(t *testing.T) {
+	var asvs struct {
+		Requirements []struct {
+			Items []struct {
+				Items []struct {
+					ShortCode   string
+					Description string
+					L1          struct {
+						Required bool
+					}
+					L2 struct {
+						Required bool
+					}
+					L3 struct {
+						Required bool
+					}
+				}
+			}
+		}
+	}
+
+	// Load original
+	fh, _ := os.Open("ASVS.json")
+	defer fh.Close()
+	json.NewDecoder(fh).Decode(&asvs)
+
+	// convert to entries
+	entries := make([]Entry, 0)
+	for _, req := range asvs.Requirements {
+		for _, item := range req.Items {
+			for _, item := range item.Items {
+				e := Entry{
+					ID:          item.ShortCode[1:],
+					Description: item.Description,
+				}
+				if item.L1.Required {
+					e.L1 = true
+				}
+				if item.L2.Required {
+					e.L2 = true
+				}
+				if item.L3.Required {
+					e.L3 = true
+				}
+				entries = append(entries, e)
+			}
+		}
+	}
+	ed := NewEditor()
+	ed.entries = entries
+
+	var buf bytes.Buffer
+	ed.WriteReport(&buf)
+	ed.Save("asvs.json")
+
 }
