@@ -1,4 +1,4 @@
-package edisvs_test
+package owasp_test
 
 import (
 	"bytes"
