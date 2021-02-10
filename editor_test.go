@@ -23,10 +23,11 @@ func TestEditor(t *testing.T) {
 	var buf bytes.Buffer
 	ed.mustTidyExport(&buf)
 
-	var report bytes.Buffer
-	ed.WriteReport(&report)
+	report := NewReport("Report ISVS")
+	var rbuf bytes.Buffer
+	ed.WriteReport(&rbuf, *report)
 
-	got := report.String()
+	got := rbuf.String()
 	exp := []string{
 		"4.3.4",
 		"[ ] [5",
@@ -49,7 +50,8 @@ func ExampleEditor_WriteReport() {
 	_ = ed.SetVerified("1.3.1", false)
 
 	ed.Save("isvs.json")
-	ed.SaveReport("example_report.md")
+	report := NewReport("Report ISVS")
+	ed.SaveReport("example_report.md", *report)
 	// output:
 }
 
@@ -77,7 +79,7 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	}
 
 	// Load original
-	fh, _ := os.Open("ASVS.json")
+	fh, _ := os.Open("ASVS-4.0.2.json")
 	defer fh.Close()
 	json.NewDecoder(fh).Decode(&asvs)
 
@@ -106,8 +108,9 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	ed := NewEditor()
 	ed.entries = entries
 
-	var buf bytes.Buffer
-	ed.WriteReport(&buf)
+	report := NewReport("Report ASVS")
+	ed.SaveReport("asvs_example.md", *report)
+
 	ed.Save("asvs.json")
 
 }

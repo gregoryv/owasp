@@ -142,32 +142,32 @@ func (me *EditorUnderTest) mustExport(w io.Writer) {
 	}
 }
 
-func (me *EditorUnderTest) shouldSaveReport(filename string) {
-	err := me.SaveReport(filename)
+func (me *EditorUnderTest) shouldSaveReport(filename string, report Report) {
+	err := me.SaveReport(filename, report)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustSaveReport(filename string) {
-	err := me.SaveReport(filename)
+func (me *EditorUnderTest) mustSaveReport(filename string, report Report) {
+	err := me.SaveReport(filename, report)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)
 	}
 }
 
-func (me *EditorUnderTest) shouldWriteReport(w io.Writer) {
-	err := me.WriteReport(w)
+func (me *EditorUnderTest) shouldWriteReport(w io.Writer, report Report) {
+	err := me.WriteReport(w, report)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustWriteReport(w io.Writer) {
-	err := me.WriteReport(w)
+func (me *EditorUnderTest) mustWriteReport(w io.Writer, report Report) {
+	err := me.WriteReport(w, report)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)

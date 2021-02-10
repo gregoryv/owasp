@@ -10,11 +10,11 @@ import (
 
 func main() {
 	var (
-		cli    = cmdline.NewParser(os.Args...)
-		help   = cli.Flag("-h, --help")
-		set    = cli.Option("-set").String("")
-		unset  = cli.Option("-unset").String("")
-		report = cli.Option("-r, --report").String("")
+		cli   = cmdline.NewParser(os.Args...)
+		help  = cli.Flag("-h, --help")
+		set   = cli.Option("-set").String("")
+		unset = cli.Option("-unset").String("")
+		rfile = cli.Option("-r, --report").String("")
 
 		file = cli.Required("FILE").String()
 	)
@@ -42,8 +42,9 @@ func main() {
 		must(ed.SetVerified(unset, false))
 	}
 
-	if report != "" {
-		must(ed.SaveReport(report))
+	if rfile != "" {
+		report := owasp.NewReport("Report")
+		must(ed.SaveReport(rfile, *report))
 	}
 	ed.Save(file)
 }

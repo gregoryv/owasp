@@ -97,19 +97,19 @@ func (me *Editor) Export(w io.Writer) error {
 	return json.NewEncoder(w).Encode(me.entries)
 }
 
-func (me *Editor) SaveReport(filename string) error {
+func (me *Editor) SaveReport(filename string, report Report) error {
 	fh, err := os.Create(filename)
 	if err != nil {
 		return err
 	}
 	defer fh.Close()
-	return me.WriteReport(fh)
+	return me.WriteReport(fh, report)
 }
 
 // WriteReport writes a markdown report
-func (me *Editor) WriteReport(w io.Writer) error {
+func (me *Editor) WriteReport(w io.Writer, report Report) error {
 	p, err := nexus.NewPrinter(w)
-	p.Println("# Report")
+	p.Println("#", report.Title)
 
 	p.Println("## Summary")
 	p.Println()
@@ -208,3 +208,15 @@ func (me *Entry) shortDesc() string {
 }
 
 const base = "https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS"
+
+// ----------------------------------------
+
+func NewReport(title string) *Report {
+	return &Report{
+		Title: title,
+	}
+}
+
+type Report struct {
+	Title string
+}
