@@ -55,7 +55,7 @@ func ExampleEditor_WriteReport() {
 	// output:
 }
 
-func ExampleMustSetVerified() {
+func ExampleMustSetVerifiedNow() {
 	MustSetVerifiedNow("1.3.2", "isvs.json", false)
 	// output:
 }
