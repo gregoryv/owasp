@@ -67,12 +67,21 @@ func (me *Editor) WriteReport(w io.Writer) error {
 	p, err := nexus.NewPrinter(w)
 	p.Println("# ISVS Report")
 
+	p.Println("## Applicable")
+
 	for _, e := range me.entries {
-		checkbox := "- [ ]"
-		if e.Verified {
-			checkbox = "- [x]"
+		if !e.Applicable {
+			continue
 		}
-		p.Println(checkbox, e.ID)
+		p.Println(e.String())
+	}
+
+	p.Println("## Not Applicable")
+	for _, e := range me.entries {
+		if e.Applicable {
+			continue
+		}
+		p.Println(e.String())
 	}
 
 	return *err
@@ -85,4 +94,13 @@ type Entry struct {
 	Description string
 	ID          string
 	Verified    bool
+	Applicable  bool
+}
+
+func (me *Entry) String() string {
+	checkbox := "- [ ]"
+	if me.Verified {
+		checkbox = "- [x]"
+	}
+	return fmt.Sprintf("%s %s", checkbox, me.ID)
 }

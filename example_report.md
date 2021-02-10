@@ -1,4 +1,6 @@
 # ISVS Report
+## Applicable
+## Not Applicable
 - [x] 1.1.1
 - [ ] 1.1.2
 - [ ] 1.1.3
