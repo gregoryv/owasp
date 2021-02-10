@@ -109,8 +109,7 @@ func (me *Editor) SaveReport(filename string) error {
 // WriteReport writes a markdown report
 func (me *Editor) WriteReport(w io.Writer) error {
 	p, err := nexus.NewPrinter(w)
-	p.Println("# ISVS Report")
-	p.Println("https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS/")
+	p.Println("# Report")
 
 	p.Println("## Summary")
 	p.Println()
@@ -188,7 +187,7 @@ func (me *Entry) String() string {
 	if me.Verified {
 		checkbox = "- [x]"
 	}
-	return fmt.Sprintf("%s [%s](%s) %s...", checkbox, me.ID, me.ID, me.Description)
+	return fmt.Sprintf("%s %s %s...", checkbox, me.ID, me.Description)
 }
 
 func (me *Entry) link() string {
