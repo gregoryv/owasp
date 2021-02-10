@@ -15,6 +15,7 @@ func main() {
 		set   = cli.Option("-set").String("")
 		unset = cli.Option("-unset").String("")
 		rfile = cli.Option("-r, --report").String("")
+		title = cli.Option("-t, --title").String("Report")
 
 		file = cli.Required("FILE").String()
 	)
@@ -43,7 +44,7 @@ func main() {
 	}
 
 	if rfile != "" {
-		report := owasp.NewReport("Report")
+		report := owasp.NewReport(title)
 		must(ed.SaveReport(rfile, *report))
 	}
 	ed.Save(file)
