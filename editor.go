@@ -145,7 +145,7 @@ func (me *Editor) WriteReport(w io.Writer, report Report) error {
 		if !e.Applicable {
 			continue
 		}
-		p.Println("-", e.checkbox(), e.String())
+		p.Printf("- %s **%s** %s\n", e.checkbox(), e.ID, e.Description)
 	}
 
 	p.Println()
@@ -154,11 +154,11 @@ func (me *Editor) WriteReport(w io.Writer, report Report) error {
 		if e.Applicable {
 			continue
 		}
+		desc := e.Description
 		if report.ShortDescriptionNA {
-			p.Println("-", e.shortString())
-		} else {
-			p.Println("-", e.String())
+			desc = e.shortDesc()
 		}
+		p.Printf("- %s %s\n", e.ID, desc)
 	}
 
 	return *err
