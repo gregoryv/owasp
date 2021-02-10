@@ -7,7 +7,7 @@ import (
 	"github.com/gregoryv/edisvs"
 )
 
-func Test_generate_isvs(t *testing.T) {
+func TestEditor(t *testing.T) {
 	var ed edisvs.Editor
 
 	filename := "OWASP_ISVS-1.0RC.json"
@@ -16,8 +16,7 @@ func Test_generate_isvs(t *testing.T) {
 	}
 
 	var buf bytes.Buffer
-	if err := ed.Export(&buf); err != nil {
+	if err := ed.TidyExport(&buf); err != nil {
 		t.Fatal(err)
 	}
-
 }
