@@ -188,7 +188,7 @@ func (me *Entry) String() string {
 	if me.Verified {
 		checkbox = "- [x]"
 	}
-	return fmt.Sprintf("%s [%s](%s) %s...", checkbox, me.ID, me.link(), me.shortDesc())
+	return fmt.Sprintf("%s [%s](%s) %s...", checkbox, me.ID, me.ID, me.Description)
 }
 
 func (me *Entry) link() string {
