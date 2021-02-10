@@ -21,10 +21,12 @@ type Editor struct {
 	entries []Entry
 }
 
+// SetVerified sets the given entry as verified and applicable
 func (me *Editor) SetVerified(id string) error {
 	for i, e := range me.entries {
 		if e.ID == id {
 			me.entries[i].Verified = true
+			me.entries[i].Applicable = true
 			return nil
 		}
 	}
@@ -76,6 +78,7 @@ func (me *Editor) WriteReport(w io.Writer) error {
 		p.Println(e.String())
 	}
 
+	p.Println()
 	p.Println("## Not Applicable")
 	for _, e := range me.entries {
 		if e.Applicable {
@@ -102,5 +105,5 @@ func (me *Entry) String() string {
 	if me.Verified {
 		checkbox = "- [x]"
 	}
-	return fmt.Sprintf("%s %s", checkbox, me.ID)
+	return fmt.Sprintf("%s %s %s", checkbox, me.ID, me.Description)
 }

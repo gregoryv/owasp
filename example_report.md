@@ -1,127 +1,128 @@
 # ISVS Report
 ## Applicable
+- [x] 1.1.1 Verify that all applications in the IoT ecosystem are developed with a level of security that is in line with the security criticality of the application.
+- [x] 1.3.1 Verify that each application in the ecosystem is built using a secure and repeatable build environment.
+
 ## Not Applicable
-- [x] 1.1.1
-- [ ] 1.1.2
-- [ ] 1.1.3
-- [ ] 1.1.4
-- [ ] 1.1.5
-- [ ] 1.1.6
-- [ ] 1.1.7
-- [ ] 1.2.1
-- [ ] 1.2.2
-- [ ] 1.2.3
-- [ ] 1.2.4
-- [ ] 1.2.5
-- [ ] 1.2.6
-- [ ] 1.2.7
-- [ ] 1.2.8
-- [ ] 1.2.9
-- [x] 1.3.1
-- [ ] 1.3.2
-- [ ] 1.3.3
-- [ ] 1.3.4
-- [ ] 1.3.5
-- [ ] 1.3.6
-- [ ] 1.3.7
-- [ ] 1.3.8
-- [ ] 1.3.9
-- [ ] 1.3.10
-- [ ] 1.3.11
-- [ ] 1.3.12
-- [ ] 1.3.13
-- [ ] 1.3.14
-- [ ] 1.3.15
-- [ ] 2.1.1
-- [ ] 2.1.2
-- [ ] 2.1.3
-- [ ] 2.1.4
-- [ ] 2.1.5
-- [ ] 2.1.6
-- [ ] 2.2.1
-- [ ] 2.2.2
-- [ ] 2.2.3
-- [ ] 2.2.4
-- [ ] 2.2.5
-- [ ] 2.3.1
-- [ ] 2.3.2
-- [ ] 2.3.3
-- [ ] 2.3.4
-- [ ] 2.4.1
-- [ ] 2.4.2
-- [ ] 2.4.3
-- [ ] 2.4.4
-- [ ] 2.4.5
-- [ ] 2.4.6
-- [ ] 3.1.1
-- [ ] 3.1.2
-- [ ] 3.1.3
-- [ ] 3.1.4
-- [ ] 3.1.5
-- [ ] 3.1.6
-- [ ] 3.1.7
-- [ ] 3.1.8
-- [ ] 3.2.1
-- [ ] 3.2.2
-- [ ] 3.2.3
-- [ ] 3.2.4
-- [ ] 3.2.5
-- [ ] 3.2.6
-- [ ] 3.2.7
-- [ ] 3.2.8
-- [ ] 3.2.9
-- [ ] 3.2.10
-- [ ] 3.2.11
-- [ ] 3.3.1
-- [ ] 3.3.2
-- [ ] 3.3.4
-- [ ] 3.3.5
-- [ ] 3.3.6
-- [ ] 3.4.1
-- [ ] 3.4.2
-- [ ] 3.4.3
-- [ ] 3.4.4
-- [ ] 3.4.5
-- [ ] 3.4.6
-- [ ] 3.4.7
-- [ ] 3.4.8
-- [ ] 3.4.9
-- [ ] 3.4.10
-- [ ] 3.4.11
-- [ ] 3.5.1
-- [ ] 3.5.2
-- [ ] 3.5.3
-- [ ] 3.5.4
-- [ ] 3.6.1
-- [ ] 3.6.2
-- [ ] 4.1.1
-- [ ] 4.1.2
-- [ ] 4.1.3
-- [ ] 4.1.4
-- [ ] 4.1.6
-- [ ] 4.1.7
-- [ ] 4.2.1
-- [ ] 4.2.2
-- [ ] 4.2.3
-- [ ] 4.2.7
-- [ ] 4.3.1
-- [ ] 4.3.2
-- [ ] 4.3.3
-- [ ] 4.3.4
-- [ ] 4.3.5
-- [ ] 4.3.6
-- [ ] 4.3.7
-- [ ] 4.4.1
-- [ ] 4.4.2
-- [ ] 4.4.3
-- [ ] 4.4.4
-- [ ] 5.1.1
-- [ ] 5.1.2
-- [ ] 5.1.3
-- [ ] 5.1.4
-- [ ] 5.1.5
-- [ ] 5.1.6
-- [ ] 5.1.7
-- [ ] 5.1.8
-- [ ] 5.1.9
-- [ ] 5.1.10
+- [ ] 1.1.2 Verify that all components and communication channels in the IoT application's ecosystem have been identified and are known to be needed. Remove or disable any that aren't necessary.
+- [ ] 1.1.3 Verify that sensitive information and security critical actions have been identified and documented.
+- [ ] 1.1.4 Verify that the location where sensitive data is stored in the ecosystem is clearly identified and separated from unprivileged storage locations.
+- [ ] 1.1.5 Verify that security controls are enforced server-side and that data and instructions are not blindly trusted by server-side components.
+- [ ] 1.1.6 Verify that a responsible disclosure policy has been established and that it is easily found on the company website. Ensure that the policy provides a clear overview on how vulnerabilities can be communicated securely and how they'll be followed up on.
+- [ ] 1.1.7 Verify that users and relevant stakeholders are notified when vulnerabilities are identified through established communication channels (website, e-mail ...).
+- [ ] 1.2.1 Verify that each application (including firmware) in the ecosystem maintains a software bill of materials (SBOM) cataloging third-party components, versioning, and published vulnerabilities.
+- [ ] 1.2.2 Verify that potential areas of risk that come with the use of third-party and open-source software have been identified and that actions to mitigate such risks have been taken.
+- [ ] 1.2.3 Verify the device is released with firmware and configuration appropriate for a release build (as opposed to debug versions).
+- [ ] 1.2.4 Verify that access to debugging interfaces (e.g. JTAG, SWD) is disabled or protected before shipping the device. Processors may refer to this as code protection, read back protection, CodeGuard, or access port protection.
+- [ ] 1.2.5 Verify debug capabilities in FPGAs are disabled.
+- [ ] 1.2.6 Verify that devices are provisioned with a cryptographic root of trust that is hardware-based and immutable.
+- [ ] 1.2.7 Verify that code integrity protection mechanisms are enabled and locked in hardware before shipping the device to customers. For example, ensure secure boot is enabled and the boot configuration locked.
+- [ ] 1.2.8 Verify third-party code and components are analyzed using static analysis tools to ensure backdoors are not introduced.
+- [ ] 1.2.9 Verify debug paths and traces are depopulated from production PCBs.
+- [ ] 1.3.2 Verify GPL based firmware has its source code published and that no sensitive or proprietary information is accidentally included in the process.
+- [ ] 1.3.3 Verify that use of banned C/C++ functions (i.e. memcpy, strcpy, etc.) are replaced with safe equivalents functions (e.g. Safe C).
+- [ ] 1.3.4 Verify packages are downloaded and built from trusted sources.
+- [ ] 1.3.5 Verify build pipelines only perform builds of source code maintained in version control systems.
+- [ ] 1.3.6 Verify that compilers, version control clients, development utilities, and software development kits are analyzed and monitored for tampering, trojans, or malicious code
+- [ ] 1.3.7 Verify packages are compiled with Object Size Checking (OSC). e.g. -D_FORTIFY_SOURCE=2
+- [ ] 1.3.8 Verify packages are compiled with No eXecute (NX) or Data Execution Protection (DEP). e.g. -z,noexecstack
+- [ ] 1.3.9 Verify packages are compiled with Position Independent Executable (PIE). e.g. -fPIE
+- [ ] 1.3.10 Verify packages are compiled with Stack Smashing Protector (SSP). e.g. -fstack-protector-all
+- [ ] 1.3.11 Verify packages are compiled with read-only relocation (RELRO). e.g. -Wl,-z,relro
+- [ ] 1.3.12 Verify release builds do not contain debug code or privileged diagnostic functionality.
+- [ ] 1.3.13 Verify that debug and release firmware images are signed using different keys.
+- [ ] 1.3.14 Verify that debug information does not contain sensitive information, such as PII, credentials or cryptographic material.
+- [ ] 1.3.15 Verify that embedded applications are not susceptible to OS command injection by performing input validation and escaping of parameters within firmware code, shell command wrappers, and scripts.
+- [ ] 2.1.1 Verify that all forms of users and accounts in the IoT ecosystem can be uniquely identified.
+- [ ] 2.1.2 Verify that all connected devices within the IoT ecosystem can be uniquely identified including connected to the cloud, hubs, as well as to other devices (sensors).
+- [ ] 2.1.3 Verify strong user and device authentication is enforced across the IoT ecosystem.
+- [ ] 2.1.4 Verify that user, services, and device authentication schemes share a common framework centrally managed in the IoT ecosystem.
+- [ ] 2.1.5 Verify certificate based authentication is preferred over password based authentication within the IoT ecosystem.
+- [ ] 2.1.6 Verify good password policies are enforced throughout the IoT ecosystem by disallowing hardcoded passwords and provisioning duplicate identities or passwords across devices.
+- [ ] 2.2.1 Verify that sensitive information such as personal identifiable information (PII) and API keys are stored securely using encryption to protect from data leakage, and integrity checking to protect against unauthorized modification.
+- [ ] 2.2.2 Verify that IoT system accounts across users, services and devices share a common authorization framework.
+- [ ] 2.2.3 Verify that devices enforce the concept of least privilege by limiting applications and services that run as root or administrator.
+- [ ] 2.2.4 Verify that ownership is validated upon registration and as part of decommissioning when devices move across accounts. e.g. Device reselling, leasing, and renting.
+- [ ] 2.2.5 Verify device debug capabilities can only be accessed by approved staff (e.g. support and engineering teams) and verify that access is monitored/logged.
+- [ ] 2.3.1 Verify that sensitive information such as personal identifiable information (PII) used by the device is stored securely on the device. Protection can include encryption against data leakage, and hashing or integrity checking against unauthorized modification.
+- [ ] 2.3.2 Verify that in case a device is decommissioned, or in case the owner changes, all sensitive information such as PII data and credentials can be removed from the device.
+- [ ] 2.3.3 Verify that in case a device is decommissioned, or the owner changes, it is marked as such for auditable purposes in a centrally managed database in the ecosystem.
+- [ ] 2.3.4 Verify that sensitive information maintained in memory is overwritten with zeros as soon as it is no longer required.
+- [ ] 2.4.1 Verify cryptographic secrets are unique per device.
+- [ ] 2.4.2 Verify proper use of cryptography. Only standard and strong algorithms should be used, with adequate key size and secure implementations.
+- [ ] 2.4.3 Verify secure sources of randomness are provided by the operating system and/or hardware for all security needs.
+- [ ] 2.4.4 Verify that cryptographic secrets used by the device are stored securely by leveraging functionality provided by dedicated security chips.
+- [ ] 2.4.5 Verify that cryptographic primitives used by the device are provided by dedicated security chips.
+- [ ] 2.4.6 Verify the cryptographic libraries used are certified to be compliant with a recognized cryptographic security standard.
+- [ ] 3.1.1 Verify that the bootloader does not allow code to be loaded from arbitrary locations. Locations include both storage (SD, USB, etc.) and network locations (over TCP/IP).
+- [ ] 3.1.2 Verify bootloader configurations are immutable in production releases.
+- [ ] 3.1.3 Verify that communication interfaces such as, USB, UART, and other variants are disabled or adequately protected during every stage of the device's boot process.
+- [ ] 3.1.4 Verify that the authenticity of the first stage bootloader is verified by a trusted component of which the configuration in read-only memory (ROM) cannot be altered. e.g. CPU Based Secure Boot/Trusted Boot
+- [ ] 3.1.5 Verify that the authenticity of next bootloader stages or application code is cryptographically verified during every step of the boot process.
+- [ ] 3.1.6 Verify that bootloader stages do not contain sensitive information (e.g. private keys or passwords logged to the console) as part of device start-up.
+- [ ] 3.1.7 Verify that firmware is stored in an encrypted volume at rest.
+- [ ] 3.1.8 Verify that Direct Memory Access (DMA) is not possible during boot. For example, ensure DMA is not possible via PCI connections.
+- [ ] 3.2.1 Verify that the embedded operating system is configured according to industry best practices, benchmarks, and uses secure defaults.
+- [ ] 3.2.2 Verify that all network services exposed by the device on every network interface are necessary services and unnecessary services are removed or disabled.
+- [ ] 3.2.3 Verify that the device does not make use of of legacy or insecure protocols such as Telnet and FTP.
+- [ ] 3.2.4 Verify that the OS kernel and software components are up to date and do not contain known vulnerabilities.
+- [ ] 3.2.5 Verify that persistent filesystem storage volumes are encrypted.
+- [ ] 3.2.6 Verify that applications running on the device use the security features of the underlying operating system or kernel. Including cryptography, key storage, random number generation, authentication and authorization, logging, communications security.
+- [ ] 3.2.7 Verify that memory protection controls such as Address Space Layout Randomization (ASLR) and Data Execution Prevention (DEP) are enabled by the embedded operating system.
+- [ ] 3.2.8 Verify hardware level memory protection is used and privilege levels are enforced.
+- [ ] 3.2.9 Verify the embedded OS provides protection against unauthorized access to RAM (e.g. RAM scrambling).
+- [ ] 3.2.10 Verify that an Integrity Measurement Architecture (IMA) is in use and appropriately configured.
+- [ ] 3.2.11 Verify that that third-party applications and services are configured to execute within a containerized runtime environment (e.g. LXC, Docker, etc.).
+- [ ] 3.3.1 Verify that processes are isolated using Linux kernel namespaces.
+- [ ] 3.3.2 Verify that critical processes are configured to limit resources using control groups (cgroups).
+- [ ] 3.3.4 Verify that Linux kernel capabilities are configured with a minimal set for processes that require elevated access.
+- [ ] 3.3.5 Verify that SECure COMPuting  (seccomp BPF) with filters are used and properly configured to only allow necessary system calls.
+- [ ] 3.3.6 Verify the use of kernel security modules such as SELinux, AppArmor, GRSEC, and alike.
+- [ ] 3.4.1 Verify that packages and user space applications use over the air updates decoupled from firmware updates.
+- [ ] 3.4.2 Verify that devices can be updated automatically upon a pre-defined schedule.
+- [ ] 3.4.3 Verify that the authenticity of updates are cryptographically signed by a trusted source and verified before execution.
+- [ ] 3.4.4 Verify that the update process is not vulnerable to time-of-check time-of-use attacks (TOCTOU). This is generally accomplished by applying the update right after the authenticity of the update is validated.
+- [ ] 3.4.5 Verify that updates do not modify user-configured preferences, security, and/or privacy settings without notifying the user.
+- [ ] 3.4.6 Verify that the device cannot be downgraded to known vulnerable versions (anti-rollback).
+- [ ] 3.4.7 Verify that in the event of an update failure, the device reverts to a backup image or notifies the IoT ecosystem.
+- [ ] 3.4.8 Verify that unsigned debug pre-production firmware builds can not be flashed onto devices.
+- [ ] 3.4.9 Verify that encrypted firmware images are securely decrypted on the device.
+- [ ] 3.4.10 Verify that the device authenticates to the update server component prior to downloading the update.
+- [ ] 3.4.11 Verify that firmware updates are stored encrypted server-side.
+- [ ] 3.5.1 Verify that encryption is used on the bus between the security chip and other hardware components.
+- [ ] 3.5.2 Verify that keys (either secret or private) used to enable encryption on the serial bus are properly secured on the host.
+- [ ] 3.5.3 Verify any default vendor keys used in bus encryption are replaced in production builds.
+- [ ] 3.5.4 Verify that deprecated insecure ciphers and hash functions (e.g. 3DES, MD5, SHA1) in new applications are not used, even if provided by the hardware security chip.
+- [ ] 3.6.1 Verify that loaded kernel modules are cryptographically signed and verified.
+- [ ] 3.6.2 Verify that only required kernel modules are enabled during runtime.
+- [ ] 4.1.1 Verify that communication with other components in the IoT ecosystem (including sensors, gateway and supporting cloud) occurs over a secure channel in which the confidentiality and integrity of data is guaranteed and in which protection against replay attacks is built into the communication protocol.
+- [ ] 4.1.2 Verify that in case TLS is used, that its securely configured with FIPS-based cipher suites (or equivalent).
+- [ ] 4.1.3 Verify that in case TLS is used, the device cryptographically verifies the X.509 certificate.
+- [ ] 4.1.4 Verify that for availability critical applications, either protection or detection of jamming is provided.
+- [ ] 4.1.6 Verify that device's TLS implementation uses its own certificate store, pins to the endpoint certificate or public key, and disallows connections from endpoints with different certificates or key, even if signed by a trusted CA.
+- [ ] 4.1.7 Verify that inter-chip communication is encrypted (e.g. Main board to daughter board communication).
+- [ ] 4.2.1 Verify that unencrypted communication is limited to data and instructions that are not of a sensitive nature.
+- [ ] 4.2.2 Verify that if shared secrets are used to cryptographically secure communication, that the same key is not hardcoded in each device or sensor.
+- [ ] 4.2.3 Verify MQTT brokers only allow authorized IoT devices to subscribe and publish message topics.
+- [ ] 4.2.7 Verify certificates are favored over native username and passwords to authenticate MQTT transactions.
+- [ ] 4.3.1 Verify that pairing and discovery is blocked in Bluetooth devices except when necessary.
+- [ ] 4.3.2 Verify that PIN or PassKey codes are not easily guessable. For example, verify PIN codes are not ‘0000’or ‘1234’.
+- [ ] 4.3.3 Verify devices that support for old versions of Bluetooth with simple modes of authentication require a PIN to pair devices.
+- [ ] 4.3.4 Verify that for modern versions of Bluetooth, at least 6 digits are required for Secure Simple Pairing (SSP) authentication under all versions except “Just Works”.
+- [ ] 4.3.5 Verify that encryption keys are the maximum allowable size. Bluetooth has configurable key size parameters for establishing a session, with configurations that allow keys of smaller size than the 16-32 byte size used by AES.
+- [ ] 4.3.6 Verify the most secure Bluetooth pairing method available is used. Verify Out Of Band (OOB), Numeric Comparison, or Passkey Entry pairing methods are used depending on the communicating device's capabilities.
+- [ ] 4.3.7 Verify the strongest Bluetooth Security Mode and Level supported by the device is used. For example, for Bluetooth 4.1 devices, Security Mode 4, Level 4 should be used to provide authenticated pairing and encryption.
+- [ ] 4.4.1 Verify Wi-Fi connectivity is disabled unless required as part of device functionality. Devices with no need for network connectivity or which support other types of network connectivity, such as Ethernet, should have the Wi-Fi interface disabled.
+- [ ] 4.4.2 Verify that WPA2 or higher is used to protect Wi-Fi communications.
+- [ ] 4.4.3 Verify that in case WPA is used, it is used with AES encryption (CCMP mode).
+- [ ] 4.4.4 Verify that Wi-Fi Protected Setup (WPS) is not used to establish Wi-Fi connections between devices.
+- [ ] 5.1.1 Verify that the platform supports disabling or protecting access to debugging interfaces (e.g. JTAG, SWD).
+- [ ] 5.1.2 Verify that the platform supports validating the authenticity of the first stage bootloader.
+- [ ] 5.1.3 Verify that cryptographic functions are provided by the platform. e.g. by leveraging dedicated functionality provided by the main chip or by external security chips.
+- [ ] 5.1.4 Verify that sensitive data such as private keys and certificates can be stored securely by leveraging dedicated hardware security features.
+- [ ] 5.1.5 Verify that the platform provides memory and I/O protection capabilities so that only privileged processes can access certain resources.
+- [ ] 5.1.6 Verify that the platform security configuration of the platform can be locked. e.g. through burning OTP fuses.
+- [ ] 5.1.7 Verify that debugging headers are removed from PCBs.
+- [ ] 5.1.8 Verify the chosen hardware has no unofficially documented debug features, such as special pin configurations that can enable or disable certain functionality.
+- [ ] 5.1.9 Verify that the platform provides protection against physical decapsulation, side channel and glitching attacks.
+- [ ] 5.1.10 Verify descriptive silkscreens are removed from PCBs
