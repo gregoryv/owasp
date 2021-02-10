@@ -19,4 +19,9 @@ func TestEditor(t *testing.T) {
 	if err := ed.TidyExport(&buf); err != nil {
 		t.Fatal(err)
 	}
+
+	page := ed.Report()
+	var report bytes.Buffer
+	page.WriteTo(&report)
+	t.Error(report.String())
 }

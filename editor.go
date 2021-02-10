@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"io"
 	"os"
+
+	. "github.com/gregoryv/web"
 )
 
 // https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS
@@ -42,6 +44,29 @@ func (me *Editor) TidyExport(w io.Writer) error {
 
 func (me *Editor) Export(w io.Writer) error {
 	return json.NewEncoder(w).Encode(me.entries)
+}
+
+func (me *Editor) Report() *Page {
+	pre := Pre("L1 L2 L3 Reference\n")
+	for _, entry := range me.entries {
+		pre.With(
+			checkbox(entry.L1), " ",
+			checkbox(entry.L2), " ",
+			checkbox(entry.L3), " ",
+			entry.ID, "\n",
+		)
+	}
+	page := NewPage(Html(Body(
+		pre,
+	)))
+	return page
+}
+
+func checkbox(v bool) string {
+	if v {
+		return "[x]"
+	}
+	return "[ ]"
 }
 
 type Entry struct {
