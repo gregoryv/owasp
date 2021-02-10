@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Add flag --title to cmd/wasped
 - Add cmd/wasped
 - SetVerified takes value for toggling
 
