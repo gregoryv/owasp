@@ -3,6 +3,7 @@ package owasp
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
 
@@ -15,16 +16,26 @@ type Editor struct {
 	entries []Entry
 }
 
+func (me *Editor) SetVerified(id string) error {
+	for i, e := range me.entries {
+		if e.ID == id {
+			me.entries[i].Verified = true
+			return nil
+		}
+	}
+	return fmt.Errorf("id %s not found", id)
+}
+
 func (me *Editor) ImportFile(filename string) error {
 	fh, err := os.Open(filename)
 	if err != nil {
 		return err
 	}
 	defer fh.Close()
-	return me.ImportOWASP(fh)
+	return me.Import(fh)
 }
 
-func (me *Editor) ImportOWASP(r io.Reader) error {
+func (me *Editor) Import(r io.Reader) error {
 	return json.NewDecoder(r).Decode(&me.entries)
 }
 

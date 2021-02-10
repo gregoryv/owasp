@@ -16,6 +16,14 @@ func TestEditor(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	if err := ed.SetVerified("1.3.1"); err != nil {
+		t.Fatal(err)
+	}
+
+	if err := ed.SetVerified("no such"); err == nil {
+		t.Fatal("SetVerified should fail")
+	}
+
 	var buf bytes.Buffer
 	if err := ed.TidyExport(&buf); err != nil {
 		t.Fatal(err)
@@ -28,6 +36,7 @@ func TestEditor(t *testing.T) {
 	exp := []string{
 		"4.3.4",
 		"[ ] 5",
+		"[x] 1.3.1",
 	}
 	for _, exp := range exp {
 		if !strings.Contains(got, exp) {
