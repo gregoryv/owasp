@@ -1,0 +1,1118 @@
+[
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that all applications in the IoT ecosystem are developed with a level of security that is in line with the security criticality of the application.",
+    "ID": "1.1.1",
+    "Verified": true,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that all components and communication channels in the IoT application's ecosystem have been identified and are known to be needed. Remove or disable any that aren't necessary.",
+    "ID": "1.1.2",
+    "Verified": false,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that sensitive information and security critical actions have been identified and documented.",
+    "ID": "1.1.3",
+    "Verified": false,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the location where sensitive data is stored in the ecosystem is clearly identified and separated from unprivileged storage locations.",
+    "ID": "1.1.4",
+    "Verified": false,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that security controls are enforced server-side and that data and instructions are not blindly trusted by server-side components.",
+    "ID": "1.1.5",
+    "Verified": false,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": false,
+    "L3": false,
+    "Description": "Verify that a responsible disclosure policy has been established and that it is easily found on the company website. Ensure that the policy provides a clear overview on how vulnerabilities can be communicated securely and how they'll be followed up on.",
+    "ID": "1.1.6",
+    "Verified": false,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that users and relevant stakeholders are notified when vulnerabilities are identified through established communication channels (website, e-mail ...).",
+    "ID": "1.1.7",
+    "Verified": false,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that each application (including firmware) in the ecosystem maintains a software bill of materials (SBOM) cataloging third-party components, versioning, and published vulnerabilities.",
+    "ID": "1.2.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that potential areas of risk that come with the use of third-party and open-source software have been identified and that actions to mitigate such risks have been taken.",
+    "ID": "1.2.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify the device is released with firmware and configuration appropriate for a release build (as opposed to debug versions).",
+    "ID": "1.2.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that access to debugging interfaces (e.g. JTAG, SWD) is disabled or protected before shipping the device. Processors may refer to this as code protection, read back protection, CodeGuard, or access port protection.",
+    "ID": "1.2.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify debug capabilities in FPGAs are disabled.",
+    "ID": "1.2.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that devices are provisioned with a cryptographic root of trust that is hardware-based and immutable.",
+    "ID": "1.2.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that code integrity protection mechanisms are enabled and locked in hardware before shipping the device to customers. For example, ensure secure boot is enabled and the boot configuration locked.",
+    "ID": "1.2.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify third-party code and components are analyzed using static analysis tools to ensure backdoors are not introduced.",
+    "ID": "1.2.8",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify debug paths and traces are depopulated from production PCBs.",
+    "ID": "1.2.9",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that each application in the ecosystem is built using a secure and repeatable build environment.",
+    "ID": "1.3.1",
+    "Verified": true,
+    "Applicable": true
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify GPL based firmware has its source code published and that no sensitive or proprietary information is accidentally included in the process.",
+    "ID": "1.3.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that use of banned C/C++ functions (i.e. memcpy, strcpy, etc.) are replaced with safe equivalents functions (e.g. Safe C).",
+    "ID": "1.3.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify packages are downloaded and built from trusted sources.",
+    "ID": "1.3.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify build pipelines only perform builds of source code maintained in version control systems.",
+    "ID": "1.3.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that compilers, version control clients, development utilities, and software development kits are analyzed and monitored for tampering, trojans, or malicious code",
+    "ID": "1.3.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify packages are compiled with Object Size Checking (OSC). e.g. -D_FORTIFY_SOURCE=2",
+    "ID": "1.3.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify packages are compiled with No eXecute (NX) or Data Execution Protection (DEP). e.g. -z,noexecstack",
+    "ID": "1.3.8",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify packages are compiled with Position Independent Executable (PIE). e.g. -fPIE",
+    "ID": "1.3.9",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify packages are compiled with Stack Smashing Protector (SSP). e.g. -fstack-protector-all",
+    "ID": "1.3.10",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify packages are compiled with read-only relocation (RELRO). e.g. -Wl,-z,relro",
+    "ID": "1.3.11",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify release builds do not contain debug code or privileged diagnostic functionality.",
+    "ID": "1.3.12",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that debug and release firmware images are signed using different keys.",
+    "ID": "1.3.13",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that debug information does not contain sensitive information, such as PII, credentials or cryptographic material.",
+    "ID": "1.3.14",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that embedded applications are not susceptible to OS command injection by performing input validation and escaping of parameters within firmware code, shell command wrappers, and scripts.",
+    "ID": "1.3.15",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that all forms of users and accounts in the IoT ecosystem can be uniquely identified.",
+    "ID": "2.1.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that all connected devices within the IoT ecosystem can be uniquely identified including connected to the cloud, hubs, as well as to other devices (sensors).",
+    "ID": "2.1.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify strong user and device authentication is enforced across the IoT ecosystem.",
+    "ID": "2.1.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that user, services, and device authentication schemes share a common framework centrally managed in the IoT ecosystem.",
+    "ID": "2.1.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify certificate based authentication is preferred over password based authentication within the IoT ecosystem.",
+    "ID": "2.1.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify good password policies are enforced throughout the IoT ecosystem by disallowing hardcoded passwords and provisioning duplicate identities or passwords across devices.",
+    "ID": "2.1.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that sensitive information such as personal identifiable information (PII) and API keys are stored securely using encryption to protect from data leakage, and integrity checking to protect against unauthorized modification.",
+    "ID": "2.2.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that IoT system accounts across users, services and devices share a common authorization framework.",
+    "ID": "2.2.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that devices enforce the concept of least privilege by limiting applications and services that run as root or administrator.",
+    "ID": "2.2.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that ownership is validated upon registration and as part of decommissioning when devices move across accounts. e.g. Device reselling, leasing, and renting.",
+    "ID": "2.2.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify device debug capabilities can only be accessed by approved staff (e.g. support and engineering teams) and verify that access is monitored/logged.",
+    "ID": "2.2.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that sensitive information such as personal identifiable information (PII) used by the device is stored securely on the device. Protection can include encryption against data leakage, and hashing or integrity checking against unauthorized modification.",
+    "ID": "2.3.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that in case a device is decommissioned, or in case the owner changes, all sensitive information such as PII data and credentials can be removed from the device.",
+    "ID": "2.3.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that in case a device is decommissioned, or the owner changes, it is marked as such for auditable purposes in a centrally managed database in the ecosystem.",
+    "ID": "2.3.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that sensitive information maintained in memory is overwritten with zeros as soon as it is no longer required.",
+    "ID": "2.3.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify cryptographic secrets are unique per device.",
+    "ID": "2.4.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify proper use of cryptography. Only standard and strong algorithms should be used, with adequate key size and secure implementations.",
+    "ID": "2.4.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify secure sources of randomness are provided by the operating system and/or hardware for all security needs.",
+    "ID": "2.4.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that cryptographic secrets used by the device are stored securely by leveraging functionality provided by dedicated security chips.",
+    "ID": "2.4.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that cryptographic primitives used by the device are provided by dedicated security chips.",
+    "ID": "2.4.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify the cryptographic libraries used are certified to be compliant with a recognized cryptographic security standard.",
+    "ID": "2.4.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the bootloader does not allow code to be loaded from arbitrary locations. Locations include both storage (SD, USB, etc.) and network locations (over TCP/IP).",
+    "ID": "3.1.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify bootloader configurations are immutable in production releases.",
+    "ID": "3.1.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that communication interfaces such as, USB, UART, and other variants are disabled or adequately protected during every stage of the device's boot process.",
+    "ID": "3.1.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the authenticity of the first stage bootloader is verified by a trusted component of which the configuration in read-only memory (ROM) cannot be altered. e.g. CPU Based Secure Boot/Trusted Boot",
+    "ID": "3.1.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the authenticity of next bootloader stages or application code is cryptographically verified during every step of the boot process.",
+    "ID": "3.1.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that bootloader stages do not contain sensitive information (e.g. private keys or passwords logged to the console) as part of device start-up.",
+    "ID": "3.1.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that firmware is stored in an encrypted volume at rest.",
+    "ID": "3.1.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that Direct Memory Access (DMA) is not possible during boot. For example, ensure DMA is not possible via PCI connections.",
+    "ID": "3.1.8",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the embedded operating system is configured according to industry best practices, benchmarks, and uses secure defaults.",
+    "ID": "3.2.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that all network services exposed by the device on every network interface are necessary services and unnecessary services are removed or disabled.",
+    "ID": "3.2.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the device does not make use of of legacy or insecure protocols such as Telnet and FTP.",
+    "ID": "3.2.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the OS kernel and software components are up to date and do not contain known vulnerabilities.",
+    "ID": "3.2.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that persistent filesystem storage volumes are encrypted.",
+    "ID": "3.2.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that applications running on the device use the security features of the underlying operating system or kernel. Including cryptography, key storage, random number generation, authentication and authorization, logging, communications security.",
+    "ID": "3.2.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that memory protection controls such as Address Space Layout Randomization (ASLR) and Data Execution Prevention (DEP) are enabled by the embedded operating system.",
+    "ID": "3.2.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify hardware level memory protection is used and privilege levels are enforced.",
+    "ID": "3.2.8",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify the embedded OS provides protection against unauthorized access to RAM (e.g. RAM scrambling).",
+    "ID": "3.2.9",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify that an Integrity Measurement Architecture (IMA) is in use and appropriately configured.",
+    "ID": "3.2.10",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify that that third-party applications and services are configured to execute within a containerized runtime environment (e.g. LXC, Docker, etc.).",
+    "ID": "3.2.11",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that processes are isolated using Linux kernel namespaces.",
+    "ID": "3.3.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that critical processes are configured to limit resources using control groups (cgroups).",
+    "ID": "3.3.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that Linux kernel capabilities are configured with a minimal set for processes that require elevated access.",
+    "ID": "3.3.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that SECure COMPuting  (seccomp BPF) with filters are used and properly configured to only allow necessary system calls.",
+    "ID": "3.3.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify the use of kernel security modules such as SELinux, AppArmor, GRSEC, and alike.",
+    "ID": "3.3.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that packages and user space applications use over the air updates decoupled from firmware updates.",
+    "ID": "3.4.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that devices can be updated automatically upon a pre-defined schedule.",
+    "ID": "3.4.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the authenticity of updates are cryptographically signed by a trusted source and verified before execution.",
+    "ID": "3.4.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the update process is not vulnerable to time-of-check time-of-use attacks (TOCTOU). This is generally accomplished by applying the update right after the authenticity of the update is validated.",
+    "ID": "3.4.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that updates do not modify user-configured preferences, security, and/or privacy settings without notifying the user.",
+    "ID": "3.4.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify that the device cannot be downgraded to known vulnerable versions (anti-rollback).",
+    "ID": "3.4.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that in the event of an update failure, the device reverts to a backup image or notifies the IoT ecosystem.",
+    "ID": "3.4.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that unsigned debug pre-production firmware builds can not be flashed onto devices.",
+    "ID": "3.4.8",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that encrypted firmware images are securely decrypted on the device.",
+    "ID": "3.4.9",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the device authenticates to the update server component prior to downloading the update.",
+    "ID": "3.4.10",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that firmware updates are stored encrypted server-side.",
+    "ID": "3.4.11",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that encryption is used on the bus between the security chip and other hardware components.",
+    "ID": "3.5.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that keys (either secret or private) used to enable encryption on the serial bus are properly secured on the host.",
+    "ID": "3.5.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify any default vendor keys used in bus encryption are replaced in production builds.",
+    "ID": "3.5.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that deprecated insecure ciphers and hash functions (e.g. 3DES, MD5, SHA1) in new applications are not used, even if provided by the hardware security chip.",
+    "ID": "3.5.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that loaded kernel modules are cryptographically signed and verified.",
+    "ID": "3.6.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that only required kernel modules are enabled during runtime.",
+    "ID": "3.6.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that communication with other components in the IoT ecosystem (including sensors, gateway and supporting cloud) occurs over a secure channel in which the confidentiality and integrity of data is guaranteed and in which protection against replay attacks is built into the communication protocol.",
+    "ID": "4.1.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that in case TLS is used, that its securely configured with FIPS-based cipher suites (or equivalent).",
+    "ID": "4.1.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that in case TLS is used, the device cryptographically verifies the X.509 certificate.",
+    "ID": "4.1.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that for availability critical applications, either protection or detection of jamming is provided.",
+    "ID": "4.1.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that device's TLS implementation uses its own certificate store, pins to the endpoint certificate or public key, and disallows connections from endpoints with different certificates or key, even if signed by a trusted CA.",
+    "ID": "4.1.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify that inter-chip communication is encrypted (e.g. Main board to daughter board communication).",
+    "ID": "4.1.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that unencrypted communication is limited to data and instructions that are not of a sensitive nature.",
+    "ID": "4.2.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that if shared secrets are used to cryptographically secure communication, that the same key is not hardcoded in each device or sensor.",
+    "ID": "4.2.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify MQTT brokers only allow authorized IoT devices to subscribe and publish message topics.",
+    "ID": "4.2.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify certificates are favored over native username and passwords to authenticate MQTT transactions.",
+    "ID": "4.2.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that pairing and discovery is blocked in Bluetooth devices except when necessary.",
+    "ID": "4.3.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that PIN or PassKey codes are not easily guessable. For example, verify PIN codes are not ‘0000’or ‘1234’.",
+    "ID": "4.3.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify devices that support for old versions of Bluetooth with simple modes of authentication require a PIN to pair devices.",
+    "ID": "4.3.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that for modern versions of Bluetooth, at least 6 digits are required for Secure Simple Pairing (SSP) authentication under all versions except “Just Works”.",
+    "ID": "4.3.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that encryption keys are the maximum allowable size. Bluetooth has configurable key size parameters for establishing a session, with configurations that allow keys of smaller size than the 16-32 byte size used by AES.",
+    "ID": "4.3.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify the most secure Bluetooth pairing method available is used. Verify Out Of Band (OOB), Numeric Comparison, or Passkey Entry pairing methods are used depending on the communicating device's capabilities.",
+    "ID": "4.3.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify the strongest Bluetooth Security Mode and Level supported by the device is used. For example, for Bluetooth 4.1 devices, Security Mode 4, Level 4 should be used to provide authenticated pairing and encryption.",
+    "ID": "4.3.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify Wi-Fi connectivity is disabled unless required as part of device functionality. Devices with no need for network connectivity or which support other types of network connectivity, such as Ethernet, should have the Wi-Fi interface disabled.",
+    "ID": "4.4.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that WPA2 or higher is used to protect Wi-Fi communications.",
+    "ID": "4.4.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that in case WPA is used, it is used with AES encryption (CCMP mode).",
+    "ID": "4.4.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": true,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that Wi-Fi Protected Setup (WPS) is not used to establish Wi-Fi connections between devices.",
+    "ID": "4.4.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the platform supports disabling or protecting access to debugging interfaces (e.g. JTAG, SWD).",
+    "ID": "5.1.1",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the platform supports validating the authenticity of the first stage bootloader.",
+    "ID": "5.1.2",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that cryptographic functions are provided by the platform. e.g. by leveraging dedicated functionality provided by the main chip or by external security chips.",
+    "ID": "5.1.3",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that sensitive data such as private keys and certificates can be stored securely by leveraging dedicated hardware security features.",
+    "ID": "5.1.4",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the platform provides memory and I/O protection capabilities so that only privileged processes can access certain resources.",
+    "ID": "5.1.5",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that the platform security configuration of the platform can be locked. e.g. through burning OTP fuses.",
+    "ID": "5.1.6",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify that debugging headers are removed from PCBs.",
+    "ID": "5.1.7",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": true,
+    "L3": true,
+    "Description": "Verify the chosen hardware has no unofficially documented debug features, such as special pin configurations that can enable or disable certain functionality.",
+    "ID": "5.1.8",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify that the platform provides protection against physical decapsulation, side channel and glitching attacks.",
+    "ID": "5.1.9",
+    "Verified": false,
+    "Applicable": false
+  },
+  {
+    "L1": false,
+    "L2": false,
+    "L3": true,
+    "Description": "Verify descriptive silkscreens are removed from PCBs",
+    "ID": "5.1.10",
+    "Verified": false,
+    "Applicable": false
+  }
+]

@@ -2,7 +2,6 @@ package owasp
 
 import (
 	"bytes"
-	"os"
 	"strings"
 	"testing"
 )
@@ -47,11 +46,7 @@ func ExampleEditor_WriteReport() {
 	_ = ed.SetVerified("1.1.1")
 	_ = ed.SetVerified("1.3.1")
 
-	fh, err := os.Create("example_report.md")
-	if err != nil {
-		panic(err)
-	}
-	defer fh.Close()
-	ed.WriteReport(fh)
+	ed.Save("isvs.json")
+	ed.SaveReport("example_report.md")
 	// output:
 }

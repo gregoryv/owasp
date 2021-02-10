@@ -66,6 +66,15 @@ func (me *Editor) Load(filename string) error {
 	return me.Import(fh)
 }
 
+func (me *Editor) Save(filename string) error {
+	fh, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer fh.Close()
+	return me.TidyExport(fh)
+}
+
 func (me *Editor) Import(r io.Reader) error {
 	return json.NewDecoder(r).Decode(&me.entries)
 }
@@ -86,6 +95,15 @@ func (me *Editor) TidyExport(w io.Writer) error {
 
 func (me *Editor) Export(w io.Writer) error {
 	return json.NewEncoder(w).Encode(me.entries)
+}
+
+func (me *Editor) SaveReport(filename string) error {
+	fh, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer fh.Close()
+	return me.WriteReport(fh)
 }
 
 // WriteReport writes a markdown report
