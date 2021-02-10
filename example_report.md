@@ -1,5 +1,11 @@
 # ISVS Report
 https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS/
+## Summary
+
+- L1: 2/8 applicable (total 64)
+- L2: 2/7 applicable (total 114)
+- L3: 2/7 applicable (total 123)
+
 ## Applicable
 - [x] [1.1.1](https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS/blob/master/en/V1-IoT_Ecosystem_Requirements.md#application-and-ecosystem-design) Verify that all applications in the IoT ecosystem are developed with a level of ......
 - [ ] [1.1.2](https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS/blob/master/en/V1-IoT_Ecosystem_Requirements.md#application-and-ecosystem-design) Verify that all components and communication channels in the IoT application's e......

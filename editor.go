@@ -94,8 +94,14 @@ func (me *Editor) WriteReport(w io.Writer) error {
 	p.Println("# ISVS Report")
 	p.Println("https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS/")
 
-	p.Println("## Applicable")
+	p.Println("## Summary")
+	p.Println()
+	p.Println("- L1:", me.Stats(me.list(1)))
+	p.Println("- L2:", me.Stats(me.list(2)))
+	p.Println("- L3:", me.Stats(me.list(3)))
 
+	p.Println()
+	p.Println("## Applicable")
 	for _, e := range me.entries {
 		if !e.Applicable {
 			continue
@@ -113,6 +119,40 @@ func (me *Editor) WriteReport(w io.Writer) error {
 	}
 
 	return *err
+}
+
+func (me *Editor) Stats(entries []Entry) string {
+	var num int
+	var verified int
+	var applicable int
+	for _, e := range entries {
+		num++
+		if e.Applicable {
+			applicable++
+		}
+		if e.Verified {
+			verified++
+		}
+	}
+	return fmt.Sprintf("%d/%d applicable (total %d)", verified, applicable, num)
+}
+
+func (me *Editor) list(level int) []Entry {
+	res := make([]Entry, 0)
+	if level < 1 || level > 3 {
+		panic(fmt.Errorf("no such level %v", level))
+	}
+	for _, e := range me.entries {
+		switch {
+		case level == 1 && e.L1:
+			res = append(res, e)
+		case level == 2 && e.L2:
+			res = append(res, e)
+		case level == 3 && e.L3:
+			res = append(res, e)
+		}
+	}
+	return res
 }
 
 type Entry struct {
