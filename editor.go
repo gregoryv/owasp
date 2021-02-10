@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 
-	. "github.com/gregoryv/web"
+	"github.com/gregoryv/nexus"
 )
 
 // https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS
@@ -46,27 +46,20 @@ func (me *Editor) Export(w io.Writer) error {
 	return json.NewEncoder(w).Encode(me.entries)
 }
 
-func (me *Editor) Report() *Page {
-	pre := Pre("L1 L2 L3 Reference\n")
-	for _, entry := range me.entries {
-		pre.With(
-			checkbox(entry.L1), " ",
-			checkbox(entry.L2), " ",
-			checkbox(entry.L3), " ",
-			entry.ID, "\n",
-		)
-	}
-	page := NewPage(Html(Body(
-		pre,
-	)))
-	return page
-}
+// WriteReport writes a markdown report
+func (me *Editor) WriteReport(w io.Writer) error {
+	p, err := nexus.NewPrinter(w)
+	p.Println("# ISVS Report")
 
-func checkbox(v bool) string {
-	if v {
-		return "[x]"
+	for _, e := range me.entries {
+		checkbox := "[ ]"
+		if e.Verified {
+			checkbox = "[x]"
+		}
+		p.Println(checkbox, e.ID)
 	}
-	return "[ ]"
+
+	return *err
 }
 
 type Entry struct {
@@ -75,4 +68,5 @@ type Entry struct {
 	L3          bool
 	Description string
 	ID          string
+	Verified    bool
 }

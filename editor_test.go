@@ -2,6 +2,7 @@ package edisvs_test
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 
 	"github.com/gregoryv/edisvs"
@@ -20,8 +21,18 @@ func TestEditor(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	page := ed.Report()
 	var report bytes.Buffer
-	page.WriteTo(&report)
-	t.Error(report.String())
+	ed.WriteReport(&report)
+
+	got := report.String()
+	exp := []string{
+		"4.3.4",
+		"[ ] 5",
+	}
+	for _, exp := range exp {
+		if !strings.Contains(got, exp) {
+			t.Log(got)
+			t.Fatal("missing", exp)
+		}
+	}
 }
