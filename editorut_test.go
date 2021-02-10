@@ -14,23 +14,55 @@ func (me *Editor) UnderTest(t *testing.T) *EditorUnderTest {
 	return &EditorUnderTest{T: t, Editor: me}
 }
 
-func (me *EditorUnderTest) shouldSetVerified(id string) {
-	err := me.SetVerified(id)
+func (me *EditorUnderTest) shouldSetVerified(id string, v bool) {
+	err := me.SetVerified(id, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustSetVerified(id string) {
-	err := me.SetVerified(id)
+func (me *EditorUnderTest) mustSetVerified(id string, v bool) {
+	err := me.SetVerified(id, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)
 	}
 }
 
-func (me *EditorUnderTest) shouldImportFile(filename string) {
+func (me *EditorUnderTest) shouldSetApplicableBy(pattern string) {
+	err := me.SetApplicableBy(pattern)
+	if err != nil {
+		me.T.Helper()
+		me.T.Error(err)
+	}
+}
+
+func (me *EditorUnderTest) mustSetApplicableBy(pattern string) {
+	err := me.SetApplicableBy(pattern)
+	if err != nil {
+		me.T.Helper()
+		me.T.Fatal(err)
+	}
+}
+
+func (me *EditorUnderTest) shouldSetApplicable(id string) {
+	err := me.SetApplicable(id)
+	if err != nil {
+		me.T.Helper()
+		me.T.Error(err)
+	}
+}
+
+func (me *EditorUnderTest) mustSetApplicable(id string) {
+	err := me.SetApplicable(id)
+	if err != nil {
+		me.T.Helper()
+		me.T.Fatal(err)
+	}
+}
+
+func (me *EditorUnderTest) shouldLoad(filename string) {
 	err := me.Load(filename)
 	if err != nil {
 		me.T.Helper()
@@ -38,8 +70,24 @@ func (me *EditorUnderTest) shouldImportFile(filename string) {
 	}
 }
 
-func (me *EditorUnderTest) mustImportFile(filename string) {
+func (me *EditorUnderTest) mustLoad(filename string) {
 	err := me.Load(filename)
+	if err != nil {
+		me.T.Helper()
+		me.T.Fatal(err)
+	}
+}
+
+func (me *EditorUnderTest) shouldSave(filename string) {
+	err := me.Save(filename)
+	if err != nil {
+		me.T.Helper()
+		me.T.Error(err)
+	}
+}
+
+func (me *EditorUnderTest) mustSave(filename string) {
+	err := me.Save(filename)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)
@@ -88,6 +136,22 @@ func (me *EditorUnderTest) shouldExport(w io.Writer) {
 
 func (me *EditorUnderTest) mustExport(w io.Writer) {
 	err := me.Export(w)
+	if err != nil {
+		me.T.Helper()
+		me.T.Fatal(err)
+	}
+}
+
+func (me *EditorUnderTest) shouldSaveReport(filename string) {
+	err := me.SaveReport(filename)
+	if err != nil {
+		me.T.Helper()
+		me.T.Error(err)
+	}
+}
+
+func (me *EditorUnderTest) mustSaveReport(filename string) {
+	err := me.SaveReport(filename)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)

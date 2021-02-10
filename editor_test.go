@@ -10,11 +10,11 @@ func TestEditor(t *testing.T) {
 	ed := NewEditor().UnderTest(t)
 
 	filename := "OWASP_ISVS-1.0RC.json"
-	ed.mustImportFile(filename)
+	ed.mustLoad(filename)
 
-	ed.shouldSetVerified("1.3.1")
+	ed.shouldSetVerified("1.3.1", true)
 
-	if err := ed.SetVerified("no such"); err == nil {
+	if err := ed.SetVerified("no such", true); err == nil {
 		t.Fatal("SetVerified should fail")
 	}
 
@@ -43,8 +43,8 @@ func ExampleEditor_WriteReport() {
 	_ = ed.Load("OWASP_ISVS-1.0RC.json")
 
 	_ = ed.SetApplicableBy(`1\.1\.\d*`)
-	_ = ed.SetVerified("1.1.1")
-	_ = ed.SetVerified("1.3.1")
+	_ = ed.SetVerified("1.1.1", true)
+	_ = ed.SetVerified("1.3.1", false)
 
 	ed.Save("isvs.json")
 	ed.SaveReport("example_report.md")

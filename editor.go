@@ -23,10 +23,10 @@ type Editor struct {
 }
 
 // SetVerified sets the given entry as verified and applicable
-func (me *Editor) SetVerified(id string) error {
+func (me *Editor) SetVerified(id string, v bool) error {
 	for i, e := range me.entries {
 		if e.ID == id {
-			me.entries[i].Verified = true
+			me.entries[i].Verified = v
 			me.entries[i].Applicable = true
 			return nil
 		}

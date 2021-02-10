@@ -6,6 +6,8 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- SetVerified takes value for toggling
+
 ## [0.1.0] - 2021-02-10
 
 - Render basic markdown report

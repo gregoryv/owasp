@@ -149,7 +149,7 @@
     "L3": true,
     "Description": "Verify that each application in the ecosystem is built using a secure and repeatable build environment.",
     "ID": "1.3.1",
-    "Verified": true,
+    "Verified": false,
     "Applicable": true
   },
   {
