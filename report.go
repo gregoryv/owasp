@@ -20,6 +20,10 @@ type Report struct {
 	ShortDescriptionNA bool // true to shorten description for all non applicable
 }
 
+func (me *Report) AddEntries(v ...Entry) {
+	me.entries = append(me.entries, v...)
+}
+
 // WriteReport writes a markdown report
 func (me *Report) WriteTo(w io.Writer) (int64, error) {
 	p, err := nexus.NewPrinter(w)

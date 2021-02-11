@@ -116,6 +116,17 @@ func (me *Editor) Export(w io.Writer) error {
 	return json.NewEncoder(w).Encode(me.entries)
 }
 
+// NewReport returns a new report from the loaded entries.
+func (me *Editor) NewReport(title string) *Report {
+	r := &Report{
+		entries:            me.entries,
+		Title:              title,
+		ShortDescriptionNA: true,
+	}
+	r.AddEntries(me.entries...)
+	return r
+}
+
 // SaveReport saves entries as markdown to the given filename.
 func (me *Editor) SaveReport(filename string, report Report) error {
 	fh, err := os.Create(filename)
@@ -131,37 +142,4 @@ func (me *Editor) WriteReport(w io.Writer, report Report) error {
 	report.entries = me.entries
 	_, err := report.WriteTo(w)
 	return err
-}
-
-type Entry struct {
-	L1          bool
-	L2          bool
-	L3          bool
-	Description string
-	ID          string
-	Verified    bool
-	Applicable  bool
-}
-
-func (me *Entry) checkbox() string {
-	checkbox := "[ ]"
-	if me.Verified {
-		checkbox = "[x]"
-	}
-	return checkbox
-}
-
-func (me *Entry) shortString() string {
-	return fmt.Sprintf("%s %s...", me.ID, me.shortDesc())
-}
-
-func (me *Entry) String() string {
-	return fmt.Sprintf("%s %s", me.ID, me.Description)
-}
-
-func (me *Entry) shortDesc() string {
-	if len(me.Description) < 80 {
-		return me.Description
-	}
-	return me.Description[:80] + "..."
 }
