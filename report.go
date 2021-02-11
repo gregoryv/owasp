@@ -8,13 +8,6 @@ import (
 	"github.com/gregoryv/nexus"
 )
 
-func NewReport(title string) *Report {
-	return &Report{
-		Title:              title,
-		ShortDescriptionNA: true,
-	}
-}
-
 type Report struct {
 	entries            []Entry
 	Title              string
@@ -53,7 +46,7 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 		if !e.Applicable {
 			continue
 		}
-		p.Printf("- %s **%s** %s\n", e.checkbox(), e.ID, e.Description)
+		p.Printf("- %s **%s** %s\n", checkbox(e), e.ID, e.Description)
 	}
 
 	p.Println()
@@ -64,12 +57,27 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 		}
 		desc := e.Description
 		if me.ShortDescriptionNA {
-			desc = e.shortDesc()
+			desc = maxString(e.Description, 80)
 		}
 		p.Printf("- %s %s\n", e.ID, desc)
 	}
 
 	return p.Written, *err
+}
+
+func checkbox(e Entry) string {
+	checkbox := "[ ]"
+	if e.Verified {
+		checkbox = "[x]"
+	}
+	return checkbox
+}
+
+func maxString(s string, l int) string {
+	if len(s) < l {
+		return s
+	}
+	return s[:l] + "..."
 }
 
 func (me *Report) Stats(entries []Entry) string {
@@ -104,4 +112,16 @@ func (me *Report) list(level int) []Entry {
 		}
 	}
 	return res
+}
+
+// ----------------------------------------
+
+type Entry struct {
+	L1          bool
+	L2          bool
+	L3          bool
+	Description string
+	ID          string
+	Verified    bool
+	Applicable  bool
 }
