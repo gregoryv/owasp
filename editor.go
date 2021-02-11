@@ -126,20 +126,3 @@ func (me *Editor) NewReport(title string) *Report {
 	r.AddEntries(me.entries...)
 	return r
 }
-
-// SaveReport saves entries as markdown to the given filename.
-func (me *Editor) SaveReport(filename string, report Report) error {
-	fh, err := os.Create(filename)
-	if err != nil {
-		return err
-	}
-	defer fh.Close()
-	return me.WriteReport(fh, report)
-}
-
-// WriteReport writes a markdown report
-func (me *Editor) WriteReport(w io.Writer, report Report) error {
-	report.entries = me.entries
-	_, err := report.WriteTo(w)
-	return err
-}

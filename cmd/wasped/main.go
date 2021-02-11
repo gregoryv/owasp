@@ -46,9 +46,9 @@ func main() {
 	}
 
 	if rfile != "" {
-		report := owasp.NewReport(title)
+		report := ed.NewReport(title)
 		report.ShortDescriptionNA = shortna
-		must(ed.SaveReport(rfile, *report))
+		must(report.Save(rfile))
 	}
 	ed.Save(file)
 }

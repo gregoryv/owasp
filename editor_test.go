@@ -23,9 +23,8 @@ func TestEditor(t *testing.T) {
 	var buf bytes.Buffer
 	ed.mustTidyExport(&buf)
 
-	report := NewReport("Report ISVS")
 	var rbuf bytes.Buffer
-	ed.WriteReport(&rbuf, *report)
+	ed.NewReport("Report ISVS").WriteTo(&rbuf)
 
 	got := rbuf.String()
 	exp := []string{
@@ -50,8 +49,7 @@ func ExampleEditor_WriteReport() {
 	_ = ed.SetVerified("1.3.1", false)
 
 	ed.Save("isvs.json")
-	report := NewReport("Report ISVS")
-	ed.SaveReport("example_report.md", *report)
+	ed.NewReport("Report ISVS").Save("example_report.md")
 	// output:
 }
 
@@ -113,9 +111,6 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	ed := NewEditor()
 	ed.entries = entries
 
-	report := NewReport("Report ASVS")
-	ed.SaveReport("asvs_example.md", *report)
-
+	ed.NewReport("Report ASVS").Save("asvs_example.md")
 	ed.Save("asvs.json")
-
 }

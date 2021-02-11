@@ -3,6 +3,7 @@ package owasp
 import (
 	"fmt"
 	"io"
+	"os"
 
 	"github.com/gregoryv/nexus"
 )
@@ -22,6 +23,17 @@ type Report struct {
 
 func (me *Report) AddEntries(v ...Entry) {
 	me.entries = append(me.entries, v...)
+}
+
+// Save saves the report as markdown to the given filename.
+func (me *Report) Save(filename string) error {
+	fh, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer fh.Close()
+	_, err = me.WriteTo(fh)
+	return err
 }
 
 // WriteReport writes a markdown report

@@ -6,6 +6,9 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Add Editor.NewReport
+- Replace Editor.SaveReport with Report.Save
+- Replace Editor.WriteReport with Report.WriteTo, matching the io.WriterTo interface
 - Report uses short description for non applicable entries
 
 ## [0.3.0] - 2021-02-10
