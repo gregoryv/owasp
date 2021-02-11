@@ -7,6 +7,8 @@
 - L2: 4 verified of 24
 - L3: 0 verified of 2
 
+82 requirements left to verify!
+
 ## Applicable
 - [x] **1.1.1** Verify the use of a secure software development lifecycle that addresses security in all stages of development. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))
 - [ ] **1.1.2** Verify the use of threat modeling for every design change or sprint planning to identify threats, plan for countermeasures, facilitate appropriate risk responses, and guide security testing.

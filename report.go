@@ -39,13 +39,19 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 
 	p.Println("## Summary")
 	p.Println()
-	_, a, na := me.stats(me.entries)
+	v, a, na := me.stats(me.entries)
 	p.Printf("%d applicable requirements of %d\n", a, na)
 	p.Println()
 
 	p.Println("- L1:", me.Stats(me.groupByLevel(1)))
 	p.Println("- L2:", me.Stats(me.groupByLevel(2)))
 	p.Println("- L3:", me.Stats(me.groupByLevel(3)))
+	p.Println()
+	if v != a {
+		p.Printf("%d requirements left to verify!\n", a-v)
+	} else {
+		p.Println("All requirements verified!")
+	}
 	p.Println()
 	p.Println("## Applicable")
 	for _, e := range me.entries {
