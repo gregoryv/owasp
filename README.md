@@ -25,7 +25,7 @@ finally you can render a markdown report summarizing your progress
 
 ## Automate verification in tests
 
-```go:
+```go
 func Test_some_feature(t *testing.T) {
     // test code here
     // Then update the checklist
