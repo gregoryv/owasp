@@ -42,14 +42,15 @@ func TestEditor(t *testing.T) {
 
 func ExampleEditor_WriteReport() {
 	ed := NewEditor()
-	_ = ed.Load("OWASP_ISVS-1.0RC.json")
+	_ = ed.Load("testdata/asvsx.json")
 
 	_ = ed.SetApplicableBy(`1\.1\.\d*`)
 	_ = ed.SetVerified("1.1.1", true)
 	_ = ed.SetVerified("1.3.1", false)
 
-	ed.Save("isvs.json")
-	ed.NewReport("Report ISVS").Save("example_report.md")
+	ed.Save("testdata/asvsx.json")
+	ed.NewReport("Report ASVS").Save("example_report.md")
+
 	// output:
 }
 

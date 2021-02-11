@@ -1,6 +1,17 @@
 # Report ASVS
 ## Summary
 
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  font-family="Arial,Helvetica,sans-serif" width="453" height="47">
+<rect stroke="black" stroke-width="0" fill="#ccff99" fill-opacity="1.0" x="20" y="20" width="16" height="26"/>
+<text class="green-title" font-size="12px" x="26" y="38"></text>
+<rect stroke="black" stroke-width="0" fill="#99e6ff" fill-opacity="1.0" x="36" y="20" width="16" height="26"/>
+<text class="blue-title" font-size="12px" x="42" y="38"></text>
+<rect stroke="black" stroke-width="0" fill="#e2e2e2" fill-opacity="1.0" x="52" y="20" width="400" height="26"/>
+<text class="gray-title" font-size="12px" x="58" y="38"></text></svg>
+
 - L1: 0/0 applicable (total 262)
 - L2: 0/0 applicable (total 534)
 - L3: 0/0 applicable (total 572)

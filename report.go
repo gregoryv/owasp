@@ -5,6 +5,9 @@ import (
 	"io"
 	"os"
 
+	"github.com/gregoryv/draw"
+	"github.com/gregoryv/draw/design"
+	"github.com/gregoryv/draw/shape"
 	"github.com/gregoryv/nexus"
 )
 
@@ -36,10 +39,11 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 
 	p.Println("## Summary")
 	p.Println()
+	p.Println(me.sumChart().Inline())
+	p.Println()
 	p.Println("- L1:", me.Stats(me.list(1)))
 	p.Println("- L2:", me.Stats(me.list(2)))
 	p.Println("- L3:", me.Stats(me.list(3)))
-
 	p.Println()
 	p.Println("## Applicable")
 	for _, e := range me.entries {
@@ -65,6 +69,48 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 	return p.Written, *err
 }
 
+func (me *Report) sumChart() *design.Diagram {
+	var (
+		d = design.NewDiagram()
+	)
+	width := 400
+
+	draw.DefaultClassAttributes["green"] = `stroke="black" stroke-width="0" fill="#ccff99" fill-opacity="1.0"`
+	draw.DefaultClassAttributes["blue"] = `stroke="black" stroke-width="0" fill="#99e6ff" fill-opacity="1.0"`
+	draw.DefaultClassAttributes["gray"] = `stroke="black" stroke-width="0" fill="#e2e2e2" fill-opacity="1.0"`
+
+	l1v, l1a, l1na := me.bar(me.entries, width)
+	d.Place(l1v).At(20, 20)
+	d.Place(l1a, l1na).RightOf(l1v, 0)
+
+	return &d
+}
+
+func (me *Report) bar(entries []Entry, width int) (v, a, na *shape.Rect) {
+	verified, applicable, total := me.stats(entries)
+	v = shape.NewRect("")
+	a = shape.NewRect("")
+	na = shape.NewRect("")
+
+	draw.DefaultClassAttributes["green"] = `stroke="black" stroke-width="0" fill="#ccff99" fill-opacity="1.0"`
+	v.SetClass("green")
+	v.SetWidth(part(verified, total, width))
+
+	draw.DefaultClassAttributes["blue"] = `stroke="black" stroke-width="0" fill="#99e6ff" fill-opacity="1.0"`
+	a.SetClass("blue")
+	a.SetWidth(part((applicable - verified), total, width))
+
+	draw.DefaultClassAttributes["gray"] = `stroke="black" stroke-width="0" fill="#e2e2e2" fill-opacity="1.0"`
+	na.SetClass("gray")
+	na.SetWidth(part((total - applicable), total, width))
+	return
+}
+
+func part(a, b, c int) int {
+	v := (float64(a) / float64(b)) * float64(c)
+	return int(v)
+}
+
 func checkbox(e Entry) string {
 	checkbox := "[ ]"
 	if e.Verified {
@@ -81,11 +127,13 @@ func maxString(s string, l int) string {
 }
 
 func (me *Report) Stats(entries []Entry) string {
-	var num int
-	var verified int
-	var applicable int
+	verified, applicable, total := me.stats(entries)
+	return fmt.Sprintf("%d/%d applicable (total %d)", verified, applicable, total)
+}
+
+func (me *Report) stats(entries []Entry) (verified, applicable, total int) {
 	for _, e := range entries {
-		num++
+		total++
 		if e.Applicable {
 			applicable++
 		}
@@ -93,7 +141,7 @@ func (me *Report) Stats(entries []Entry) string {
 			verified++
 		}
 	}
-	return fmt.Sprintf("%d/%d applicable (total %d)", verified, applicable, num)
+	return
 }
 
 func (me *Report) list(level int) []Entry {
