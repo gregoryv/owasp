@@ -14,8 +14,10 @@ func main() {
 		help  = cli.Flag("-h, --help")
 		set   = cli.Option("-set").String("")
 		unset = cli.Option("-unset").String("")
-		rfile = cli.Option("-r, --report").String("")
-		title = cli.Option("-t, --title").String("Report")
+
+		rfile   = cli.Option("-r, --report").String("")
+		title   = cli.Option("-t, --title").String("Report")
+		shortna = cli.Flag("-s, --short-description-na")
 
 		file = cli.Required("FILE").String()
 	)
@@ -45,6 +47,7 @@ func main() {
 
 	if rfile != "" {
 		report := owasp.NewReport(title)
+		report.ShortDescriptionNA = shortna
 		must(ed.SaveReport(rfile, *report))
 	}
 	ed.Save(file)
