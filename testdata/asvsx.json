@@ -5,7 +5,7 @@
     "L3": true,
     "Description": "Verify the use of a secure software development lifecycle that addresses security in all stages of development. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))",
     "ID": "1.1.1",
-    "Verified": true,
+    "Verified": false,
     "Applicable": true
   },
   {

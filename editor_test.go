@@ -55,7 +55,7 @@ func ExampleEditor_WriteReport() {
 }
 
 func ExampleMustSetVerifiedNow() {
-	MustSetVerifiedNow("1.3.2", "isvs.json", false)
+	MustSetVerifiedNow("1.1.1", "testdata/asvsx.json", false)
 	// output:
 }
 
@@ -109,15 +109,15 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 			}
 		}
 	}
-	ed := NewEditor()
+	ed := NewEditor().UnderTest(t)
 	ed.entries = entries
 
-	ed.Save("asvs.json")
+	ed.mustSave("checklist/asvs.json")
 }
 
 func Test_convert_isvs(t *testing.T) {
 	ed := NewEditor().UnderTest(t)
 
 	ed.mustLoad("testdata/OWASP_ISVS-1.0RC.json")
-	ed.mustSave("isvs.json")
+	ed.mustSave("checklist/isvs.json")
 }
