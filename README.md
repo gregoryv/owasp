@@ -1,30 +1,34 @@
 Package [owasp](https://pkg.go.dev/github.com/gregoryv/owasp) provides
-an [OWASP](https://github.com/OWASP) conformance editor.
+an [OWASP](https://github.com/OWASP) checklist editor.
 
 It was written to integrate ISVS and ASVS checklists with tests that
 verify the requirements.
 
-In your test use it like
+## Quick start
+
+Install the editor
+
+    go get -u github.com/gregoryv/cmd/wasped
+
+Prepare a checklist, start of with asvs.json or isvs.json found in
+this repository. Set the Applicable field to true on each entry that
+is applicable to your project.
+
+When you have verified a requirement check it off with 
+
+    $ wasped -set "1.3.2" asvs.json
+
+finally you can render a markdown report summarizing your progress
+
+    $ wasped -r asvs_report.md -t "My ASVS report" asvs.json
+
+## Automate verification in tests
 
 ```go:
 func Test_some_feature(t *testing.T) {
     // test code here
     // Then update the checklist
-    MustSetVerifiedNow("1.3.2", "isvs.json", true) // or false if failed
+    MustSetVerifiedNow("1.3.2", "asvs.json", true) // or false if failed
 }
 ```
-
-This module also provides the cmd/wasped for command line editing
-
-Install with
-
-    go get -u github.com/gregoryv/cmd/...
-
-Then to update an entry use flags -set|-unset
-
-    $ wasped -set "1.3.2" asvs.json
-	
-and to generate a markdown report use
-
-    $ wasped -r asvs_report.md -t "My ASVS report" asvs.json
 
