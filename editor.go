@@ -9,8 +9,6 @@ import (
 	"regexp"
 )
 
-// https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS
-
 // MustSetVerifiedNow loads and sets the verified flag. Panics on errors.
 func MustSetVerifiedNow(id, filename string, v bool) {
 	ed := NewEditor()

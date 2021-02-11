@@ -11,7 +11,7 @@ import (
 func TestEditor(t *testing.T) {
 	ed := NewEditor().UnderTest(t)
 
-	filename := "OWASP_ISVS-1.0RC.json"
+	filename := "testdata/OWASP_ISVS-1.0RC.json"
 	ed.mustLoad(filename)
 
 	ed.shouldSetVerified("1.3.1", true)
@@ -83,7 +83,7 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	}
 
 	// Load original
-	fh, _ := os.Open("ASVS-4.0.2.json")
+	fh, _ := os.Open("testdata/ASVS-4.0.2.json")
 	defer fh.Close()
 	json.NewDecoder(fh).Decode(&asvs)
 
@@ -113,4 +113,11 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	ed.entries = entries
 
 	ed.Save("asvs.json")
+}
+
+func Test_convert_isvs(t *testing.T) {
+	ed := NewEditor().UnderTest(t)
+
+	ed.mustLoad("testdata/OWASP_ISVS-1.0RC.json")
+	ed.mustSave("isvs.json")
 }
