@@ -112,6 +112,5 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	ed := NewEditor()
 	ed.entries = entries
 
-	ed.NewReport("Report ASVS").Save("asvs_example.md")
 	ed.Save("asvs.json")
 }

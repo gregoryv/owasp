@@ -1,20 +1,11 @@
 # Report ASVS
 ## Summary
 
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  font-family="Arial,Helvetica,sans-serif" width="419" height="47">
-<rect stroke="black" stroke-width="0" fill="#ccff99" fill-opacity="1.0" x="20" y="20" width="44" height="26"/>
-<text class="green-title" font-size="12px" x="26" y="38"></text>
-<rect stroke="black" stroke-width="0" fill="#99e6ff" fill-opacity="1.0" x="64" y="20" width="57" height="26"/>
-<text class="blue-title" font-size="12px" x="70" y="38"></text>
-<rect stroke="black" stroke-width="0" fill="#e2e2e2" fill-opacity="1.0" x="121" y="20" width="297" height="26"/>
-<text class="gray-title" font-size="12px" x="127" y="38"></text></svg>
+146 applicable requirements of 572
 
-- L1: 60/120 applicable (total 262)
-- L2: 64/144 applicable (total 534)
-- L3: 64/146 applicable (total 572)
+- L1: 60 verified of 120
+- L2: 4 verified of 24
+- L3: 0 verified of 2
 
 ## Applicable
 - [x] **1.1.1** Verify the use of a secure software development lifecycle that addresses security in all stages of development. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))
