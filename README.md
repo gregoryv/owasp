@@ -10,9 +10,10 @@ Install the editor
 
     go get -u github.com/gregoryv/cmd/wasped
 
-Prepare a checklist, start of with asvs.json or isvs.json found in
-this repository. Set the Applicable field to true on each entry that
-is applicable to your project.
+Prepare a checklist, start of with [asvs.json](checklist/asvs.json)
+or [isvs.json](checklist/isvs.json) found in this repository. Set the
+Applicable field to true on each entry that is applicable to your
+project.
 
 When you have verified a requirement check it off with 
 
