@@ -10,10 +10,10 @@ import (
 
 func main() {
 	var (
-		cli   = cmdline.NewParser(os.Args...)
-		help  = cli.Flag("-h, --help")
-		set   = cli.Option("--verify").String("")
-		unset = cli.Option("--unverify").String("")
+		cli      = cmdline.NewParser(os.Args...)
+		help     = cli.Flag("-h, --help")
+		verify   = cli.Option("--verify").String("")
+		unverify = cli.Option("--unverify").String("")
 
 		rfile   = cli.Option("-r, --report").String("")
 		title   = cli.Option("-t, --title").String("Report")
@@ -38,11 +38,11 @@ func main() {
 	ed := owasp.NewEditor()
 	ed.Load(file)
 
-	if set != "" {
-		must(ed.SetVerified(set, true))
+	if verify != "" {
+		must(ed.SetVerified(verify, true))
 	}
-	if unset != "" {
-		must(ed.SetVerified(unset, false))
+	if unverify != "" {
+		must(ed.SetVerified(unverify, false))
 	}
 	if rfile != "" {
 		report := ed.NewReport(title)
