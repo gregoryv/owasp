@@ -12,8 +12,8 @@ func main() {
 	var (
 		cli   = cmdline.NewParser(os.Args...)
 		help  = cli.Flag("-h, --help")
-		set   = cli.Option("-set").String("")
-		unset = cli.Option("-unset").String("")
+		set   = cli.Option("--verify").String("")
+		unset = cli.Option("--unverify").String("")
 
 		rfile   = cli.Option("-r, --report").String("")
 		title   = cli.Option("-t, --title").String("Report")
@@ -44,7 +44,6 @@ func main() {
 	if unset != "" {
 		must(ed.SetVerified(unset, false))
 	}
-
 	if rfile != "" {
 		report := ed.NewReport(title)
 		report.ShortDescriptionNA = shortna

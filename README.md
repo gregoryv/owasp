@@ -17,11 +17,11 @@ project.
 
 When you have verified a requirement check it off with 
 
-    $ wasped -set "1.3.2" asvs.json
+    $ wasped --verify "1.3.2" asvs.json
 
 finally you can render a markdown report summarizing your progress
 
-    $ wasped -r asvs_report.md -t "My ASVS report" asvs.json
+    $ wasped --report asvs_report.md --title "My ASVS report" asvs.json
 
 ## Automate verification in tests
 
