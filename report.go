@@ -60,8 +60,8 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 		}
 		p.Printf("- %s **%s** %s\n", checkbox(e), e.ID, e.Description)
 		if e.Manual != nil {
-			p.Printf("  Manual: %s %s by %s\n",
-				e.Manual.When, e.Manual.How, e.Manual.By,
+			p.Printf("  _MANUAL %s by %s: %s_\n",
+				e.Manual.When, e.Manual.By, e.Manual.How,
 			)
 		}
 	}
