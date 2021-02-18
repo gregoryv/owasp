@@ -118,7 +118,6 @@ func (me *Editor) Export(w io.Writer) error {
 // NewReport returns a new report from the loaded entries.
 func (me *Editor) NewReport(title string) *Report {
 	r := &Report{
-		entries:            me.entries,
 		Title:              title,
 		ShortDescriptionNA: true,
 	}
