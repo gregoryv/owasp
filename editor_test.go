@@ -55,7 +55,7 @@ func ExampleEditor_WriteReport() {
 	ed := NewEditor()
 	_ = ed.Load("testdata/asvsx.json")
 
-	_ = ed.SetApplicableBy(`1\.1\.\d*`)
+	_ = ed.SetApplicableBy(`1\.1\.\d*`, true)
 	_ = ed.SetVerified("1.1.1", true)
 	_ = ed.SetVerified("1.3.1", false)
 

@@ -47,11 +47,11 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
-func (me *Editor) SetApplicableBy(pattern string) error {
+func (me *Editor) SetApplicableBy(pattern string, v bool) error {
 	var found bool
 	for i, e := range me.entries {
 		if found, _ = regexp.MatchString(pattern, e.ID); found {
-			me.entries[i].Applicable = true
+			me.entries[i].Applicable = v
 		}
 	}
 	if !found {
@@ -60,10 +60,10 @@ func (me *Editor) SetApplicableBy(pattern string) error {
 	return nil
 }
 
-func (me *Editor) SetApplicable(id string) error {
+func (me *Editor) SetApplicable(id string, v bool) error {
 	for i, e := range me.entries {
 		if e.ID == id {
-			me.entries[i].Applicable = true
+			me.entries[i].Applicable = v
 			return nil
 		}
 	}

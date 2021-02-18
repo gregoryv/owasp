@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on http://keepachangelog.com/en/1.0.0/
 and this project adheres to http://semver.org/spec/v2.0.0.html.
 
+## [unreleased]
+
+- Use SetApplicable and SetApplicableBy to set value to true or false
+
 ## [0.6.1] - 2021-02-18
 
 - Fix double entries in report

@@ -46,32 +46,32 @@ func (me *EditorUnderTest) mustSetManuallyVerified(id string, v bool, man Manual
 	}
 }
 
-func (me *EditorUnderTest) shouldSetApplicableBy(pattern string) {
-	err := me.SetApplicableBy(pattern)
+func (me *EditorUnderTest) shouldSetApplicableBy(pattern string, v bool) {
+	err := me.SetApplicableBy(pattern, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustSetApplicableBy(pattern string) {
-	err := me.SetApplicableBy(pattern)
+func (me *EditorUnderTest) mustSetApplicableBy(pattern string, v bool) {
+	err := me.SetApplicableBy(pattern, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)
 	}
 }
 
-func (me *EditorUnderTest) shouldSetApplicable(id string) {
-	err := me.SetApplicable(id)
+func (me *EditorUnderTest) shouldSetApplicable(id string, v bool) {
+	err := me.SetApplicable(id, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustSetApplicable(id string) {
-	err := me.SetApplicable(id)
+func (me *EditorUnderTest) mustSetApplicable(id string, v bool) {
+	err := me.SetApplicable(id, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)
