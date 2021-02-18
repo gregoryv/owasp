@@ -9,20 +9,6 @@ import (
 	"regexp"
 )
 
-// MustSetVerifiedNow loads and sets the verified flag. Panics on errors.
-func MustSetVerifiedNow(id, filename string, v bool) {
-	ed := NewEditor()
-	if err := ed.Load(filename); err != nil {
-		panic(err)
-	}
-	if err := ed.SetVerified(id, v); err != nil {
-		panic(err)
-	}
-	if err := ed.Save(filename); err != nil {
-		panic(err)
-	}
-}
-
 // NewEditor returns an empty editor. Use Load or Import methods to
 // fill with entries.
 func NewEditor() *Editor {
@@ -40,6 +26,20 @@ func (me *Editor) SetVerified(id string, v bool) error {
 		if e.ID == id {
 			me.entries[i].Verified = v
 			me.entries[i].Applicable = true
+			return nil
+		}
+	}
+	return fmt.Errorf("id %s not found", id)
+}
+
+// SetManuallyVerified sets the given entry as verified and applicable
+// with manual notes.
+func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
+	for i, e := range me.entries {
+		if e.ID == id {
+			me.entries[i].Verified = v
+			me.entries[i].Applicable = true
+			me.entries[i].Manual = &man
 			return nil
 		}
 	}

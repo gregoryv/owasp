@@ -1,22 +1,25 @@
 # Report ASVS
 ## Summary
 
-146 applicable requirements of 572
+148 applicable requirements of 572
 
 - L1: 60 verified of 120
-- L2: 4 verified of 24
+- L2: 8 verified of 26
 - L3: 0 verified of 2
 
-82 requirements left to verify!
+80 requirements left to verify!
 
 ## Applicable
 - [x] **1.1.1** Verify the use of a secure software development lifecycle that addresses security in all stages of development. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))
-- [ ] **1.1.2** Verify the use of threat modeling for every design change or sprint planning to identify threats, plan for countermeasures, facilitate appropriate risk responses, and guide security testing.
+- [x] **1.1.2** Verify the use of threat modeling for every design change or sprint planning to identify threats, plan for countermeasures, facilitate appropriate risk responses, and guide security testing.
+  Manual: 2021-02-18 Latest threatmodel design change was updated on ... by John Doe
 - [ ] **1.1.3** Verify that all user stories and features contain functional security constraints, such as "As a user, I should be able to view and edit my profile. I should not be able to view or edit anyone else's profile"
 - [ ] **1.1.4** Verify documentation and justification of all the application's trust boundaries, components, and significant data flows.
 - [ ] **1.1.5** Verify definition and security analysis of the application's high-level architecture and all connected remote services. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))
 - [ ] **1.1.6** Verify implementation of centralized, simple (economy of design), vetted, secure, and reusable security controls to avoid duplicate, missing, ineffective, or insecure controls. ([C10](https://owasp.org/www-project-proactive-controls/#div-numbering))
 - [ ] **1.1.7** Verify availability of a secure coding checklist, security requirements, guideline, or policy to all developers and testers.
+- [x] **1.2.1** Verify the use of unique or special low-privilege operating system accounts for all application components, services, and servers. ([C3](https://owasp.org/www-project-proactive-controls/#div-numbering))
+  Manual:   by 
 - [ ] **1.11.3** Verify that all high-value business logic flows, including authentication, session management and access control are thread safe and resistant to time-of-check and time-of-use race conditions.
 - [x] **2.1.5** Verify users can change their password.
 - [ ] **2.2.1** Verify that anti-automation controls are effective at mitigating breached credential testing, brute force, and account lockout attacks. Such controls include blocking the most common breached passwords, soft lockouts, rate limiting, CAPTCHA, ever increasing delays between attempts, IP address restrictions, or risk-based restrictions such as location, first login on a device, recent attempts to unlock the account, or similar. Verify that no more than 100 failed attempts per hour is possible on a single account.
@@ -84,12 +87,15 @@
 - [ ] **14.4.6** Verify that a suitable "Referrer-Policy" header is included, such as "no-referrer" or "same-origin".
 - [x] **14.5.3** Verify that the Cross-Origin Resource Sharing (CORS) Access-Control-Allow-Origin header uses a strict allow list of trusted domains and subdomains to match against and does not support the "null" origin.
 - [x] **1.1.1** Verify the use of a secure software development lifecycle that addresses security in all stages of development. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))
-- [ ] **1.1.2** Verify the use of threat modeling for every design change or sprint planning to identify threats, plan for countermeasures, facilitate appropriate risk responses, and guide security testing.
+- [x] **1.1.2** Verify the use of threat modeling for every design change or sprint planning to identify threats, plan for countermeasures, facilitate appropriate risk responses, and guide security testing.
+  Manual: 2021-02-18 Latest threatmodel design change was updated on ... by John Doe
 - [ ] **1.1.3** Verify that all user stories and features contain functional security constraints, such as "As a user, I should be able to view and edit my profile. I should not be able to view or edit anyone else's profile"
 - [ ] **1.1.4** Verify documentation and justification of all the application's trust boundaries, components, and significant data flows.
 - [ ] **1.1.5** Verify definition and security analysis of the application's high-level architecture and all connected remote services. ([C1](https://owasp.org/www-project-proactive-controls/#div-numbering))
 - [ ] **1.1.6** Verify implementation of centralized, simple (economy of design), vetted, secure, and reusable security controls to avoid duplicate, missing, ineffective, or insecure controls. ([C10](https://owasp.org/www-project-proactive-controls/#div-numbering))
 - [ ] **1.1.7** Verify availability of a secure coding checklist, security requirements, guideline, or policy to all developers and testers.
+- [x] **1.2.1** Verify the use of unique or special low-privilege operating system accounts for all application components, services, and servers. ([C3](https://owasp.org/www-project-proactive-controls/#div-numbering))
+  Manual:   by 
 - [ ] **1.11.3** Verify that all high-value business logic flows, including authentication, session management and access control are thread safe and resistant to time-of-check and time-of-use race conditions.
 - [x] **2.1.5** Verify users can change their password.
 - [ ] **2.2.1** Verify that anti-automation controls are effective at mitigating breached credential testing, brute force, and account lockout attacks. Such controls include blocking the most common breached passwords, soft lockouts, rate limiting, CAPTCHA, ever increasing delays between attempts, IP address restrictions, or risk-based restrictions such as location, first login on a device, recent attempts to unlock the account, or similar. Verify that no more than 100 failed attempts per hour is possible on a single account.
@@ -158,7 +164,6 @@
 - [x] **14.5.3** Verify that the Cross-Origin Resource Sharing (CORS) Access-Control-Allow-Origin header uses a strict allow list of trusted domains and subdomains to match against and does not support the "null" origin.
 
 ## Not Applicable
-- 1.2.1 Verify the use of unique or special low-privilege operating system accounts for ...
 - 1.2.2 Verify that communications between application components, including APIs, middl...
 - 1.2.3 Verify that the application uses a single vetted authentication mechanism that i...
 - 1.2.4 Verify that all authentication pathways and identity management APIs implement c...
@@ -371,7 +376,6 @@
 - 14.5.1 Verify that the application server only accepts the HTTP methods in use by the a...
 - 14.5.2 Verify that the supplied Origin header is not used for authentication or access ...
 - 14.5.4 Verify that HTTP headers added by a trusted proxy or SSO devices, such as a bear...
-- 1.2.1 Verify the use of unique or special low-privilege operating system accounts for ...
 - 1.2.2 Verify that communications between application components, including APIs, middl...
 - 1.2.3 Verify that the application uses a single vetted authentication mechanism that i...
 - 1.2.4 Verify that all authentication pathways and identity management APIs implement c...

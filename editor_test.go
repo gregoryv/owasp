@@ -15,6 +15,14 @@ func TestEditor(t *testing.T) {
 	ed.mustLoad(filename)
 
 	ed.shouldSetVerified("1.3.1", true)
+	man := Manual{
+		How:  "Using hardware...",
+		When: "2022-01-01",
+		By:   "John Doe",
+	}
+	if err := ed.SetManuallyVerified("2.1.1", true, man); err != nil {
+		t.Fatal(err)
+	}
 
 	if err := ed.SetVerified("no such", true); err == nil {
 		t.Fatal("SetVerified should fail")
@@ -31,6 +39,9 @@ func TestEditor(t *testing.T) {
 		"4.3.4",
 		"- 5",
 		"[x] **1.3.1**",
+		"Using",
+		"John Doe",
+		"2022-01-01",
 	}
 	for _, exp := range exp {
 		if !strings.Contains(got, exp) {
@@ -47,6 +58,13 @@ func ExampleEditor_WriteReport() {
 	_ = ed.SetApplicableBy(`1\.1\.\d*`)
 	_ = ed.SetVerified("1.1.1", true)
 	_ = ed.SetVerified("1.3.1", false)
+
+	man := Manual{
+		How:  "Latest threatmodel design change was updated on ...",
+		When: "2021-02-18",
+		By:   "John Doe",
+	}
+	_ = ed.SetManuallyVerified("1.1.2", true, man)
 
 	ed.Save("testdata/asvsx.json")
 	ed.NewReport("Report ASVS").Save("example_report.md")

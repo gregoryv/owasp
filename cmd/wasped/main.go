@@ -12,12 +12,14 @@ func main() {
 	var (
 		cli      = cmdline.NewParser(os.Args...)
 		help     = cli.Flag("-h, --help")
-		verify   = cli.Option("--verify").String("")
-		unverify = cli.Option("--unverify").String("")
+		verify   = cli.Option("--verify", "ID to set as verified").String("")
+		unverify = cli.Option("--unverify", "ID to set as unverified").String("")
 
-		rfile   = cli.Option("-r, --report").String("")
-		title   = cli.Option("-t, --title").String("Report")
-		shortna = cli.Flag("-s, --short-description-na")
+		rfile   = cli.Option("-r, --report", "Markdown file to save report to").String("")
+		title   = cli.Option("-t, --title", "Title of the report").String("Report")
+		shortna = cli.Option("-s, --short-description-na",
+			"If given, not applicable requiremens will have a shortened description",
+		).Bool()
 
 		file = cli.Required("FILE").String()
 	)

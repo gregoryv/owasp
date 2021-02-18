@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Add Editor.SetManuallyVerified and type Manual to describe how
 - Renamed wasped options -set and -unset to --verify and --unverify
 
 ## [0.5.0] - 2021-02-11

@@ -59,6 +59,11 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 			continue
 		}
 		p.Printf("- %s **%s** %s\n", checkbox(e), e.ID, e.Description)
+		if e.Manual != nil {
+			p.Printf("  Manual: %s %s by %s\n",
+				e.Manual.When, e.Manual.How, e.Manual.By,
+			)
+		}
 	}
 
 	p.Println()
@@ -204,6 +209,16 @@ type Entry struct {
 	L3          bool
 	Description string
 	ID          string
-	Verified    bool
-	Applicable  bool
+
+	Applicable bool
+	Verified   bool
+
+	*Manual `json:"Manual,omitempty"`
+}
+
+// Manual describes manual verification
+type Manual struct {
+	How  string // How it was done
+	When string // yyyy-mm-dd
+	By   string
 }

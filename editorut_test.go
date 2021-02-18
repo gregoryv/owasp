@@ -30,6 +30,22 @@ func (me *EditorUnderTest) mustSetVerified(id string, v bool) {
 	}
 }
 
+func (me *EditorUnderTest) shouldSetManuallyVerified(id string, v bool, man Manual) {
+	err := me.SetManuallyVerified(id, v, man)
+	if err != nil {
+		me.T.Helper()
+		me.T.Error(err)
+	}
+}
+
+func (me *EditorUnderTest) mustSetManuallyVerified(id string, v bool, man Manual) {
+	err := me.SetManuallyVerified(id, v, man)
+	if err != nil {
+		me.T.Helper()
+		me.T.Fatal(err)
+	}
+}
+
 func (me *EditorUnderTest) shouldSetApplicableBy(pattern string) {
 	err := me.SetApplicableBy(pattern)
 	if err != nil {
