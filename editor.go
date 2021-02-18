@@ -26,6 +26,7 @@ func (me *Editor) SetVerified(id string, v bool) error {
 		if e.ID == id {
 			me.entries[i].Verified = v
 			me.entries[i].Applicable = true
+			me.entries[i].Manual = nil
 			return nil
 		}
 	}
