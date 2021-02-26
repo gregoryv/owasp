@@ -51,17 +51,13 @@ func (me *Editor) SetVerified(id string, v bool) error {
 
 // ResetVerifiedBy resets the verified state of all entries matching pattern
 func (me *Editor) ResetVerifiedBy(pattern string) error {
-	var found bool
 	for i, e := range me.Entries {
-		if found, _ = regexp.MatchString(pattern, e.ID); found {
+		if found, _ := regexp.MatchString(pattern, e.ID); found {
 			me.Entries[i].Verified = false
 			me.Entries[i].Manual = nil
 		}
 	}
 
-	if !found {
-		return fmt.Errorf("%s no match", pattern)
-	}
 	return nil
 }
 
@@ -80,14 +76,10 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 }
 
 func (me *Editor) SetApplicableBy(pattern string, v bool) error {
-	var found bool
 	for i, e := range me.Entries {
-		if found, _ = regexp.MatchString(pattern, e.ID); found {
+		if found, _ := regexp.MatchString(pattern, e.ID); found {
 			me.Entries[i].Applicable = v
 		}
-	}
-	if !found {
-		return fmt.Errorf("%s no match", pattern)
 	}
 	return nil
 }
