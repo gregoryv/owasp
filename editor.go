@@ -33,6 +33,22 @@ func (me *Editor) SetVerified(id string, v bool) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
+// ResetVerifiedBy resets the verified state of all entries matching pattern
+func (me *Editor) ResetVerifiedBy(pattern string) error {
+	var found bool
+	for i, e := range me.entries {
+		if found, _ = regexp.MatchString(pattern, e.ID); found {
+			me.entries[i].Verified = false
+			me.entries[i].Manual = nil
+		}
+	}
+
+	if !found {
+		return fmt.Errorf("%s no match", pattern)
+	}
+	return nil
+}
+
 // SetManuallyVerified sets the given entry as verified and applicable
 // with manual notes.
 func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
