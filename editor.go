@@ -20,6 +20,22 @@ type Editor struct {
 	Entries []Entry
 }
 
+// SetApplicableByLevel sets the all entries with the given level or lower as applicable
+func (me *Editor) SetApplicableByLevel(level string) error {
+	for i, e := range me.Entries {
+		if level == "L3" {
+			me.Entries[i].Applicable = true
+		} else if level == "L2" && e.L2 {
+			me.Entries[i].Applicable = true
+		} else if level == "L1" && e.L1 {
+			me.Entries[i].Applicable = true
+		} else {
+			me.Entries[i].Applicable = false
+		}
+	}
+	return nil
+}
+
 // SetVerified sets the given entry as verified and applicable
 func (me *Editor) SetVerified(id string, v bool) error {
 	for i, e := range me.Entries {
