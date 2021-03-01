@@ -75,6 +75,19 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
+// SetManuallyVerifiedBy sets all entries matching pattern as verified and applicable
+// with manual notes.
+func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) error {
+	for i, e := range me.Entries {
+		if found, _ := regexp.MatchString(pattern, e.ID); found {
+			me.Entries[i].Verified = v
+			me.Entries[i].Applicable = true
+			me.Entries[i].Manual = &man
+		}
+	}
+	return nil
+}
+
 func (me *Editor) SetApplicableBy(pattern string, v bool) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
