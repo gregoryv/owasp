@@ -28,7 +28,7 @@ finally you can render a markdown report summarizing your progress
 ```go
 func Test_some_feature(t *testing.T) {
     // test code here
-    // Then update the checklist
+    // Then update the checklist	
     MustSetVerifiedNow("1.3.2", "asvs.json", true) // or false if failed
 }
 ```

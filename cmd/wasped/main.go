@@ -26,7 +26,7 @@ func main() {
 			"If given, not applicable requiremens will have a shortened description",
 		).Bool()
 
-		file = cli.Required("FILE").String()
+		file = cli.Required("FILE").String("")
 	)
 	log.SetFlags(0)
 
