@@ -51,7 +51,7 @@ func TestEditor(t *testing.T) {
 	}
 }
 
-func ExampleEditor_WriteReport() {
+func ExampleEditor_NewReport() {
 	ed := NewEditor()
 	_ = ed.Load("testdata/asvsx.json")
 
@@ -128,7 +128,7 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 		}
 	}
 	ed := NewEditor().UnderTest(t)
-	ed.entries = entries
+	ed.Entries = entries
 
 	ed.mustSave("checklist/asvs.json")
 }
