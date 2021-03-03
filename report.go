@@ -5,9 +5,6 @@ import (
 	"io"
 	"os"
 
-	"github.com/gregoryv/draw"
-	"github.com/gregoryv/draw/design"
-	"github.com/gregoryv/draw/shape"
 	"github.com/gregoryv/nexus"
 )
 
@@ -82,48 +79,6 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 	return p.Written, *err
 }
 
-func (me *Report) sumChart() *design.Diagram {
-	var (
-		d = design.NewDiagram()
-	)
-	width := 400
-
-	draw.DefaultClassAttributes["green"] = `stroke="black" stroke-width="0" fill="#ccff99" fill-opacity="1.0"`
-	draw.DefaultClassAttributes["blue"] = `stroke="black" stroke-width="0" fill="#99e6ff" fill-opacity="1.0"`
-	draw.DefaultClassAttributes["gray"] = `stroke="black" stroke-width="0" fill="#e2e2e2" fill-opacity="1.0"`
-
-	l1v, l1a, l1na := me.bar(me.entries, width)
-	d.Place(l1v).At(20, 20)
-	d.Place(l1a, l1na).RightOf(l1v, 0)
-
-	return &d
-}
-
-func (me *Report) bar(entries []Entry, width int) (v, a, na *shape.Rect) {
-	verified, applicable, total := me.stats(entries)
-	v = shape.NewRect("")
-	a = shape.NewRect("")
-	na = shape.NewRect("")
-
-	draw.DefaultClassAttributes["green"] = `stroke="black" stroke-width="0" fill="#ccff99" fill-opacity="1.0"`
-	v.SetClass("green")
-	v.SetWidth(part(verified, total, width))
-
-	draw.DefaultClassAttributes["blue"] = `stroke="black" stroke-width="0" fill="#99e6ff" fill-opacity="1.0"`
-	a.SetClass("blue")
-	a.SetWidth(part((applicable - verified), total, width))
-
-	draw.DefaultClassAttributes["gray"] = `stroke="black" stroke-width="0" fill="#e2e2e2" fill-opacity="1.0"`
-	na.SetClass("gray")
-	na.SetWidth(part((total - applicable), total, width))
-	return
-}
-
-func part(a, b, c int) int {
-	v := (float64(a) / float64(b)) * float64(c)
-	return int(v)
-}
-
 func checkbox(e Entry) string {
 	checkbox := "[ ]"
 	if e.Verified {
@@ -155,24 +110,6 @@ func (me *Report) stats(entries []Entry) (verified, applicable, total int) {
 		}
 	}
 	return
-}
-
-func (me *Report) list(level Level) []Entry {
-	res := make([]Entry, 0)
-	if level < 1 || level > 3 {
-		panic(fmt.Errorf("no such level %v", level))
-	}
-	for _, e := range me.entries {
-		switch {
-		case level == L1 && e.L1:
-			res = append(res, e)
-		case level == L2 && e.L2:
-			res = append(res, e)
-		case level == L3 && e.L3:
-			res = append(res, e)
-		}
-	}
-	return res
 }
 
 func (me *Report) groupByLevel(level Level) []Entry {
