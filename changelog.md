@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Methods hat set verified field fail if the requirement is not applicable
 - Add SetVerifiedBy and ResetVerifiedBy
 - Use SetApplicable and SetApplicableBy to set value to true or false
 
