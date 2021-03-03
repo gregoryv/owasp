@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on http://keepachangelog.com/en/1.0.0/
 and this project adheres to http://semver.org/spec/v2.0.0.html.
 
+## [0.7.1] - 2021-03-03
+
+- Fix SetApplicableByLevel
+
 ## [0.7.0] - 2021-03-03
 
 - Methods that set verified field fail if the requirement is not applicable
