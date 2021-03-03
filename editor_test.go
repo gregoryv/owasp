@@ -8,18 +8,37 @@ import (
 	"testing"
 )
 
+func TestEditor_set_non_applicable(t *testing.T) {
+	ed := NewEditor().UnderTest(t)
+	filename := "testdata/OWASP_ISVS-1.0RC.json"
+	ed.mustLoad(filename)
+
+	if err := ed.SetVerified("1.2.1", true); err == nil {
+		t.Fatal("SetVerified should fail")
+	}
+	if err := ed.SetVerifiedBy("1.2.*", true); err == nil {
+		t.Fatal("SetVerifiedBy should fail")
+	}
+	if err := ed.SetManuallyVerified("1.2.1", true, Manual{}); err == nil {
+		t.Fatal("SetManuallyVerified should fail")
+	}
+}
+
 func TestEditor(t *testing.T) {
 	ed := NewEditor().UnderTest(t)
 
 	filename := "testdata/OWASP_ISVS-1.0RC.json"
 	ed.mustLoad(filename)
 
+	ed.shouldSetApplicable("1.3.1", true)
 	ed.shouldSetVerified("1.3.1", true)
+
 	man := Manual{
 		How:  "Using hardware...",
 		When: "2022-01-01",
 		By:   "John Doe",
 	}
+	ed.shouldSetApplicable("2.1.1", true)
 	if err := ed.SetManuallyVerified("2.1.1", true, man); err != nil {
 		t.Fatal(err)
 	}

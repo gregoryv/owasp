@@ -47,13 +47,14 @@ func (me *Editor) ResetVerifiedBy(pattern string) error {
 	return me.SetVerifiedBy(pattern, false)
 }
 
-// SetVerified sets the given entry as verified and applicable
+// SetVerified sets the given entry as verified
 func (me *Editor) SetVerified(id string, v bool) error {
 	for i, e := range me.Entries {
 		if e.ID == id {
+			if !e.Applicable {
+				return fmt.Errorf("%v is not applicable", e.ID)
+			}
 			me.Entries[i].Verified = v
-			// todo, maybe not do this as we have SetApplicable methods
-			me.Entries[i].Applicable = true
 			me.Entries[i].Manual = nil
 			return nil
 		}
@@ -66,6 +67,9 @@ func (me *Editor) SetVerified(id string, v bool) error {
 func (me *Editor) SetVerifiedBy(pattern string, v bool) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
+			if !e.Applicable {
+				return fmt.Errorf("%v is not applicable", e.ID)
+			}
 			me.Entries[i].Verified = v
 			me.Entries[i].Manual = nil
 		}
@@ -79,6 +83,9 @@ func (me *Editor) SetVerifiedBy(pattern string, v bool) error {
 func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 	for i, e := range me.Entries {
 		if e.ID == id {
+			if !e.Applicable {
+				return fmt.Errorf("%v is not applicable", e.ID)
+			}
 			me.Entries[i].Verified = v
 			me.Entries[i].Applicable = true
 			me.Entries[i].Manual = &man
@@ -93,8 +100,10 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
+			if !e.Applicable {
+				return fmt.Errorf("%v is not applicable", e.ID)
+			}
 			me.Entries[i].Verified = v
-			me.Entries[i].Applicable = true
 			me.Entries[i].Manual = &man
 		}
 	}
