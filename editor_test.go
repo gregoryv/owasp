@@ -24,6 +24,16 @@ func TestEditor_set_non_applicable(t *testing.T) {
 	}
 }
 
+func TestEditor_SetApplicableByLevel(t *testing.T) {
+	ed := NewEditor().UnderTest(t)
+	filename := "checklist/asvs.json"
+	ed.mustLoad(filename)
+
+	if err := ed.SetApplicableByLevel(L1, true); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestEditor(t *testing.T) {
 	ed := NewEditor().UnderTest(t)
 

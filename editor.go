@@ -35,8 +35,6 @@ func (me *Editor) SetApplicableByLevel(level Level, appl bool) error {
 		case level == L3 && e.L3:
 			me.Entries[i].Applicable = appl
 
-		default:
-			return fmt.Errorf("unmatched level %v", level)
 		}
 	}
 	return nil
