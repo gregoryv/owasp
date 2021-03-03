@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on http://keepachangelog.com/en/1.0.0/
 and this project adheres to http://semver.org/spec/v2.0.0.html.
 
-## [unreleased]
+## [0.7.0] - 2021-03-03
 
-- Methods hat set verified field fail if the requirement is not applicable
+- Methods that set verified field fail if the requirement is not applicable
 - Add SetVerifiedBy and ResetVerifiedBy
 - Use SetApplicable and SetApplicableBy to set value to true or false
 
