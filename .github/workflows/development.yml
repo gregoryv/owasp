@@ -23,6 +23,7 @@ jobs:
         GOPATH: "/tmp"
         PATH: "/bin:/usr/bin:/tmp/bin"
       run: |
+          go get -u github.com/gregoryv/geco/cmd/gentut
           go generate ./...
           go build ./cmd/wasped
 
