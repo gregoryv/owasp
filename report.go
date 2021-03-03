@@ -43,9 +43,9 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 	p.Printf("%d applicable requirements of %d\n", a, na)
 	p.Println()
 
-	p.Println("- L1:", me.Stats(me.groupByLevel(1)))
-	p.Println("- L2:", me.Stats(me.groupByLevel(2)))
-	p.Println("- L3:", me.Stats(me.groupByLevel(3)))
+	p.Println("- L1:", me.Stats(me.groupByLevel(L1)))
+	p.Println("- L2:", me.Stats(me.groupByLevel(L2)))
+	p.Println("- L3:", me.Stats(me.groupByLevel(L3)))
 	p.Println()
 	if v != a {
 		p.Printf("%d requirements left to verify!\n", a-v)
@@ -157,41 +157,41 @@ func (me *Report) stats(entries []Entry) (verified, applicable, total int) {
 	return
 }
 
-func (me *Report) list(level int) []Entry {
+func (me *Report) list(level Level) []Entry {
 	res := make([]Entry, 0)
 	if level < 1 || level > 3 {
 		panic(fmt.Errorf("no such level %v", level))
 	}
 	for _, e := range me.entries {
 		switch {
-		case level == 1 && e.L1:
+		case level == L1 && e.L1:
 			res = append(res, e)
-		case level == 2 && e.L2:
+		case level == L2 && e.L2:
 			res = append(res, e)
-		case level == 3 && e.L3:
+		case level == L3 && e.L3:
 			res = append(res, e)
 		}
 	}
 	return res
 }
 
-func (me *Report) groupByLevel(level int) []Entry {
+func (me *Report) groupByLevel(level Level) []Entry {
 	res := make([]Entry, 0)
 	if level < 1 || level > 3 {
 		panic(fmt.Errorf("no such level %v", level))
 	}
 	for _, e := range me.entries {
 		switch {
-		case level == 1 && e.L1:
+		case level == L1 && e.L1:
 			res = append(res, e)
 
-		case level == 2 && e.L2:
+		case level == L2 && e.L2:
 			if e.L1 {
 				continue
 			}
 			res = append(res, e)
 
-		case level == 3 && e.L3:
+		case level == L3 && e.L3:
 			if e.L1 || e.L2 {
 				continue
 			}

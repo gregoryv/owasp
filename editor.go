@@ -20,17 +20,22 @@ type Editor struct {
 	Entries []Entry
 }
 
-// SetApplicableByLevel sets the all entries with the given level or lower as applicable
-func (me *Editor) SetApplicableByLevel(level string) error {
+// SetApplicableByLevel sets the all entries with the given level
+// as applicable
+func (me *Editor) SetApplicableByLevel(level Level, appl bool) error {
 	for i, e := range me.Entries {
-		if level == "L3" {
-			me.Entries[i].Applicable = true
-		} else if level == "L2" && e.L2 {
-			me.Entries[i].Applicable = true
-		} else if level == "L1" && e.L1 {
-			me.Entries[i].Applicable = true
-		} else {
-			me.Entries[i].Applicable = false
+		switch {
+		case level == L1 && e.L1:
+			me.Entries[i].Applicable = appl
+
+		case level == L2 && e.L2:
+			me.Entries[i].Applicable = appl
+
+		case level == L3 && e.L3:
+			me.Entries[i].Applicable = appl
+
+		default:
+			return fmt.Errorf("unmatched level %v", level)
 		}
 	}
 	return nil
