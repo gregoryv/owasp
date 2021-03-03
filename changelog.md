@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Add SetVerifiedBy and ResetVerifiedBy
 - Use SetApplicable and SetApplicableBy to set value to true or false
 
 ## [0.6.1] - 2021-02-18
