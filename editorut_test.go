@@ -30,6 +30,22 @@ func (me *EditorUnderTest) mustSetApplicableByLevel(level Level, appl bool) {
 	}
 }
 
+func (me *EditorUnderTest) shouldResetVerifiedBy(pattern string) {
+	err := me.ResetVerifiedBy(pattern)
+	if err != nil {
+		me.T.Helper()
+		me.T.Error(err)
+	}
+}
+
+func (me *EditorUnderTest) mustResetVerifiedBy(pattern string) {
+	err := me.ResetVerifiedBy(pattern)
+	if err != nil {
+		me.T.Helper()
+		me.T.Fatal(err)
+	}
+}
+
 func (me *EditorUnderTest) shouldSetVerified(id string, v bool) {
 	err := me.SetVerified(id, v)
 	if err != nil {
@@ -46,16 +62,16 @@ func (me *EditorUnderTest) mustSetVerified(id string, v bool) {
 	}
 }
 
-func (me *EditorUnderTest) shouldResetVerifiedBy(pattern string) {
-	err := me.ResetVerifiedBy(pattern)
+func (me *EditorUnderTest) shouldSetVerifiedBy(pattern string, v bool) {
+	err := me.SetVerifiedBy(pattern, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustResetVerifiedBy(pattern string) {
-	err := me.ResetVerifiedBy(pattern)
+func (me *EditorUnderTest) mustSetVerifiedBy(pattern string, v bool) {
+	err := me.SetVerifiedBy(pattern, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)

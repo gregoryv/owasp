@@ -42,11 +42,17 @@ func (me *Editor) SetApplicableByLevel(level Level, appl bool) error {
 	return nil
 }
 
+// ResetVerifiedBy same as SetVerifiedBy(pattern, false)
+func (me *Editor) ResetVerifiedBy(pattern string) error {
+	return me.SetVerifiedBy(pattern, false)
+}
+
 // SetVerified sets the given entry as verified and applicable
 func (me *Editor) SetVerified(id string, v bool) error {
 	for i, e := range me.Entries {
 		if e.ID == id {
 			me.Entries[i].Verified = v
+			// todo, maybe not do this as we have SetApplicable methods
 			me.Entries[i].Applicable = true
 			me.Entries[i].Manual = nil
 			return nil
@@ -55,11 +61,12 @@ func (me *Editor) SetVerified(id string, v bool) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
-// ResetVerifiedBy resets the verified state of all entries matching pattern
-func (me *Editor) ResetVerifiedBy(pattern string) error {
+// SetVerifiedBy sets the verified state of all entries where id
+// matches the pattern
+func (me *Editor) SetVerifiedBy(pattern string, v bool) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
-			me.Entries[i].Verified = false
+			me.Entries[i].Verified = v
 			me.Entries[i].Manual = nil
 		}
 	}
