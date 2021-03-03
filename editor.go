@@ -20,8 +20,9 @@ type Editor struct {
 	Entries []Entry
 }
 
-// SetApplicableByLevel sets the all entries with the given level
-// as applicable
+// SetApplicableByLevel sets applicable value of entries by specific
+// level. The checklist is cumulative, if you set L2 as applicable it
+// will include L1 aswell.
 func (me *Editor) SetApplicableByLevel(level Level, appl bool) error {
 	for i, e := range me.Entries {
 		switch {
