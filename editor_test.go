@@ -192,7 +192,7 @@ func tmpFile(mode os.FileMode) (filename string, cleanup func()) {
 
 // ----------------------------------------
 
-func TestEditor_TidyExport(t *testing.T) {
+func TestEditor_WriteTo(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
 		{ID: "1.1.1", Applicable: true, Verified: true,
@@ -207,7 +207,10 @@ func TestEditor_TidyExport(t *testing.T) {
 	}
 
 	var buf bytes.Buffer
-	must(t, ed.TidyExport(&buf))
+	_, err := ed.WriteTo(&buf)
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	var got []Entry
 	json.NewDecoder(&buf).Decode(&got)

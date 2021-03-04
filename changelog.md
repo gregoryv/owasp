@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Replace Editor.TidyExport with WriteTo implementing io.WriterTo interface
 - Remove Editor.Export
 - Rename Editor.Save to Editor.SaveAs
 - Remove MustSetVerifiedNow

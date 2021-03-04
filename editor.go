@@ -178,7 +178,8 @@ func (me *Editor) SaveAs(filename string) error {
 		return err
 	}
 	defer fh.Close()
-	return me.TidyExport(fh)
+	_, err = me.WriteTo(fh)
+	return err
 }
 
 // Import entries from json
@@ -186,16 +187,15 @@ func (me *Editor) Import(r io.Reader) error {
 	return json.NewDecoder(r).Decode(&me.Entries)
 }
 
-// TidyExport exports entries as tidy json to the given writer.
-func (me *Editor) TidyExport(w io.Writer) error {
+// WriteTo exports entries as tidy json to the given writer.
+func (me *Editor) WriteTo(w io.Writer) (int64, error) {
 	var buf bytes.Buffer
 	json.NewEncoder(&buf).Encode(me.Entries)
 
 	var tidy bytes.Buffer
 	_ = json.Indent(&tidy, buf.Bytes(), "", "  ")
 
-	_, err := w.Write(tidy.Bytes())
-	return err
+	return io.Copy(w, &tidy)
 }
 
 // NewReport returns a new report from the loaded entries.
