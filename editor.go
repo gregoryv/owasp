@@ -101,13 +101,24 @@ func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) erro
 }
 
 func (me *Editor) SetApplicableBy(pattern string, v bool) error {
+	if err := doesMatch(pattern, me.Entries); err != nil {
+		return fmt.Errorf("SetApplicableBy: %w", err)
+	}
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
 			me.Entries[i].Applicable = v
-			count++
 		}
 	}
 	return nil
+}
+
+func doesMatch(pattern string, entries []Entry) error {
+	for i := range entries {
+		if found, _ := regexp.MatchString(pattern, entries[i].ID); found {
+			return nil
+		}
+	}
+	return fmt.Errorf("pattern %q does not match any entries", pattern)
 }
 
 func (me *Editor) SetApplicable(id string, v bool) error {

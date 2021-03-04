@@ -8,6 +8,14 @@ import (
 	"testing"
 )
 
+func TestEditor_SetApplicableBy_fails_on_no_match(t *testing.T) {
+	ed := NewEditor()
+	err := ed.SetApplicableBy(".*", true)
+	if err == nil {
+		t.Fail()
+	}
+}
+
 func TestEditor_set_non_applicable(t *testing.T) {
 	ed := NewEditor()
 	filename := "testdata/OWASP_ISVS-1.0RC.json"
