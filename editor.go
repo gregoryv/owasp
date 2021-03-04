@@ -35,7 +35,8 @@ func (me *Editor) ResetVerifiedBy(pattern string) error {
 	return me.SetVerifiedBy(pattern, false)
 }
 
-// SetVerified sets the given entry as verified
+// SetVerified sets the given entry as verified. Returns error if id
+// is not found or the entry is not applicable.
 func (me *Editor) SetVerified(id string, v bool) error {
 	for i, e := range me.Entries {
 		if e.ID == id {
@@ -51,7 +52,8 @@ func (me *Editor) SetVerified(id string, v bool) error {
 }
 
 // SetVerifiedBy sets the verified state of all entries where id
-// matches the pattern
+// matches the pattern. Returns error if matching entry is not
+// applicable.
 func (me *Editor) SetVerifiedBy(pattern string, v bool) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
@@ -83,8 +85,8 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
-// SetManuallyVerifiedBy sets all entries matching pattern as verified and applicable
-// with manual notes.
+// SetManuallyVerifiedBy sets all entries matching pattern as verified
+// and applicable with manual notes.
 func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
@@ -102,6 +104,7 @@ func (me *Editor) SetApplicableBy(pattern string, v bool) error {
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
 			me.Entries[i].Applicable = v
+			count++
 		}
 	}
 	return nil
