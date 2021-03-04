@@ -53,22 +53,42 @@ func TestEditor_SetManuallyVerifiedBy(t *testing.T) {
 
 func TestEditor_SetApplicableByLevel(t *testing.T) {
 	ed := NewEditor()
-	filename := "checklist/asvs.json"
-	if err := ed.Load(filename); err != nil {
-		t.Fatal(err)
+	ed.Entries = []Entry{
+		{L1: true},
+		{L2: true},
+		{L3: true},
 	}
-
 	if err := ed.SetApplicableByLevel(L1, true); err != nil {
 		t.Error(err)
 	}
 	if err := ed.SetApplicableByLevel(L2, true); err != nil {
 		t.Error(err)
 	}
-	if err := ed.SetApplicableByLevel(L3, false); err != nil {
+	if err := ed.SetApplicableByLevel(L3, true); err != nil {
 		t.Error(err)
 	}
 	if err := ed.SetApplicableByLevel(0, true); err == nil {
 		t.Error("did not fail for level 0")
+	}
+}
+
+func TestEditor_SetApplicable(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1"},
+	}
+	if err := ed.SetApplicable("1.1.1", true); err != nil {
+		t.Error(err)
+	}
+	if !ed.Entries[0].Applicable {
+		t.Error("did not set Applicable field")
+	}
+}
+
+func TestEditor_SetApplicable_fails(t *testing.T) {
+	ed := NewEditor()
+	if err := ed.SetApplicable("1.1.1", true); err == nil {
+		t.Error("did not fail for unknown id")
 	}
 }
 
