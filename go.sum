@@ -47,8 +47,6 @@ github.com/gregoryv/qual v0.3.1/go.mod h1:dB0ZUMaE5qieQ975kKI7A4CDfg6wgcsPcSlY1S
 github.com/gregoryv/qual v0.4.0 h1:CqXWXavcX0YRbgMaX/kyY96yZFFbYHg1k1+qXK22HJ8=
 github.com/gregoryv/qual v0.4.0/go.mod h1:dB0ZUMaE5qieQ975kKI7A4CDfg6wgcsPcSlY1SWuq9Y=
 github.com/gregoryv/web v0.14.0/go.mod h1:rQLMOfw2Hny0Nvb24COmX96jKJyhNOfC/jAHITBn3vc=
-github.com/gregoryv/web v0.15.0 h1:006JwlRX6ARt6ds39FBiG21rEe14pBYM5Yvay98HwHQ=
-github.com/gregoryv/web v0.15.0/go.mod h1:amzbJCl0hw8sy2bkGh20rhCQd2fnOQCVxG/BwDZ9gsg=
 github.com/gregoryv/web v0.16.0 h1:FIvOzI71W4MhD7hC5jX9BCegHpjfp77gh0FRBbq8BqU=
 github.com/gregoryv/web v0.16.0/go.mod h1:DRjHH1V0vwEGHpzEhb9Y3XrQWioSSOGBz6nJMnHQ2NM=
 github.com/gregoryv/workdir v0.2.0 h1:a0V87TpJpda5rHPj+lrJTiUD7pqdddUERYPWEJY8ufc=
@@ -91,7 +89,6 @@ golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3/go.mod h1:t9HGtf8HONx5eT2rtn
 golang.org/x/net v0.0.0-20191004110552-13f9640d40b9/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=
 golang.org/x/net v0.0.0-20191209160850-c0dbc17a3553/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=
 golang.org/x/net v0.0.0-20201110031124-69a78807bb2b/go.mod h1:sp8m0HH+o8qH0wwXwYZr8TS3Oi6o0r6Gce1SSxlDquU=
-golang.org/x/net v0.0.0-20210119194325-5f4716e94777 h1:003p0dJM77cxMSyCPFphvZf/Y5/NXf5fzg6ufd1/Oew=
 golang.org/x/net v0.0.0-20210119194325-5f4716e94777/go.mod h1:m0MpNAwzfU5UDzcl9v0D8zg8gWTRqZa9RBIspLL5mdg=
 golang.org/x/net v0.0.0-20210226172049-e18ecbb05110 h1:qWPm9rbaAMKs8Bq/9LRpbMqxWRVUAQwMI9fVrssnTfw=
 golang.org/x/net v0.0.0-20210226172049-e18ecbb05110/go.mod h1:m0MpNAwzfU5UDzcl9v0D8zg8gWTRqZa9RBIspLL5mdg=
