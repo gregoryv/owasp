@@ -35,6 +35,12 @@ func (me *Editor) SetApplicableByLevel(level Level, v bool) error {
 	return nil
 }
 
+// Reset same as calling ResetVerified and ResetApplicable
+func (me *Editor) Reset() {
+	me.ResetVerified()
+	me.ResetApplicable()
+}
+
 // ResetVerified sets Verified field to false on all entries and Manual to nil.
 func (me *Editor) ResetVerified() {
 	for i := range me.Entries {
