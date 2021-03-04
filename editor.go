@@ -56,6 +56,20 @@ func (me *Editor) ResetApplicable() {
 	}
 }
 
+// ----------------------------------------
+
+// SetApplicable sets the applicable field of given entry. Returns
+// error if no entry is found.
+func (me *Editor) SetApplicable(id string, v bool) error {
+	for i, e := range me.Entries {
+		if e.ID == id {
+			me.Entries[i].Applicable = v
+			return nil
+		}
+	}
+	return fmt.Errorf("id %s not found", id)
+}
+
 // SetVerified sets the given entry as verified. Returns error if id
 // is not found or the entry is not applicable.
 func (me *Editor) SetVerified(id string, v bool) error {
@@ -145,15 +159,7 @@ func doesMatch(pattern string, entries []Entry) error {
 	return fmt.Errorf("pattern %q does not match any entries", pattern)
 }
 
-func (me *Editor) SetApplicable(id string, v bool) error {
-	for i, e := range me.Entries {
-		if e.ID == id {
-			me.Entries[i].Applicable = v
-			return nil
-		}
-	}
-	return fmt.Errorf("id %s not found", id)
-}
+// ----------------------------------------
 
 // Load entries from given json file.
 func (me *Editor) Load(filename string) error {

@@ -168,20 +168,26 @@ func TestEditor_SaveAs_fails(t *testing.T) {
 	}
 
 	// create write protected file
-	tmpfile, err := ioutil.TempFile("", "owasp")
-	if err != nil {
-		log.Fatal(err)
-	}
-	filename := tmpfile.Name()
-	defer func() {
-		os.Chmod(filename, 0644)
-		os.Remove(filename) // clean up
-	}()
-	os.Chmod(filename, 0000)
+	filename, cleanup := tmpFile(0000)
+	defer cleanup()
 
 	if err := ed.SaveAs(filename); err == nil {
 		t.Error("no error when saving to write protected file")
 	}
+}
+
+func tmpFile(mode os.FileMode) (filename string, cleanup func()) {
+	tmpfile, err := ioutil.TempFile("", "owasp")
+	if err != nil {
+		log.Fatal(err)
+	}
+	filename = tmpfile.Name()
+	cleanup = func() {
+		os.Chmod(filename, 0644)
+		os.Remove(filename) // clean up
+	}
+	os.Chmod(filename, mode)
+	return
 }
 
 // ----------------------------------------
