@@ -77,9 +77,9 @@ func main() {
 	if rfile != "" {
 		report := ed.NewReport(title)
 		report.ShortDescriptionNA = shortna
-		must(report.Save(rfile))
+		must(report.SaveAs(rfile))
 	}
-	ed.Save(file)
+	ed.SaveAs(file)
 }
 
 func must(err error) {

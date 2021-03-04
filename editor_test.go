@@ -68,6 +68,9 @@ func TestEditor_SetApplicableByLevel(t *testing.T) {
 	if err := ed.SetApplicableByLevel(L3, false); err != nil {
 		t.Error(err)
 	}
+	if err := ed.SetApplicableByLevel(0, true); err == nil {
+		t.Error("did not fail for level 0")
+	}
 }
 
 func TestEditor(t *testing.T) {
@@ -167,14 +170,14 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = entries
 
-	must(t, ed.Save("checklist/asvs.json"))
+	must(t, ed.SaveAs("checklist/asvs.json"))
 }
 
 func Test_convert_isvs(t *testing.T) {
 	ed := NewEditor()
 
 	must(t, ed.Load("testdata/OWASP_ISVS-1.0RC.json"))
-	must(t, ed.Save("checklist/isvs.json"))
+	must(t, ed.SaveAs("checklist/isvs.json"))
 }
 
 // ----------------------------------------

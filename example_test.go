@@ -16,7 +16,7 @@ func Example_workWithTheEditor() {
 	}
 	_ = ed.SetManuallyVerified("1.1.2", true, man)
 
-	ed.NewReport("Report ASVS").Save("example_report.md")
+	ed.NewReport("Report ASVS").SaveAs("example_report.md")
 	// output:
 }
 

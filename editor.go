@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"regexp"
 )
@@ -23,6 +22,11 @@ type Editor struct {
 // SetApplicableByLevel sets applicable value of entries by specific
 // level.
 func (me *Editor) SetApplicableByLevel(level Level, v bool) error {
+	switch level {
+	case L1, L2, L3:
+	default:
+		return fmt.Errorf("no such level %v", level)
+	}
 	for i, e := range me.Entries {
 		if e.IsLevel(level) {
 			me.Entries[i].Applicable = v
@@ -98,7 +102,6 @@ func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) erro
 				return fmt.Errorf("%v is not applicable", e.ID)
 			}
 			me.Entries[i].Verified = v
-			log.Printf("%#v", me.Entries[i])
 			me.Entries[i].Manual = &man
 		}
 	}
@@ -146,8 +149,8 @@ func (me *Editor) Load(filename string) error {
 	return me.Import(fh)
 }
 
-// Save writes entries as a tidy json to the given filename.
-func (me *Editor) Save(filename string) error {
+// SaveAs writes entries as a tidy json to the given filename.
+func (me *Editor) SaveAs(filename string) error {
 	fh, err := os.Create(filename)
 	if err != nil {
 		return err
