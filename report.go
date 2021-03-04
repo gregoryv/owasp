@@ -114,48 +114,10 @@ func (me *Report) stats(entries []Entry) (verified, applicable, total int) {
 
 func (me *Report) groupByLevel(level Level) []Entry {
 	res := make([]Entry, 0)
-	if level < 1 || level > 3 {
-		panic(fmt.Errorf("no such level %v", level))
-	}
 	for _, e := range me.entries {
-		switch {
-		case level == L1 && e.L1:
-			res = append(res, e)
-
-		case level == L2 && e.L2:
-			if e.L1 {
-				continue
-			}
-			res = append(res, e)
-
-		case level == L3 && e.L3:
-			if e.L1 || e.L2 {
-				continue
-			}
+		if e.IsLevel(level) {
 			res = append(res, e)
 		}
 	}
 	return res
-}
-
-// ----------------------------------------
-
-type Entry struct {
-	L1          bool
-	L2          bool
-	L3          bool
-	Description string
-	ID          string
-
-	Applicable bool
-	Verified   bool
-
-	*Manual `json:"Manual,omitempty"`
-}
-
-// Manual describes manual verification
-type Manual struct {
-	How  string // How it was done
-	When string // yyyy-mm-dd
-	By   string
 }

@@ -9,9 +9,11 @@ import (
 )
 
 func TestEditor_set_non_applicable(t *testing.T) {
-	ed := NewEditor().UnderTest(t)
+	ed := NewEditor()
 	filename := "testdata/OWASP_ISVS-1.0RC.json"
-	ed.mustLoad(filename)
+	if err := ed.Load(filename); err != nil {
+		t.Fatal(err)
+	}
 
 	if err := ed.SetVerified("1.2.1", true); err == nil {
 		t.Fatal("SetVerified should fail")
@@ -25,20 +27,26 @@ func TestEditor_set_non_applicable(t *testing.T) {
 }
 
 func TestEditor_SetApplicableByLevel(t *testing.T) {
-	ed := NewEditor().UnderTest(t)
+	ed := NewEditor()
 	filename := "checklist/asvs.json"
-	ed.mustLoad(filename)
+	if err := ed.Load(filename); err != nil {
+		t.Fatal(err)
+	}
 
 	if err := ed.SetApplicableByLevel(L1, true); err != nil {
-		t.Fatal(err)
+		t.Error(err)
+	}
+	if err := ed.SetApplicableByLevel(L2, true); err != nil {
+		t.Error(err)
+	}
+	if err := ed.SetApplicableByLevel(L3, false); err != nil {
+		t.Error(err)
 	}
 }
 
 func TestEditor(t *testing.T) {
 	ed := NewEditor().UnderTest(t)
-
-	filename := "testdata/OWASP_ISVS-1.0RC.json"
-	ed.mustLoad(filename)
+	ed.mustLoad("testdata/OWASP_ISVS-1.0RC.json")
 
 	ed.shouldSetApplicable("1.3.1", true)
 	ed.shouldSetVerified("1.3.1", true)
@@ -82,11 +90,15 @@ func TestEditor(t *testing.T) {
 
 func ExampleEditor_NewReport() {
 	ed := NewEditor()
-	_ = ed.Load("testdata/asvsx.json")
+	_ = ed.Load("checklist/asvs.json")
 
 	_ = ed.SetApplicableBy(`1\.1\.\d*`, true)
-	_ = ed.SetVerified("1.1.1", true)
-	_ = ed.SetVerified("1.3.1", false)
+	if err := ed.SetVerified("1.1.1", true); err != nil {
+		// handle err
+	}
+	if err := ed.SetVerified("1.1.2", false); err != nil {
+		// handle err
+	}
 
 	man := Manual{
 		How:  "Latest threatmodel design change was updated on ...",
@@ -95,9 +107,7 @@ func ExampleEditor_NewReport() {
 	}
 	_ = ed.SetManuallyVerified("1.1.2", true, man)
 
-	ed.Save("testdata/asvsx.json")
 	ed.NewReport("Report ASVS").Save("example_report.md")
-
 	// output:
 }
 

@@ -14,16 +14,16 @@ func (me *Editor) UnderTest(t *testing.T) *EditorUnderTest {
 	return &EditorUnderTest{T: t, Editor: me}
 }
 
-func (me *EditorUnderTest) shouldSetApplicableByLevel(level Level, appl bool) {
-	err := me.SetApplicableByLevel(level, appl)
+func (me *EditorUnderTest) shouldSetApplicableByLevel(level Level, v bool) {
+	err := me.SetApplicableByLevel(level, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Error(err)
 	}
 }
 
-func (me *EditorUnderTest) mustSetApplicableByLevel(level Level, appl bool) {
-	err := me.SetApplicableByLevel(level, appl)
+func (me *EditorUnderTest) mustSetApplicableByLevel(level Level, v bool) {
+	err := me.SetApplicableByLevel(level, v)
 	if err != nil {
 		me.T.Helper()
 		me.T.Fatal(err)
