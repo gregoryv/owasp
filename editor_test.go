@@ -3,6 +3,8 @@ package owasp
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
+	"log"
 	"os"
 	"testing"
 )
@@ -113,6 +115,33 @@ func TestEditor_SetApplicable_fails(t *testing.T) {
 		t.Error("did not fail for unknown id")
 	}
 }
+
+// ----------------------------------------
+
+func TestEditor_SaveAs_fails(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1"},
+	}
+
+	// create write protected file
+	tmpfile, err := ioutil.TempFile("", "owasp")
+	if err != nil {
+		log.Fatal(err)
+	}
+	filename := tmpfile.Name()
+	defer func() {
+		os.Chmod(filename, 0644)
+		os.Remove(filename) // clean up
+	}()
+	os.Chmod(filename, 0000)
+
+	if err := ed.SaveAs(filename); err == nil {
+		t.Error("no error when saving to write protected file")
+	}
+}
+
+// ----------------------------------------
 
 func TestEditor_TidyExport(t *testing.T) {
 	ed := NewEditor()
