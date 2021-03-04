@@ -118,6 +118,19 @@ func TestEditor_SetApplicable_fails(t *testing.T) {
 
 // ----------------------------------------
 
+func TestEditor_ResetVerified(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{Verified: true},
+	}
+	ed.ResetVerified()
+	if ed.Entries[0].Verified {
+		t.Fail()
+	}
+}
+
+// ----------------------------------------
+
 func TestEditor_SaveAs_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{

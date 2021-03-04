@@ -35,9 +35,11 @@ func (me *Editor) SetApplicableByLevel(level Level, v bool) error {
 	return nil
 }
 
-// ResetVerifiedBy same as SetVerifiedBy(pattern, false)
-func (me *Editor) ResetVerifiedBy(pattern string) error {
-	return me.SetVerifiedBy(pattern, false)
+// ResetVerified sets verified field to false on all entries.
+func (me *Editor) ResetVerified() {
+	for i := range me.Entries {
+		me.Entries[i].Verified = false
+	}
 }
 
 // SetVerified sets the given entry as verified. Returns error if id
