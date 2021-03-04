@@ -88,34 +88,6 @@ func TestEditor(t *testing.T) {
 	}
 }
 
-func ExampleEditor_NewReport() {
-	ed := NewEditor()
-	_ = ed.Load("checklist/asvs.json")
-
-	_ = ed.SetApplicableBy(`1\.1\.\d*`, true)
-	if err := ed.SetVerified("1.1.1", true); err != nil {
-		// handle err
-	}
-	if err := ed.SetVerified("1.1.2", false); err != nil {
-		// handle err
-	}
-
-	man := Manual{
-		How:  "Latest threatmodel design change was updated on ...",
-		When: "2021-02-18",
-		By:   "John Doe",
-	}
-	_ = ed.SetManuallyVerified("1.1.2", true, man)
-
-	ed.NewReport("Report ASVS").Save("example_report.md")
-	// output:
-}
-
-func ExampleMustSetVerifiedNow() {
-	MustSetVerifiedNow("1.1.1", "testdata/asvsx.json", false)
-	// output:
-}
-
 // ----------------------------------------
 
 func Test_convert_original_asvs_to_checklist(t *testing.T) {

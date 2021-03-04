@@ -25,11 +25,6 @@ finally you can render a markdown report summarizing your progress
 
 ## Automate verification in tests
 
-```go
-func Test_some_feature(t *testing.T) {
-    // test code here
-    // Then update the checklist	
-    MustSetVerifiedNow("1.3.2", "asvs.json", true) // or false if failed
-}
-```
+The package is designed to simplify verification of requirements using
+tests and producing a readable report. See [package](https://pkg.go.dev/github.com/gregoryv/owasp) examples.
 
