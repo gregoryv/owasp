@@ -161,6 +161,16 @@ func TestEditor_ResetApplicable(t *testing.T) {
 
 // ----------------------------------------
 
+func TestEditor_Open_fails(t *testing.T) {
+	ed := NewEditor()
+	err := ed.Load("no such file")
+	if err == nil {
+		t.Fail()
+	}
+}
+
+// ----------------------------------------
+
 func TestEditor_SaveAs_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
