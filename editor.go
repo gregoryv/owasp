@@ -189,21 +189,13 @@ func (me *Editor) Import(r io.Reader) error {
 // TidyExport exports entries as tidy json to the given writer.
 func (me *Editor) TidyExport(w io.Writer) error {
 	var buf bytes.Buffer
-	me.Export(&buf)
+	json.NewEncoder(&buf).Encode(me.Entries)
 
 	var tidy bytes.Buffer
-	err := json.Indent(&tidy, buf.Bytes(), "", "  ")
-	if err != nil {
-		return err
-	}
+	_ = json.Indent(&tidy, buf.Bytes(), "", "  ")
 
-	_, err = w.Write(tidy.Bytes())
+	_, err := w.Write(tidy.Bytes())
 	return err
-}
-
-// Export entries as json
-func (me *Editor) Export(w io.Writer) error {
-	return json.NewEncoder(w).Encode(me.Entries)
 }
 
 // NewReport returns a new report from the loaded entries.
