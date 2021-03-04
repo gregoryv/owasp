@@ -7,6 +7,47 @@ import (
 	"testing"
 )
 
+func TestEditor_SetVerifiedBy(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true},
+		{ID: "2.2.2", Applicable: true},
+	}
+	err := ed.SetVerifiedBy(`1.*`, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !ed.Entries[0].Verified {
+		t.Error("Verified field not set")
+	}
+	if ed.Entries[1].Verified {
+		t.Error("Verified field set on wrong entry")
+	}
+}
+
+// ----------------------------------------
+
+func TestEditor_SetManuallyVerifiedBy(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true},
+		{ID: "2.2.2", Applicable: true},
+	}
+	err := ed.SetManuallyVerifiedBy(`1.*`, true, Manual{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !ed.Entries[0].Verified {
+		t.Error("Verified field not set")
+	}
+	if ed.Entries[0].Manual == nil {
+		t.Error("Manual field not set")
+	}
+	if ed.Entries[1].Verified {
+		t.Error("Verified field set on wrong entry")
+	}
+}
+
 func TestEditor_SetManuallyVerifiedBy_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
@@ -30,26 +71,7 @@ func TestEditor_SetManuallyVerifiedBy_fails(t *testing.T) {
 	})
 }
 
-func TestEditor_SetManuallyVerifiedBy(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1", Applicable: true},
-		{ID: "2.2.2", Applicable: true},
-	}
-	err := ed.SetManuallyVerifiedBy(`1.*`, true, Manual{})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !ed.Entries[0].Verified {
-		t.Error("Verified field not set")
-	}
-	if ed.Entries[0].Manual == nil {
-		t.Error("Manual field not set")
-	}
-	if ed.Entries[1].Verified {
-		t.Error("Verified field set on wrong entry")
-	}
-}
+// ----------------------------------------
 
 func TestEditor_SetApplicableByLevel(t *testing.T) {
 	ed := NewEditor()
