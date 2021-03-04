@@ -12,5 +12,5 @@ case $extension in
         ;;
 esac
 go test -coverprofile /tmp/c.out ./...
-uncover /tmp/c.out
+uncover /tmp/c.out 
 

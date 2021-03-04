@@ -8,29 +8,47 @@ import (
 	"testing"
 )
 
-func TestEditor_SetApplicableBy_fails_on_no_match(t *testing.T) {
+func TestEditor_SetManuallyVerifiedBy_fails(t *testing.T) {
 	ed := NewEditor()
-	err := ed.SetApplicableBy(".*", true)
-	if err == nil {
-		t.Fail()
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true},
+		{ID: "1.1.2", Applicable: true},
+		{ID: "2.1.1"},
 	}
+
+	t.Run("when no entries match", func(t *testing.T) {
+		err := ed.SetManuallyVerifiedBy(`3.*`, true, Manual{})
+		if err == nil {
+			t.Fail()
+		}
+	})
+
+	t.Run("when not applicable", func(t *testing.T) {
+		err := ed.SetManuallyVerifiedBy(`2.*`, true, Manual{})
+		if err == nil {
+			t.Fail()
+		}
+	})
 }
 
-func TestEditor_set_non_applicable(t *testing.T) {
+func TestEditor_SetManuallyVerifiedBy(t *testing.T) {
 	ed := NewEditor()
-	filename := "testdata/OWASP_ISVS-1.0RC.json"
-	if err := ed.Load(filename); err != nil {
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true},
+		{ID: "2.2.2", Applicable: true},
+	}
+	err := ed.SetManuallyVerifiedBy(`1.*`, true, Manual{})
+	if err != nil {
 		t.Fatal(err)
 	}
-
-	if err := ed.SetVerified("1.2.1", true); err == nil {
-		t.Fatal("SetVerified should fail")
+	if !ed.Entries[0].Verified {
+		t.Error("Verified field not set")
 	}
-	if err := ed.SetVerifiedBy("1.2.*", true); err == nil {
-		t.Fatal("SetVerifiedBy should fail")
+	if ed.Entries[0].Manual == nil {
+		t.Error("Manual field not set")
 	}
-	if err := ed.SetManuallyVerified("1.2.1", true, Manual{}); err == nil {
-		t.Fatal("SetManuallyVerified should fail")
+	if ed.Entries[1].Verified {
+		t.Error("Verified field set on wrong entry")
 	}
 }
 

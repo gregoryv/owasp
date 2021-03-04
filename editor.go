@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"regexp"
 )
@@ -51,6 +52,23 @@ func (me *Editor) SetVerified(id string, v bool) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
+// SetManuallyVerified sets the given entry as verified and applicable
+// with manual notes.
+func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
+	for i, e := range me.Entries {
+		if e.ID == id {
+			if !e.Applicable {
+				return fmt.Errorf("%v is not applicable", e.ID)
+			}
+			me.Entries[i].Verified = v
+			me.Entries[i].Applicable = true // todo remove
+			me.Entries[i].Manual = &man
+			return nil
+		}
+	}
+	return fmt.Errorf("id %s not found", id)
+}
+
 // SetVerifiedBy sets the verified state of all entries where id
 // matches the pattern. Returns error if matching entry is not
 // applicable.
@@ -68,32 +86,19 @@ func (me *Editor) SetVerifiedBy(pattern string, v bool) error {
 	return nil
 }
 
-// SetManuallyVerified sets the given entry as verified and applicable
-// with manual notes.
-func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
-	for i, e := range me.Entries {
-		if e.ID == id {
-			if !e.Applicable {
-				return fmt.Errorf("%v is not applicable", e.ID)
-			}
-			me.Entries[i].Verified = v
-			me.Entries[i].Applicable = true
-			me.Entries[i].Manual = &man
-			return nil
-		}
-	}
-	return fmt.Errorf("id %s not found", id)
-}
-
 // SetManuallyVerifiedBy sets all entries matching pattern as verified
 // and applicable with manual notes.
 func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) error {
+	if err := doesMatch(pattern, me.Entries); err != nil {
+		return fmt.Errorf("SetApplicableBy: %w", err)
+	}
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
 			if !e.Applicable {
 				return fmt.Errorf("%v is not applicable", e.ID)
 			}
 			me.Entries[i].Verified = v
+			log.Printf("%#v", me.Entries[i])
 			me.Entries[i].Manual = &man
 		}
 	}
