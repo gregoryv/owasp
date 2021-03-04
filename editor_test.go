@@ -121,11 +121,14 @@ func TestEditor_SetApplicable_fails(t *testing.T) {
 func TestEditor_ResetVerified(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
-		{Verified: true},
+		{Verified: true, Manual: &Manual{}},
 	}
 	ed.ResetVerified()
 	if ed.Entries[0].Verified {
-		t.Fail()
+		t.Error("Verified field not reset")
+	}
+	if ed.Entries[0].Manual != nil {
+		t.Error("Manual field not reset")
 	}
 }
 
