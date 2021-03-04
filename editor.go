@@ -15,7 +15,6 @@ func NewEditor() *Editor {
 	return &Editor{}
 }
 
-//go:generate gentut -t Editor -p owasp -in editor.go -w
 type Editor struct {
 	Entries []Entry
 }

@@ -45,18 +45,18 @@ func TestEditor_SetApplicableByLevel(t *testing.T) {
 }
 
 func TestEditor(t *testing.T) {
-	ed := NewEditor().UnderTest(t)
-	ed.mustLoad("testdata/OWASP_ISVS-1.0RC.json")
+	ed := NewEditor()
+	must(t, ed.Load("testdata/OWASP_ISVS-1.0RC.json"))
 
-	ed.shouldSetApplicable("1.3.1", true)
-	ed.shouldSetVerified("1.3.1", true)
+	must(t, ed.SetApplicable("1.3.1", true))
+	must(t, ed.SetVerified("1.3.1", true))
 
 	man := Manual{
 		How:  "Using hardware...",
 		When: "2022-01-01",
 		By:   "John Doe",
 	}
-	ed.shouldSetApplicable("2.1.1", true)
+	must(t, ed.SetApplicable("2.1.1", true))
 	if err := ed.SetManuallyVerified("2.1.1", true, man); err != nil {
 		t.Fatal(err)
 	}
@@ -66,7 +66,7 @@ func TestEditor(t *testing.T) {
 	}
 
 	var buf bytes.Buffer
-	ed.mustTidyExport(&buf)
+	must(t, ed.TidyExport(&buf))
 
 	var rbuf bytes.Buffer
 	ed.NewReport("Report ISVS").WriteTo(&rbuf)
@@ -138,15 +138,24 @@ func Test_convert_original_asvs_to_checklist(t *testing.T) {
 			}
 		}
 	}
-	ed := NewEditor().UnderTest(t)
+	ed := NewEditor()
 	ed.Entries = entries
 
-	ed.mustSave("checklist/asvs.json")
+	must(t, ed.Save("checklist/asvs.json"))
 }
 
 func Test_convert_isvs(t *testing.T) {
-	ed := NewEditor().UnderTest(t)
+	ed := NewEditor()
 
-	ed.mustLoad("testdata/OWASP_ISVS-1.0RC.json")
-	ed.mustSave("checklist/isvs.json")
+	must(t, ed.Load("testdata/OWASP_ISVS-1.0RC.json"))
+	must(t, ed.Save("checklist/isvs.json"))
+}
+
+// ----------------------------------------
+
+func must(t *testing.T, err error) {
+	if err != nil {
+		t.Helper()
+		t.Fatal(err)
+	}
 }
