@@ -9,6 +9,28 @@ import (
 	"testing"
 )
 
+func TestEditor_SetVerified_fails(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true},
+		{ID: "1.1.2"},
+	}
+	t.Run("when no entries match", func(t *testing.T) {
+		err := ed.SetVerified(`3.1.1`, true)
+		if err == nil {
+			t.Error("when no entries match")
+		}
+	})
+	t.Run("when not applicable", func(t *testing.T) {
+		err := ed.SetVerified(`1.1.2`, true)
+		if err == nil {
+			t.Fail()
+		}
+	})
+}
+
+// ----------------------------------------
+
 func TestEditor_SetVerifiedBy(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
