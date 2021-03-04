@@ -107,6 +107,9 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 // matches the pattern. Returns error if matching entry is not
 // applicable.
 func (me *Editor) SetVerifiedBy(pattern string, v bool) error {
+	if err := doesMatch(pattern, me.Entries); err != nil {
+		return fmt.Errorf("SetVerifiedBy: %w", err)
+	}
 	for i, e := range me.Entries {
 		if found, _ := regexp.MatchString(pattern, e.ID); found {
 			if !e.Applicable {

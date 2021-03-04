@@ -27,6 +27,28 @@ func TestEditor_SetVerifiedBy(t *testing.T) {
 	}
 }
 
+func TestEditor_SetVerifiedBy_fails(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true},
+		{ID: "1.1.2"},
+	}
+	t.Run("when no entries match", func(t *testing.T) {
+		err := ed.SetVerifiedBy(`3.*`, true)
+		if err == nil {
+			t.Error("when no entries match")
+		}
+	})
+
+	t.Run("when not applicable", func(t *testing.T) {
+		err := ed.SetVerifiedBy(`1.1.2`, true)
+		if err == nil {
+			t.Fail()
+		}
+	})
+
+}
+
 // ----------------------------------------
 
 func TestEditor_SetManuallyVerifiedBy(t *testing.T) {
