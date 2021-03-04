@@ -41,3 +41,14 @@ func TestReport_WriteTo(t *testing.T) {
 		}
 	}
 }
+
+func TestReport_SaveAs_fails(t *testing.T) {
+	var report Report
+
+	filename, cleanup := tmpFile(0000)
+	defer cleanup()
+
+	if err := report.SaveAs(filename); err == nil {
+		t.Fail()
+	}
+}
