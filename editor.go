@@ -42,6 +42,13 @@ func (me *Editor) ResetVerified() {
 	}
 }
 
+// ResetApplicable sets applicable field to false on all entries.
+func (me *Editor) ResetApplicable() {
+	for i := range me.Entries {
+		me.Entries[i].Applicable = false
+	}
+}
+
 // SetVerified sets the given entry as verified. Returns error if id
 // is not found or the entry is not applicable.
 func (me *Editor) SetVerified(id string, v bool) error {
