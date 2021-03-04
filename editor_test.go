@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"os"
-	"strings"
 	"testing"
 )
 
@@ -73,47 +72,27 @@ func TestEditor_SetApplicableByLevel(t *testing.T) {
 	}
 }
 
-func TestEditor(t *testing.T) {
+func TestEditor_TidyExport(t *testing.T) {
 	ed := NewEditor()
-	must(t, ed.Load("testdata/OWASP_ISVS-1.0RC.json"))
-
-	must(t, ed.SetApplicable("1.3.1", true))
-	must(t, ed.SetVerified("1.3.1", true))
-
-	man := Manual{
-		How:  "Using hardware...",
-		When: "2022-01-01",
-		By:   "John Doe",
-	}
-	must(t, ed.SetApplicable("2.1.1", true))
-	if err := ed.SetManuallyVerified("2.1.1", true, man); err != nil {
-		t.Fatal(err)
-	}
-
-	if err := ed.SetVerified("no such", true); err == nil {
-		t.Fatal("SetVerified should fail")
+	ed.Entries = []Entry{
+		{ID: "1.1.1", Applicable: true, Verified: true,
+			Manual: &Manual{
+				How:  "Using hardware...",
+				When: "2022-01-01",
+				By:   "John Doe",
+			},
+		},
+		{ID: "1.1.2", Applicable: true},
+		{ID: "2.1.1"},
 	}
 
 	var buf bytes.Buffer
 	must(t, ed.TidyExport(&buf))
 
-	var rbuf bytes.Buffer
-	ed.NewReport("Report ISVS").WriteTo(&rbuf)
-
-	got := rbuf.String()
-	exp := []string{
-		"4.3.4",
-		"- 5",
-		"[x] **1.3.1**",
-		"Using",
-		"John Doe",
-		"2022-01-01",
-	}
-	for _, exp := range exp {
-		if !strings.Contains(got, exp) {
-			t.Log(got)
-			t.Fatal("missing", exp)
-		}
+	var got []Entry
+	json.NewDecoder(&buf).Decode(&got)
+	if len(got) != 3 {
+		t.Error(got)
 	}
 }
 
