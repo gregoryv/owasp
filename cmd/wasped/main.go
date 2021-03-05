@@ -13,17 +13,17 @@ func main() {
 	var (
 		cli      = cmdline.NewParser(os.Args...)
 		help     = cli.Flag("-h, --help")
-		verify   = cli.Option("--verify", "ID to set as verified").String("")
-		unverify = cli.Option("--unverify", "ID to set as unverified").String("")
+		verify   = cli.Option("--verify", "Entry ID").String("")
+		unverify = cli.Option("--unverify", "Entry ID").String("")
 		manstr   = cli.Option("-m, --manual",
 			"Comma separated list of manual verification notes.",
 			"Format: YYYY-MM-DD, By, How",
 		).String("")
 
-		rfile   = cli.Option("-r, --report", "Markdown file to save report to").String("")
-		title   = cli.Option("-t, --title", "Title of the report").String("Report")
+		rfile   = cli.Option("-r, --report", "Save report as").String("")
+		title   = cli.Option("-t, --title", "Report title").String("Report")
 		shortna = cli.Option("-s, --short-description-na",
-			"If given, not applicable requiremens will have a shortened description",
+			"Short descriptions for non applicable requirements",
 		).Bool()
 
 		file = cli.Required("FILE").String("")
