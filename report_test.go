@@ -42,6 +42,61 @@ func TestReport_WriteTo(t *testing.T) {
 	}
 }
 
+func TestReport_WriteTo_all_verified(t *testing.T) {
+	report := Report{
+		Title:              "full report",
+		ShortDescriptionNA: true,
+		entries: []Entry{
+			Entry{
+				ID: "1.1.1", L2: true, Applicable: true, Verified: true,
+			},
+		},
+	}
+
+	var buf bytes.Buffer
+	report.WriteTo(&buf)
+	got := buf.String()
+
+	exp := "All requirements"
+	if !strings.Contains(got, exp) {
+		t.Log(got)
+		t.Fatal("missing", exp)
+	}
+}
+
+func TestReport_WriteTo_short_description(t *testing.T) {
+	exp := "out of range"
+	report := Report{
+		Title:              "short report",
+		ShortDescriptionNA: true,
+		entries: []Entry{
+			Entry{
+				ID: "1.1.1", L2: true, Applicable: true, Verified: true,
+				Description: strings.Repeat("x", 80) + "more here",
+			},
+			Entry{
+				ID: "1.1.2", L2: true,
+				Description: strings.Repeat("x", 80) + exp,
+			},
+			Entry{
+				ID: "1.1.3", L2: true,
+				Description: strings.Repeat("l", 79),
+			},
+		},
+	}
+
+	var buf bytes.Buffer
+	report.WriteTo(&buf)
+	got := buf.String()
+
+	if strings.Contains(got, exp) {
+		t.Log(got)
+		t.Fatal(got)
+	}
+}
+
+// ----------------------------------------
+
 func TestReport_SaveAs_fails(t *testing.T) {
 	var report Report
 

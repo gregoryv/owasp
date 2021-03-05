@@ -44,11 +44,12 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 	p.Println("- L2:", me.Stats(me.groupByLevel(L2)))
 	p.Println("- L3:", me.Stats(me.groupByLevel(L3)))
 	p.Println()
-	if v != a {
-		p.Printf("%d requirements left to verify!\n", a-v)
-	} else {
+
+	sumLine := fmt.Sprintf("%d requirements left to verify!", a-v)
+	if v == a {
 		p.Println("All requirements verified!")
 	}
+	p.Println(sumLine)
 	p.Println()
 	p.Println("## Applicable")
 	for _, e := range me.entries {

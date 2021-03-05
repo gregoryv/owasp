@@ -161,6 +161,8 @@ func TestEditor_SetApplicableByLevel(t *testing.T) {
 	}
 }
 
+// ----------------------------------------
+
 func TestEditor_SetApplicableBy_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
@@ -170,6 +172,19 @@ func TestEditor_SetApplicableBy_fails(t *testing.T) {
 		t.Error("when no matching entries are found")
 	}
 }
+
+func TestEditor_SetApplicableBy(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1"},
+	}
+	err := ed.SetApplicableBy("1.1.1", true)
+	if !ed.Entries[0].Applicable {
+		t.Error("applicable not set", err)
+	}
+}
+
+// ----------------------------------------
 
 func TestEditor_SetApplicable(t *testing.T) {
 	ed := NewEditor()
