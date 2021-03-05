@@ -4,11 +4,18 @@ import "testing"
 
 func Example_workWithTheEditor() {
 	ed := NewEditor()
-	ed.Load("checklist/asvs.json")
+	ed.Load("testdata/asvs.json")
+
+	// Reset all
+	ed.Reset()
+
+	// Select requirements that apply for your project
 	ed.SetApplicableBy(`1\.1\.\d*`, true)
 
+	// Verify, with tests
 	verifyASVS(t, ed)
 
+	// or manually
 	man := Manual{
 		How:  "Latest threatmodel design change was updated on ...",
 		When: "2021-02-18",
@@ -16,8 +23,11 @@ func Example_workWithTheEditor() {
 	}
 	_ = ed.SetManuallyVerified("1.1.2", true, man)
 
+	// generate a nice report
 	ed.NewReport("Report ASVS").SaveAs("example_report.md")
-	// output:
+
+	// Save result
+	ed.SaveAs("testdata/asvs.json")
 }
 
 var t *testing.T

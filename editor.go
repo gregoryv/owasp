@@ -86,8 +86,8 @@ func (me *Editor) SetVerified(id string, v bool) error {
 	return fmt.Errorf("id %s not found", id)
 }
 
-// SetManuallyVerified sets the given entry as verified and applicable
-// with manual notes.
+// SetManuallyVerified sets the given entry as verified with manual
+// notes.
 func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 	for i, e := range me.Entries {
 		if e.ID == id {
@@ -95,7 +95,6 @@ func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
 				return fmt.Errorf("%v is not applicable", e.ID)
 			}
 			me.Entries[i].Verified = v
-			me.Entries[i].Applicable = true // todo remove
 			me.Entries[i].Manual = &man
 			return nil
 		}
