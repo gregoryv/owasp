@@ -11,7 +11,7 @@ import (
 type Report struct {
 	entries            []Entry
 	Title              string
-	ShortDescriptionNA bool // true to shorten description for all non applicable
+	ShortDescriptionNA bool // Short description for non applicable
 }
 
 func (me *Report) AddEntries(v ...Entry) {
