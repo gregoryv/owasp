@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/gregoryv/owasp.svg?branch=main)](https://travis-ci.com/gregoryv/owasp)
+[![codecov](https://codecov.io/gh/gregoryv/owasp/branch/main/graph/badge.svg)](https://codecov.io/gh/gregoryv/owasp)
+
 Package [owasp](https://pkg.go.dev/github.com/gregoryv/owasp) provides
 an [OWASP](https://github.com/OWASP) checklist editor.
 
