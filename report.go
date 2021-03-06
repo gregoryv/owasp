@@ -113,6 +113,8 @@ func (me *Report) stats(entries []Entry) (verified, applicable, total int) {
 	return
 }
 
+// groupByLevel returns requirements only in the given level, excluding
+// multilevel requirements
 func (me *Report) groupByLevel(level Level) []Entry {
 	res := make([]Entry, 0)
 	for _, e := range me.entries {

@@ -2,9 +2,34 @@ package owasp
 
 import (
 	"bytes"
+	"fmt"
 	"strings"
 	"testing"
 )
+
+func TestReport_ASVS_check(t *testing.T) {
+	ed := NewEditor()
+	ed.Load("checklist/asvs.json")
+	ed.SetApplicableByLevel(L3, true)
+
+	report := ed.NewReport("")
+
+	var buf bytes.Buffer
+	report.WriteTo(&buf)
+	got := buf.String()
+
+	exp := []string{
+		fmt.Sprintf("L1: 0 verified of %v", 131),
+		fmt.Sprintf("L2: 0 verified of %v", 267),
+		fmt.Sprintf("L3: 0 verified of %v", 286),
+	}
+	for _, exp := range exp {
+		if !strings.Contains(got, exp) {
+			t.Log(got[:125])
+			t.Fatal("missing", exp)
+		}
+	}
+}
 
 func TestReport_WriteTo(t *testing.T) {
 	report := Report{

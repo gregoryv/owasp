@@ -28,6 +28,8 @@ func Example_workWithTheEditor() {
 
 	// Save result
 	ed.SaveAs("testdata/asvs.json")
+
+	// output:
 }
 
 var t *testing.T

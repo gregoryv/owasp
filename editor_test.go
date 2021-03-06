@@ -386,7 +386,11 @@ func Test_convert_isvs(t *testing.T) {
 
 func must(t *testing.T, err error) {
 	if err != nil {
-		t.Helper()
-		t.Fatal(err)
+		if t != nil {
+			t.Helper()
+			t.Fatal(err)
+			return
+		}
+		panic(err)
 	}
 }
