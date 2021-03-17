@@ -3,6 +3,7 @@ package owasp
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -15,6 +16,10 @@ func TestEditor_SetApplicable(t *testing.T) {
 		input   string
 	}{
 		{"1.1.1", "1.1.1"},
+		{"1.1.1", `^1\.1\.1$`},
+		{"1.1.1", `1.1.*`},
+		{"1.1.1", `*.1.*`},
+		{"1.1.1", `1.*.1`},
 	}
 	for _, c := range cases {
 		t.Run(c.input, func(t *testing.T) {
@@ -32,33 +37,33 @@ func TestEditor_SetApplicable(t *testing.T) {
 	}
 }
 
+func ExampleEditor_SetApplicable() {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1"},
+		{ID: "1.2.1"},
+		{ID: "1.2.2"},
+		{ID: "2.1.1"},
+		{ID: "3.1.1"},
+	}
+	ed.SetApplicable("1.1.1", true)  // specific
+	ed.SetApplicable("1.2.*", true)  // readable expression
+	ed.SetApplicable(`^2\..*`, true) // raw regexp
+	for _, e := range ed.Entries {
+		fmt.Println(e.ID, e.Applicable)
+	}
+	// output:
+	// 1.1.1 true
+	// 1.2.1 true
+	// 1.2.2 true
+	// 2.1.1 true
+	// 3.1.1 false
+}
+
 func TestEditor_SetApplicable_fails(t *testing.T) {
 	ed := NewEditor()
 	if err := ed.SetApplicable("1.1.1", true); err == nil {
 		t.Error("did not fail for unknown id")
-	}
-}
-
-// ----------------------------------------
-
-func TestEditor_SetApplicableBy(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1"},
-	}
-	err := ed.SetApplicableBy("1.1.1", true)
-	if !ed.Entries[0].Applicable {
-		t.Error("applicable not set", err)
-	}
-}
-
-func TestEditor_SetApplicableBy_fails(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1"},
-	}
-	if err := ed.SetApplicableBy("2.1.1", true); err == nil {
-		t.Error("when no matching entries are found")
 	}
 }
 

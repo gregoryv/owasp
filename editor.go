@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"regexp"
+	"strings"
 )
 
 // NewEditor returns an empty editor. Use Load or Import methods to
@@ -20,22 +21,43 @@ type Editor struct {
 }
 
 // SetApplicable sets the applicable field of given entry. Returns
-// error if no entry is found.
-func (me *Editor) SetApplicable(id string, v bool) error {
-	match := matcherFrom(id)
+// error if no entry is found. The given id is interpreted as a
+// regular expression if it contains a `\`. If it contains a `*`
+// without backslash it's converted to a regular expression, otherwise
+// the id is matched as is.
+func (me *Editor) SetApplicable(pattern string, v bool) error {
+	match := matcherFrom(pattern)
+	var found bool
 	for i, e := range me.Entries {
 		if match(e) {
 			me.Entries[i].Applicable = v
-			return nil
+			found = true
 		}
 	}
-	return fmt.Errorf("id %s not found", id)
+	if !found {
+		return fmt.Errorf("no entries matched by %s", pattern)
+	}
+	return nil
 }
 
 // ----------------------------------------
 
 func matcherFrom(v string) func(e Entry) bool {
 	switch {
+	case strings.Contains(v, `\`):
+		rx := regexp.MustCompile(v)
+		return func(e Entry) bool {
+			return rx.Match([]byte(e.ID))
+		}
+	case strings.Contains(v, "*"):
+		v = strings.ReplaceAll(v, ".", `\.`)
+		v = strings.ReplaceAll(v, "*", `.*`)
+		v = "^" + v + "$"
+
+		rx := regexp.MustCompile(v)
+		return func(e Entry) bool {
+			return rx.Match([]byte(e.ID))
+		}
 	default:
 		// exact id match
 		return func(e Entry) bool { return e.ID == v }
@@ -148,18 +170,6 @@ func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) erro
 			}
 			me.Entries[i].Verified = v
 			me.Entries[i].Manual = &man
-		}
-	}
-	return nil
-}
-
-func (me *Editor) SetApplicableBy(pattern string, v bool) error {
-	if err := doesMatch(pattern, me.Entries); err != nil {
-		return fmt.Errorf("SetApplicableBy: %w", err)
-	}
-	for i, e := range me.Entries {
-		if found, _ := regexp.MatchString(pattern, e.ID); found {
-			me.Entries[i].Applicable = v
 		}
 	}
 	return nil

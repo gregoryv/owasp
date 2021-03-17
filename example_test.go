@@ -10,7 +10,7 @@ func Example_workWithTheEditor() {
 	ed.Reset()
 
 	// Select requirements that apply for your project
-	ed.SetApplicableBy(`1\.1\.\d*`, true)
+	ed.SetApplicable(`1.1.*`, true)
 
 	// Verify, with tests
 	verifyASVS(t, ed)
