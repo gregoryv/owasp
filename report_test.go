@@ -33,7 +33,8 @@ func TestReport_ASVS_check(t *testing.T) {
 
 func TestReport_WriteTo(t *testing.T) {
 	report := Report{
-		Title: "test report",
+		Title:             "test report",
+		ShowNonApplicable: true,
 	}
 	report.AddEntries(
 		Entry{ID: "1.3.1", L1: true, Verified: true, Applicable: true,

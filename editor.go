@@ -167,6 +167,7 @@ func (me *Editor) NewReport(title string) *Report {
 	r := &Report{
 		Title:              title,
 		ShortDescriptionNA: true,
+		ShowNonApplicable:  true,
 	}
 	r.AddEntries(me.Entries...)
 	return r

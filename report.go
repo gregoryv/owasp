@@ -12,6 +12,7 @@ type Report struct {
 	entries            []Entry
 	Title              string
 	ShortDescriptionNA bool // Short description for non applicable
+	ShowNonApplicable  bool
 }
 
 func (me *Report) AddEntries(v ...Entry) {
@@ -64,19 +65,20 @@ func (me *Report) WriteTo(w io.Writer) (int64, error) {
 		}
 	}
 
-	p.Println()
-	p.Println("## Not Applicable")
-	for _, e := range me.entries {
-		if e.Applicable {
-			continue
+	if me.ShowNonApplicable {
+		p.Println()
+		p.Println("## Not Applicable")
+		for _, e := range me.entries {
+			if e.Applicable {
+				continue
+			}
+			desc := e.Description
+			if me.ShortDescriptionNA {
+				desc = maxString(e.Description, 80)
+			}
+			p.Printf("- %s %s\n", e.ID, desc)
 		}
-		desc := e.Description
-		if me.ShortDescriptionNA {
-			desc = maxString(e.Description, 80)
-		}
-		p.Printf("- %s %s\n", e.ID, desc)
 	}
-
 	return p.Written, *err
 }
 

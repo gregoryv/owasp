@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Add Report.ShowNonApplicable, set to false hides the non applicable section
 - SetVerified uses same pattern as SetApplicable
 - SetApplicable, SetVerified understands id values as patterns or by level
 - Removed SetApplicableBy and SetApplicableByLevel, use SetApplicable
