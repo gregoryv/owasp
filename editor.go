@@ -129,33 +129,6 @@ func (me *Editor) SetManuallyVerified(pattern string, v bool, man Manual) error 
 	return me.SetVerified(pattern, v, man)
 }
 
-// SetManuallyVerifiedBy sets all entries matching pattern as verified
-// and applicable with manual notes.
-func (me *Editor) SetManuallyVerifiedBy(pattern string, v bool, man Manual) error {
-	if err := doesMatch(pattern, me.Entries); err != nil {
-		return fmt.Errorf("SetApplicableBy: %w", err)
-	}
-	for i, e := range me.Entries {
-		if found, _ := regexp.MatchString(pattern, e.ID); found {
-			if !e.Applicable {
-				return fmt.Errorf("%v is not applicable", e.ID)
-			}
-			me.Entries[i].Verified = v
-			me.Entries[i].Manual = &man
-		}
-	}
-	return nil
-}
-
-func doesMatch(pattern string, entries []Entry) error {
-	for i := range entries {
-		if found, _ := regexp.MatchString(pattern, entries[i].ID); found {
-			return nil
-		}
-	}
-	return fmt.Errorf("pattern %q does not match any entries", pattern)
-}
-
 // ----------------------------------------
 
 // Load entries from given json file.
