@@ -121,46 +121,6 @@ func TestEditor_SetVerified_fails(t *testing.T) {
 
 // ----------------------------------------
 
-func TestEditor_SetVerifiedBy(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1", Applicable: true},
-		{ID: "2.2.2", Applicable: true},
-	}
-	err := ed.SetVerifiedBy(`1.*`, true)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !ed.Entries[0].Verified {
-		t.Error("Verified field not set")
-	}
-	if ed.Entries[1].Verified {
-		t.Error("Verified field set on wrong entry")
-	}
-}
-
-func TestEditor_SetVerifiedBy_fails(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1", Applicable: true},
-		{ID: "1.1.2"},
-	}
-	t.Run("when no entries match", func(t *testing.T) {
-		err := ed.SetVerifiedBy(`3.*`, true)
-		if err == nil {
-			t.Error("when no entries match")
-		}
-	})
-	t.Run("when not applicable", func(t *testing.T) {
-		err := ed.SetVerifiedBy(`1.1.2`, true)
-		if err == nil {
-			t.Fail()
-		}
-	})
-}
-
-// ----------------------------------------
-
 func TestEditor_SetManuallyVerified_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
