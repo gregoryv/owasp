@@ -9,6 +9,84 @@ import (
 	"testing"
 )
 
+func TestEditor_SetApplicable(t *testing.T) {
+	cases := []struct {
+		entryID string
+		input   string
+	}{
+		{"1.1.1", "1.1.1"},
+	}
+	for _, c := range cases {
+		t.Run(c.input, func(t *testing.T) {
+			ed := NewEditor()
+			ed.Entries = []Entry{
+				{ID: c.entryID},
+			}
+			if err := ed.SetApplicable(c.input, true); err != nil {
+				t.Error(err)
+			}
+			if !ed.Entries[0].Applicable {
+				t.Error("did not set Applicable field")
+			}
+		})
+	}
+}
+
+func TestEditor_SetApplicable_fails(t *testing.T) {
+	ed := NewEditor()
+	if err := ed.SetApplicable("1.1.1", true); err == nil {
+		t.Error("did not fail for unknown id")
+	}
+}
+
+// ----------------------------------------
+
+func TestEditor_SetApplicableBy(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1"},
+	}
+	err := ed.SetApplicableBy("1.1.1", true)
+	if !ed.Entries[0].Applicable {
+		t.Error("applicable not set", err)
+	}
+}
+
+func TestEditor_SetApplicableBy_fails(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{ID: "1.1.1"},
+	}
+	if err := ed.SetApplicableBy("2.1.1", true); err == nil {
+		t.Error("when no matching entries are found")
+	}
+}
+
+// ----------------------------------------
+
+func TestEditor_SetApplicableByLevel(t *testing.T) {
+	ed := NewEditor()
+	ed.Entries = []Entry{
+		{L1: true},
+		{L2: true},
+		{L3: true},
+	}
+	if err := ed.SetApplicableByLevel(L1, true); err != nil {
+		t.Error(err)
+	}
+	if err := ed.SetApplicableByLevel(L2, true); err != nil {
+		t.Error(err)
+	}
+	if err := ed.SetApplicableByLevel(L3, true); err != nil {
+		t.Error(err)
+	}
+	if err := ed.SetApplicableByLevel(0, true); err == nil {
+		t.Error("did not fail for level 0")
+	}
+}
+
+// ----------------------------------------
+
 func TestEditor_SetVerified_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
@@ -140,73 +218,6 @@ func TestEditor_SetManuallyVerifiedBy_fails(t *testing.T) {
 
 // ----------------------------------------
 
-func TestEditor_SetApplicableByLevel(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{L1: true},
-		{L2: true},
-		{L3: true},
-	}
-	if err := ed.SetApplicableByLevel(L1, true); err != nil {
-		t.Error(err)
-	}
-	if err := ed.SetApplicableByLevel(L2, true); err != nil {
-		t.Error(err)
-	}
-	if err := ed.SetApplicableByLevel(L3, true); err != nil {
-		t.Error(err)
-	}
-	if err := ed.SetApplicableByLevel(0, true); err == nil {
-		t.Error("did not fail for level 0")
-	}
-}
-
-// ----------------------------------------
-
-func TestEditor_SetApplicableBy_fails(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1"},
-	}
-	if err := ed.SetApplicableBy("2.1.1", true); err == nil {
-		t.Error("when no matching entries are found")
-	}
-}
-
-func TestEditor_SetApplicableBy(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1"},
-	}
-	err := ed.SetApplicableBy("1.1.1", true)
-	if !ed.Entries[0].Applicable {
-		t.Error("applicable not set", err)
-	}
-}
-
-// ----------------------------------------
-
-func TestEditor_SetApplicable(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{ID: "1.1.1"},
-	}
-	if err := ed.SetApplicable("1.1.1", true); err != nil {
-		t.Error(err)
-	}
-	if !ed.Entries[0].Applicable {
-		t.Error("did not set Applicable field")
-	}
-}
-
-func TestEditor_SetApplicable_fails(t *testing.T) {
-	ed := NewEditor()
-	if err := ed.SetApplicable("1.1.1", true); err == nil {
-		t.Error("did not fail for unknown id")
-	}
-}
-
-// ----------------------------------------
 func TestEditor_Reset(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{

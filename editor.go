@@ -19,6 +19,31 @@ type Editor struct {
 	Entries []Entry
 }
 
+// SetApplicable sets the applicable field of given entry. Returns
+// error if no entry is found.
+func (me *Editor) SetApplicable(id string, v bool) error {
+	match := matcherFrom(id)
+	for i, e := range me.Entries {
+		if match(e) {
+			me.Entries[i].Applicable = v
+			return nil
+		}
+	}
+	return fmt.Errorf("id %s not found", id)
+}
+
+// ----------------------------------------
+
+func matcherFrom(v string) func(e Entry) bool {
+	switch {
+	default:
+		// exact id match
+		return func(e Entry) bool { return e.ID == v }
+	}
+}
+
+// ----------------------------------------
+
 // SetApplicableByLevel sets applicable value of entries by specific
 // level.
 func (me *Editor) SetApplicableByLevel(level Level, v bool) error {
@@ -57,18 +82,6 @@ func (me *Editor) ResetApplicable() {
 }
 
 // ----------------------------------------
-
-// SetApplicable sets the applicable field of given entry. Returns
-// error if no entry is found.
-func (me *Editor) SetApplicable(id string, v bool) error {
-	for i, e := range me.Entries {
-		if e.ID == id {
-			me.Entries[i].Applicable = v
-			return nil
-		}
-	}
-	return fmt.Errorf("id %s not found", id)
-}
 
 // SetVerified sets the given entry as verified. Returns error if id
 // is not found or the entry is not applicable.
