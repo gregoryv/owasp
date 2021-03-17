@@ -21,11 +21,11 @@ type Editor struct {
 }
 
 // SetApplicable sets the applicable field of given entry. Returns
-// error if no entry is found. The given id is interpreted as a
-// regular expression if it contains a `\`. If it contains a `*`
+// error if no entry is found. The given pattern is interpreted as a
+// regular expression if it's a string containing a `\`. If it contains a `*`
 // without backslash it's converted to a regular expression, otherwise
-// the id is matched as is.
-func (me *Editor) SetApplicable(pattern string, v bool) error {
+// the id is matched as is. The pattern may also be a Level.
+func (me *Editor) SetApplicable(pattern interface{}, v bool) error {
 	match := matcherFrom(pattern)
 	var found bool
 	for i, e := range me.Entries {
@@ -40,27 +40,35 @@ func (me *Editor) SetApplicable(pattern string, v bool) error {
 	return nil
 }
 
-// ----------------------------------------
-
-func matcherFrom(v string) func(e Entry) bool {
-	switch {
-	case strings.Contains(v, `\`):
-		rx := regexp.MustCompile(v)
+func matcherFrom(v interface{}) func(e Entry) bool {
+	if level, ok := v.(Level); ok {
 		return func(e Entry) bool {
-			return rx.Match([]byte(e.ID))
+			return e.IsLevel(level)
 		}
-	case strings.Contains(v, "*"):
-		v = strings.ReplaceAll(v, ".", `\.`)
-		v = strings.ReplaceAll(v, "*", `.*`)
-		v = "^" + v + "$"
+	}
+	{
+		v := v.(string)
 
-		rx := regexp.MustCompile(v)
-		return func(e Entry) bool {
-			return rx.Match([]byte(e.ID))
+		switch {
+		case strings.Contains(v, `\`):
+			rx := regexp.MustCompile(v)
+			return func(e Entry) bool {
+				return rx.Match([]byte(e.ID))
+			}
+		case strings.Contains(v, "*"):
+			v = strings.ReplaceAll(v, ".", `\.`)
+			v = strings.ReplaceAll(v, "*", `.*`)
+			v = "^" + v + "$"
+
+			rx := regexp.MustCompile(v)
+			return func(e Entry) bool {
+				return rx.Match([]byte(e.ID))
+			}
+
+		default:
+			// exact id match
+			return func(e Entry) bool { return e.ID == v }
 		}
-	default:
-		// exact id match
-		return func(e Entry) bool { return e.ID == v }
 	}
 }
 
