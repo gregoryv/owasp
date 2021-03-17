@@ -47,10 +47,10 @@ func ExampleEditor_SetApplicable() {
 		{ID: "3.1.1"},
 		{L1: true, ID: "4.1.1"},
 	}
-	ed.SetApplicable("1.1.1", true)  // specific
-	ed.SetApplicable("1.2.*", true)  // readable expression
-	ed.SetApplicable(`^2\..*`, true) // raw regexp
-	ed.SetApplicable(L1, true)       // by level
+	ed.SetApplicable("1.1.1", true) // specific
+	ed.SetApplicable("1.2.*", true) // readable expression
+	ed.SetApplicable(`^2.*`, true)  // raw regexp
+	ed.SetApplicable(L1, true)      // by level
 	for _, e := range ed.Entries {
 		fmt.Println(e.ID, e.Applicable)
 	}

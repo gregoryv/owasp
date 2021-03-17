@@ -22,7 +22,7 @@ type Editor struct {
 
 // SetApplicable sets the applicable field of given entry. Returns
 // error if no entry is found. The given pattern is interpreted as a
-// regular expression if it's a string containing a `\`. If it contains a `*`
+// regular expression if it's a string starts with a `^`. If it contains a `*`
 // without backslash it's converted to a regular expression, otherwise
 // the id is matched as is. The pattern may also be a Level.
 func (me *Editor) SetApplicable(pattern interface{}, v bool) error {
@@ -50,7 +50,7 @@ func matcherFrom(v interface{}) func(e Entry) bool {
 		v := v.(string)
 
 		switch {
-		case strings.Contains(v, `\`):
+		case len(v) > 0 && v[0] == '^':
 			rx := regexp.MustCompile(v)
 			return func(e Entry) bool {
 				return rx.Match([]byte(e.ID))
