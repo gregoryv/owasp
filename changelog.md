@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- SetVerified uses same pattern as SetApplicable
 - SetApplicable understands id values as patterns or by level
 - Removed SetApplicableBy, use SetApplicable
 - Removed SetApplicableByLevel

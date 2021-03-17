@@ -97,20 +97,26 @@ func (me *Editor) ResetApplicable() {
 
 // ----------------------------------------
 
-// SetVerified sets the given entry as verified. Returns error if id
-// is not found or the entry is not applicable.
-func (me *Editor) SetVerified(id string, v bool) error {
+// SetVerified sets the given entry as verified. Returns error if
+// pattern is not found or the entry is not applicable. See
+// SetApplicable for pattern variations.
+func (me *Editor) SetVerified(pattern interface{}, v bool) error {
+	match := matcherFrom(pattern)
+	var found bool
 	for i, e := range me.Entries {
-		if e.ID == id {
+		if match(e) {
 			if !e.Applicable {
 				return fmt.Errorf("%v is not applicable", e.ID)
 			}
 			me.Entries[i].Verified = v
 			me.Entries[i].Manual = nil
-			return nil
+			found = true
 		}
 	}
-	return fmt.Errorf("id %s not found", id)
+	if !found {
+		return fmt.Errorf("no entries matched by %s", pattern)
+	}
+	return nil
 }
 
 // SetManuallyVerified sets the given entry as verified with manual

@@ -72,6 +72,33 @@ func TestEditor_SetApplicable_fails(t *testing.T) {
 
 // ----------------------------------------
 
+func TestEditor_SetVerified(t *testing.T) {
+	cases := []struct {
+		entryID string
+		input   string
+	}{
+		{"1.1.1", "1.1.1"},
+		{"1.1.1", `^1\.1\.1$`},
+		{"1.1.1", `1.1.*`},
+		{"1.1.1", `*.1.*`},
+		{"1.1.1", `1.*.1`},
+	}
+	for _, c := range cases {
+		t.Run(c.input, func(t *testing.T) {
+			ed := NewEditor()
+			ed.Entries = []Entry{
+				{ID: c.entryID, Applicable: true},
+			}
+			if err := ed.SetVerified(c.input, true); err != nil {
+				t.Error(err)
+			}
+			if !ed.Entries[0].Verified {
+				t.Error("did not set Verified field")
+			}
+		})
+	}
+}
+
 func TestEditor_SetVerified_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{
