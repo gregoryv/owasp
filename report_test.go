@@ -10,7 +10,7 @@ import (
 func TestReport_ASVS_check(t *testing.T) {
 	ed := NewEditor()
 	ed.Load("checklist/asvs.json")
-	ed.SetApplicableByLevel(L3, true)
+	ed.SetApplicable(L3, true)
 
 	report := ed.NewReport("")
 

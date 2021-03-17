@@ -72,29 +72,6 @@ func TestEditor_SetApplicable_fails(t *testing.T) {
 
 // ----------------------------------------
 
-func TestEditor_SetApplicableByLevel(t *testing.T) {
-	ed := NewEditor()
-	ed.Entries = []Entry{
-		{L1: true},
-		{L2: true},
-		{L3: true},
-	}
-	if err := ed.SetApplicableByLevel(L1, true); err != nil {
-		t.Error(err)
-	}
-	if err := ed.SetApplicableByLevel(L2, true); err != nil {
-		t.Error(err)
-	}
-	if err := ed.SetApplicableByLevel(L3, true); err != nil {
-		t.Error(err)
-	}
-	if err := ed.SetApplicableByLevel(0, true); err == nil {
-		t.Error("did not fail for level 0")
-	}
-}
-
-// ----------------------------------------
-
 func TestEditor_SetVerified_fails(t *testing.T) {
 	ed := NewEditor()
 	ed.Entries = []Entry{

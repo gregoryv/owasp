@@ -74,22 +74,6 @@ func matcherFrom(v interface{}) func(e Entry) bool {
 
 // ----------------------------------------
 
-// SetApplicableByLevel sets applicable value of entries by specific
-// level.
-func (me *Editor) SetApplicableByLevel(level Level, v bool) error {
-	switch level {
-	case L1, L2, L3:
-	default:
-		return fmt.Errorf("no such level %v", level)
-	}
-	for i, e := range me.Entries {
-		if e.IsLevel(level) {
-			me.Entries[i].Applicable = v
-		}
-	}
-	return nil
-}
-
 // Reset same as calling ResetVerified and ResetApplicable
 func (me *Editor) Reset() {
 	me.ResetVerified()

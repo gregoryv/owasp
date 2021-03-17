@@ -6,8 +6,9 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
-- SetApplicable understands id values as patterns if given
+- SetApplicable understands id values as patterns or by level
 - Removed SetApplicableBy, use SetApplicable
+- Removed SetApplicableByLevel
 - SetManuallyVerified fails if entry is not applicable
 
 ## [0.8.0] - 2021-03-05
