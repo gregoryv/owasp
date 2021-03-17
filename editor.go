@@ -123,12 +123,6 @@ func (me *Editor) SetVerified(pattern interface{}, v bool, man ...Manual) error 
 	return nil
 }
 
-// SetManuallyVerified sets the given entry as verified with manual
-// notes. Same as SetVerified(pattern, v, man)
-func (me *Editor) SetManuallyVerified(pattern string, v bool, man Manual) error {
-	return me.SetVerified(pattern, v, man)
-}
-
 // ----------------------------------------
 
 // Load entries from given json file.

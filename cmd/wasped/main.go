@@ -68,7 +68,7 @@ func main() {
 
 	switch {
 	case man != nil:
-		must(ed.SetManuallyVerified(id, verified, *man))
+		must(ed.SetVerified(id, verified, *man))
 
 	default:
 		must(ed.SetVerified(id, verified))

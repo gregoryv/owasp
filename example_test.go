@@ -21,7 +21,7 @@ func Example_workWithTheEditor() {
 		When: "2021-02-18",
 		By:   "John Doe",
 	}
-	_ = ed.SetManuallyVerified("1.1.2", true, man)
+	_ = ed.SetVerified("1.1.2", true, man)
 
 	// generate a nice report
 	ed.NewReport("Report ASVS").SaveAs("example_report.md")
