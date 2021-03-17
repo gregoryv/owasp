@@ -100,7 +100,7 @@ func (me *Editor) ResetApplicable() {
 // SetVerified sets the given entry as verified. Returns error if
 // pattern is not found or the entry is not applicable. See
 // SetApplicable for pattern variations.
-func (me *Editor) SetVerified(pattern interface{}, v bool) error {
+func (me *Editor) SetVerified(pattern interface{}, v bool, man ...Manual) error {
 	match := matcherFrom(pattern)
 	var found bool
 	for i, e := range me.Entries {
@@ -110,6 +110,10 @@ func (me *Editor) SetVerified(pattern interface{}, v bool) error {
 			}
 			me.Entries[i].Verified = v
 			me.Entries[i].Manual = nil
+			if len(man) > 0 {
+				m := man[0]
+				me.Entries[i].Manual = &m
+			}
 			found = true
 		}
 	}
@@ -120,19 +124,9 @@ func (me *Editor) SetVerified(pattern interface{}, v bool) error {
 }
 
 // SetManuallyVerified sets the given entry as verified with manual
-// notes.
-func (me *Editor) SetManuallyVerified(id string, v bool, man Manual) error {
-	for i, e := range me.Entries {
-		if e.ID == id {
-			if !e.Applicable {
-				return fmt.Errorf("%v is not applicable", e.ID)
-			}
-			me.Entries[i].Verified = v
-			me.Entries[i].Manual = &man
-			return nil
-		}
-	}
-	return fmt.Errorf("id %s not found", id)
+// notes. Same as SetVerified(pattern, v, man)
+func (me *Editor) SetManuallyVerified(pattern string, v bool, man Manual) error {
+	return me.SetVerified(pattern, v, man)
 }
 
 // SetManuallyVerifiedBy sets all entries matching pattern as verified
